@@ -30,7 +30,7 @@ class UsuarioModelo {
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();      
-
+ 
         
     }
     function editarUsuario($id, $name, $email, $password) {

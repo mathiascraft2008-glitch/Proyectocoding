@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -34,9 +38,9 @@
         <section class="profile">
             <div class="profile__avatar">IMG</div>
             <div class="profile__info">
-                <h2 class="profile__name">Nombre</h2>
-                <p class="profile__mail">Correo electrónico</p>
-                <p class="profile__id">ID</p>
+                <h2 class="profile__name"><?php echo $_SESSION['nombre']; ?></h2>
+                <p class="profile__mail"><?php echo $_SESSION['email']; ?></p>
+                <p class="profile__id">ID: <?php echo $_SESSION['id']; ?></p>
             </div>
         </section>
         
