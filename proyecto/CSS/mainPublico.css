@@ -1,0 +1,519 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #262a2b;
+    color: #ffffff;
+    font-family: "Roboto";
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.link {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+}
+
+.link-footer {
+    color: #d6d6d6;
+    text-decoration: none;
+}
+
+/* ==========================================
+    HEADER
+========================================== */
+
+.header {
+position: sticky;
+top: 0;
+height: 65px;
+background-color: #3f4448;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+z-index: 100;
+}
+
+.menu {
+border: none;
+background-color: transparent;
+font-size: 1.8em;
+color: #ffffff;
+cursor: pointer;
+}
+
+.logotipo {
+color: #ffffff;
+font-size: 24px;
+font-family: "Orbitron";
+font-weight: 700;
+}
+
+.logotipo--GG {
+color: #e2e800;
+}
+
+.header__nav {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.header__link {
+display: none;
+color: #ffffff;
+text-decoration: none;
+font-size: 14px;
+}
+
+.avatar__link {
+display: flex;
+}
+
+.avatar {
+width: 38px;
+height: 38px;
+background-color: #e2e800;
+border-radius: 50%;
+}
+
+/* ==========================================
+   MAIN CONTENT
+========================================== */
+
+.main-content {
+    flex: 1;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.highlight {
+    color: #e2e800;
+}
+
+/* Botones */
+
+.btn {
+    width: 100%;
+    height: 44px;
+    border: none;
+    border-radius: 6px;
+    background-color: #e2e800;
+    color: #121212;
+    font-family: "Roboto";
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #f5fa28;
+}
+
+.btn--small {
+    width: auto;
+    height: 36px;
+    padding: 0 20px;
+    margin-top: 10px;
+}
+
+/* ==========================================
+   HERO
+========================================== */
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.hero__title {
+    font-family: "Orbitron";
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.hero__subtitle {
+    font-size: 13px;
+    color: #d6d6d6;
+    margin-bottom: 20px;
+}
+
+.hero__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.hero__image {
+    width: 100%;
+}
+
+/* Contenedor de Imagen Limpio */
+.image__placeholder {
+    width: 100%;
+    height: 120px;
+    border-radius: 12px;
+    background-color: #3f4448;
+    background-size: cover;
+    background-position: center;
+}
+
+/* ==========================================
+   TORNEOS DESTACADOS
+========================================== */
+
+.featured {
+    margin-bottom: 40px;
+}
+
+.tournament-card {
+    background-color: #3f4448;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tournament__image {
+    margin-bottom: 12px;
+}
+
+.tournament__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.tournament__name {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.tournament__format {
+    font-size: 13px;
+    color: #d6d6d6;
+    margin-bottom: 12px;
+}
+
+.tournament__detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.tournament__detail p {
+    font-size: 13px;
+    color: #d6d6d6;
+}
+
+.detail__icon {
+    width: 18px;
+    height: 14px;
+    border-radius: 3px;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+/* ==========================================
+   QUÉ ES GGCHAMP
+========================================== */
+
+.about {
+    margin-bottom: 40px;
+}
+
+.about__text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #d6d6d6;
+}
+
+/* ==========================================
+   PASOS
+========================================== */
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.step {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.step__number {
+    color: #e2e800;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.step__text {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer {
+    width: 100%;
+    background-color: #3f4448;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+
+.footer__links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.footer__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.footer__icons {
+    display: flex;
+    gap: 10px;
+}
+
+.icon-box {
+    width: 20px;
+    height: 20px;
+}
+
+.copyright {
+    font-size: 11px;
+    color: #d6d6d6;
+    text-align: center;
+}
+.link-footer{
+    color:#d6d6d6;
+    text-decoration: none;
+}
+
+/* ==========================================
+   MEDIA QUERY: TABLET (768px - 1023px)
+========================================== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .header {
+        padding: 0 30px;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .header__link {
+        display: block;
+    }
+
+    .main-content {
+        max-width: 700px;
+        padding: 30px 20px;
+    }
+
+    .hero {
+        flex-direction: row;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .hero__text {
+        flex: 1;
+    }
+
+    .hero__image {
+        flex: 1;
+    }
+
+    .hero__title {
+        font-size: 26px;
+    }
+
+    .hero__actions {
+        flex-direction: row;
+    }
+
+    .tournament-card {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .tournament__image {
+        flex: 1;
+        margin-bottom: 0;
+    }
+
+    .tournament__info {
+        flex: 1;
+    }
+
+    .footer {
+        padding: 25px 40px;
+    }
+
+    .footer__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* ==========================================
+   MEDIA QUERY: DESKTOP (1024px o superior)
+========================================== */
+
+@media screen and (min-width: 1024px) {
+
+    .menu {
+        display: none;
+    }
+
+    .header {
+        height: 80px;
+        padding: 0 40px;
+    }
+
+    .header__link {
+        display: block;
+        font-size: 15px;
+    }
+
+    .avatar {
+        width: 48px;
+        height: 48px;
+    }
+
+    .main-content {
+        max-width: 900px;
+        padding: 40px 20px;
+    }
+
+    .hero {
+        flex-direction: row;
+        align-items: center;
+        gap: 50px;
+        margin-bottom: 50px;
+    }
+
+    .hero__text {
+        flex: 1;
+    }
+
+    .hero__image {
+        flex: 1;
+    }
+
+    .hero__title {
+        font-size: 32px;
+    }
+
+    .hero__subtitle {
+        font-size: 15px;
+    }
+
+    .hero__actions {
+        flex-direction: row;
+        max-width: 420px;
+    }
+
+    .image__placeholder {
+        height: 150px;
+    }
+
+    .featured {
+        margin-bottom: 50px;
+    }
+
+    .tournament-card {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 30px;
+        padding: 25px;
+    }
+
+    .tournament__image {
+        flex: 1;
+        margin-bottom: 0;
+    }
+
+    .tournament__image .image__placeholder {
+        height: 130px;
+    }
+
+    .tournament__info {
+        flex: 1.4;
+    }
+
+    .about {
+        margin-bottom: 50px;
+    }
+
+    .about__text {
+        font-size: 15px;
+        max-width: 800px;
+    }
+
+    .steps {
+        gap: 20px;
+    }
+
+    .step__number,
+    .step__text {
+        font-size: 16px;
+    }
+
+    .footer {
+        padding: 30px 80px;
+    }
+
+    .footer__links {
+        gap: 40px;
+    }
+
+    .footer__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+}

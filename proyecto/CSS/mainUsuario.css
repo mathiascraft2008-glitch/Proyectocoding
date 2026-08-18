@@ -1,0 +1,549 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #262a2b;
+    color: #ffffff;
+    font-family: "Roboto";
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ==========================================
+    HEADER
+========================================== */
+
+.header {
+position: sticky;
+top: 0;
+height: 65px;
+background-color: #3f4448;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+z-index: 100;
+}
+
+.menu {
+border: none;
+background-color: transparent;
+font-size: 1.8em;
+color: #ffffff;
+cursor: pointer;
+}
+
+.logotipo {
+color: #ffffff;
+font-size: 24px;
+font-family: "Orbitron";
+font-weight: 700;
+}
+
+.logotipo--GG {
+color: #e2e800;
+}
+
+.header__nav {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.header__link {
+display: none;
+color: #ffffff;
+text-decoration: none;
+font-size: 14px;
+}
+
+.avatar__link {
+display: flex;
+}
+
+.avatar {
+width: 38px;
+height: 38px;
+background-color: #e2e800;
+border-radius: 50%;
+}
+
+/* ==========================================
+   MAIN CONTENT
+========================================== */
+
+.main-content {
+    flex: 1; /* Ocupa el espacio sobrante para empujar el footer hacia abajo */
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 20px 20px 40px 20px;
+}
+
+.title {
+    font-family: "Orbitron";
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-size: 14px;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 12px;
+    margin-top: 25px;
+}
+
+.section-title--center {
+    text-align: center;
+    font-weight: 700;
+}
+
+/* Botones */
+
+.btn {
+    border: none;
+    border-radius: 6px;
+    background-color: #e2e800;
+    color: #121212;
+    font-family: "Roboto";
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #f5fa28;
+}
+
+.btn--create {
+    width: 130px;
+    height: 34px;
+    font-size: 13px;
+}
+
+.btn--small {
+    width: 90px;
+    height: 34px;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+/* Placeholders limpios para background-image */
+
+.image__placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 60px;
+    border-radius: 8px;
+    background-color: #262a2b; /* Fondo base opcional */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ==========================================
+   BANNER EXPLORAR TORNEOS
+========================================== */
+
+.explore-banner {
+    background-color: #3f4448;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.explore-banner__icon {
+    width: 40px;
+    height: 30px;
+    background-color: #e2e800;
+    border-radius: 4px;
+    text-align: center;
+    padding: 5px;
+}
+
+.explore-banner__text {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* ==========================================
+   FILAS DE TORNEOS (participo / organizador)
+========================================== */
+
+.tournament-row {
+    background-color: #3f4448;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.tournament-row:last-child {
+    margin-bottom: 0;
+}
+
+.tournament-row__image {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.tournament-row__info {
+    flex: 1;
+    min-width: 0;
+}
+
+.tournament-row__name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.tournament-row__detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.tournament-row__detail:last-child {
+    margin-bottom: 0;
+}
+
+.tournament-row__detail p {
+    font-size: 12px;
+    color: #d6d6d6;
+}
+
+.tournament-row__date {
+    color: #d6d6d6;
+}
+
+.detail__icon {
+    width: 16px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 6px;
+
+}
+
+/* ==========================================
+   TORNEOS DESTACADOS
+========================================== */
+
+.featured {
+    margin-top: 30px;
+}
+
+.tournament-card {
+    background-color: #3f4448;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tournament__image {
+    height: 90px;
+    margin-bottom: 12px;
+}
+
+.tournament__name {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.tournament__format {
+    font-size: 13px;
+    color: #d6d6d6;
+    margin-bottom: 12px;
+}
+
+.tournament__detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.tournament__detail:last-child {
+    margin-bottom: 0;
+}
+
+.tournament__detail p {
+    font-size: 13px;
+    color: #d6d6d6;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer {
+    width: 100%;
+    background-color: #3f4448;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: auto; /* Garantiza que siempre esté al final de la página */
+}
+
+.footer__links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.footer__links .link {
+    color: #d6d6d6;
+    font-size: 13px;
+}
+
+.footer__links .link:hover {
+    color: #e2e800;
+}
+
+.footer__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.footer__icons {
+    display: flex;
+    gap: 10px;
+}
+
+.icon-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+}
+
+.copyright {
+    font-size: 11px;
+    color: #d6d6d6;
+    text-align: center;
+}
+
+/* ==========================================
+   MEDIA QUERY: TABLET (768px - 1023px)
+========================================== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .header {   
+        padding: 0 30px;
+    }
+
+    .main-content {
+        max-width: 700px;
+        padding: 30px 20px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .btn--create {
+        width: 160px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .explore-banner {
+        padding: 40px;
+    }
+
+    .explore-banner__icon {
+        width: 50px;
+        height: 38px;
+    }
+
+    .explore-banner__text {
+        font-size: 18px;
+    }
+
+    .tournament-row {
+        padding: 14px;
+    }
+
+    .tournament-row__image {
+        width: 90px;
+        height: 90px;
+    }
+
+    .tournament-row__name {
+        font-size: 15px;
+    }
+
+    .tournament-row__detail p {
+        font-size: 13px;
+    }
+
+    .btn--small {
+        width: 110px;
+        height: 38px;
+        font-size: 14px;
+    }
+
+    .tournament-card {
+        flex-direction: row;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .tournament__image {
+        flex: 1;
+        height: auto;
+        min-height: 120px;
+        margin-bottom: 0;
+    }
+
+    .tournament__info {
+        flex: 1.4;
+    }
+
+    .footer {
+        padding: 25px 40px;
+    }
+
+    .footer__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* ==========================================
+   MEDIA QUERY: DESKTOP (1024px o superior)
+========================================== */
+
+@media screen and (min-width: 1024px) {
+
+    .menu {
+        display: none; /* Oculta el menú hamburguesa en escritorio */
+    }
+
+    .header {
+        height: 80px;
+        padding: 0 40px;
+    }
+
+    .header__link {
+        display: block; /* Muestra los enlaces de navegación */
+    }
+
+    .avatar {
+        width: 48px;
+        height: 48px;
+    }
+
+    .main-content {
+        max-width: 900px;
+        padding: 40px 20px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .btn--create {
+        width: 180px;
+        height: 44px;
+        font-size: 15px;
+    }
+
+    .explore-banner {
+        padding: 50px;
+    }
+
+    .explore-banner__icon {
+        width: 60px;
+        height: 46px;
+    }
+
+    .explore-banner__text {
+        font-size: 20px;
+    }
+
+    .tournament-row {
+        padding: 15px 18px;
+    }
+
+    .tournament-row__image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .tournament-row__name {
+        font-size: 16px;
+    }
+
+    .tournament-row__detail p {
+        font-size: 13px;
+    }
+
+    .btn--small {
+        width: 130px;
+        height: 42px;
+        font-size: 15px;
+    }
+
+    .tournament-card {
+        flex-direction: row;
+        gap: 25px;
+        padding: 25px;
+    }
+
+    .tournament__image {
+        flex: 1;
+        height: auto;
+        min-height: 140px;
+        margin-bottom: 0;
+    }
+
+    .tournament__info {
+        flex: 1.4;
+    }
+
+    .section-title {
+        font-size: 15px;
+    }
+
+    .footer {
+        padding: 30px 80px;
+    }
+
+    .footer__links {
+        gap: 40px;
+    }
+
+    .footer__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+}

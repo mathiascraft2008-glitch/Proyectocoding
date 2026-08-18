@@ -1,0 +1,356 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #262A2B;
+    color: #d6d6d6;
+    overflow-x: hidden;
+    font-family: "Roboto";
+    min-height: 100vh;
+}
+
+/* ==========================================
+    HEADER
+========================================== */
+
+.header {
+position: sticky;
+top: 0;
+height: 65px;
+background-color: #3f4448;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+z-index: 100;
+}
+
+.menu {
+border: none;
+background-color: transparent;
+font-size: 1.8em;
+color: #ffffff;
+cursor: pointer;
+}
+
+.logotipo {
+color: #ffffff;
+font-size: 24px;
+font-family: "Orbitron";
+font-weight: 700;
+}
+
+.logotipo--GG {
+color: #e2e800;
+}
+
+.header__nav {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.header__link {
+display: none;
+color: #ffffff;
+text-decoration: none;
+font-size: 14px;
+}
+
+.avatar__link {
+display: flex;
+}
+
+.avatar {
+width: 38px;
+height: 38px;
+background-color: #e2e800;
+border-radius: 50%;
+}
+
+/* ==========================================
+   MAIN CONTENT (MOBILE BASE)
+========================================== */
+
+main {
+    padding: 20px;
+    width: 100%;
+    margin: auto;
+}
+
+.title {
+    font-family: "Orbitron";
+    font-size: 28px;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 2px;
+}
+
+.tournament {
+    margin-bottom: 25px;
+}
+
+.tournament__name {
+    color: #9d9d9d;
+    font-size: 14px;
+}
+.link {
+    text-decoration: none;
+}
+
+/* Selector */
+
+.ranking-selector {
+    width: 100%;
+    height: 64px;
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    background-color: #d6d6d6;
+    border-radius: 17px;
+    margin-bottom: 28px;
+}
+
+.ranking-selector__item {
+    width: 50%;
+    height: 48px;
+    border: none;
+    border-radius: 25px;
+    background-color: transparent;
+    color: #222222;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.ranking-selector__item.active {
+    background-color: #444444;
+    color: #d6d6d6;
+    border: 3px solid #e2e800;
+}
+
+/* Rankings Header */
+
+.section-title {
+    color: #9d9d9d;
+    font-size: 13px;
+    font-weight: 400;
+    margin-left: 5px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Podio Base */
+
+.podium {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.podium__item {
+    width: 85px;
+    background-color: #444444;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0 16px;
+    border-radius: 4px;
+}
+
+.podium__item-second,
+.podium__item-third {
+    height: 100px;
+}
+
+.podium__item-first {
+    height: 125px;
+}
+
+.podium__position {
+    font-size: 26px;
+    color: #e2e800;
+    font-weight: 500;
+}
+
+.podium__block {
+    width: 32px;
+    height: 32px;
+    background-color: #d6d6d6;
+}
+
+.podium__item-first .podium__block {
+    background-color: #e2e800;
+    width: 38px;
+    height: 38px;
+}
+
+.podium__item-third .podium__block {
+    background-color: #bd742f;
+}
+
+/* Tabla Base */
+
+.table {
+    width: 100%;
+}
+
+.table__row {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    border-bottom: 1px solid #444444;
+    color: #d6d6d6;
+    padding: 0 8px;
+    font-size: 14px;
+}
+
+.table__row--header {
+    border-bottom: 1px solid #a9a9a9;
+    color: #a9a9a9;
+}
+
+.table__position {
+    width: 35px;
+    text-align: left;
+}
+
+.table__name {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.table__stat {
+    width: 40px;
+    text-align: center;
+}
+
+.table__points {
+    width: 60px;
+    text-align: right;
+}
+
+.wins {
+    color: #e2e800;
+}
+
+/* ==========================================
+   2. MEDIA QUERY: TABLET (600px a 1023px)
+========================================== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .header {
+        padding: 0 30px;
+    }
+    .menu {
+        display: none;
+    }
+    .header__link {
+        display: block;
+    }
+    
+
+    main {
+        max-width: 680px;
+        padding: 30px 20px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .ranking-selector {
+        max-width: 380px;
+    }
+
+    .podium {
+        gap: 20px;
+    }
+
+    .podium__item {
+        width: 120px;
+    }
+
+    .podium__item-second,
+    .podium__item-third {
+        height: 120px;
+    }
+
+    .podium__item-first {
+        height: 150px;
+    }
+
+    .podium__position {
+        font-size: 32px;
+    }
+}
+
+/* ==========================================
+   3. MEDIA QUERY: PC / DESKTOP (1024px o superior)
+========================================== */   
+
+@media screen and (min-width: 1024px) {
+    .menu {
+        display: none;
+    }
+
+    .header {
+        height: 80px;
+        padding: 0 40px;    
+    }
+
+    .header__link {
+        display: block;
+        font-size: 15px;
+    }
+    .avatar {
+        width: 44px;
+        height: 44px;
+    }
+
+    main {
+        max-width: 760px;
+        padding: 40px 0;
+    }
+
+    .title {
+        font-size: 36px;
+    }
+
+    .ranking-selector {
+        max-width: 400px; /* Tamaño reducido según mockup Desktop */
+    }
+
+    .podium {
+        gap: 24px;
+        margin-bottom: 45px;
+    }
+
+    .podium__item {
+        width: 140px;
+    }
+
+    .podium__item-second,
+    .podium__item-third {
+        height: 135px;
+    }
+
+    .podium__item-first {
+        height: 170px;
+    }
+
+    .podium__position {
+        font-size: 36px;
+    }
+
+    .table__row {
+        min-height: 52px;
+        font-size: 15px;
+    }
+}

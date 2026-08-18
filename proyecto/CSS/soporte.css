@@ -1,0 +1,442 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background-color: #262A2B;
+    color: #ffffff;
+    font-family: "Roboto";
+}
+
+
+/* ==========================================
+    HEADER
+========================================== */
+
+.header {
+position: sticky;
+top: 0;
+height: 65px;
+background-color: #3f4448;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+z-index: 100;
+}
+
+.menu {
+border: none;
+background-color: transparent;
+font-size: 1.8em;
+color: #ffffff;
+cursor: pointer;
+}
+
+.logotipo {
+color: #ffffff;
+font-size: 24px;
+font-family: "Orbitron";
+font-weight: 700;
+}
+
+.logotipo--GG {
+color: #e2e800;
+}
+
+.header__nav {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.header__link {
+display: none;
+color: #ffffff;
+text-decoration: none;
+font-size: 14px;
+}
+
+.avatar__link {
+display: flex;
+}
+
+.avatar {
+width: 38px;
+height: 38px;
+background-color: #e2e800;
+border-radius: 50%;
+}
+
+
+/* ==========================================
+   MAIN
+========================================== */
+
+.main-content {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+/* Título */
+
+.title {
+    font-family: "Orbitron";
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+
+.subtitle {
+    color: #a0a0a0;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.link{
+    text-decoration: none;
+}
+
+/* ==========================================
+   TARJETAS DE SOPORTE
+========================================== */
+
+.support {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+
+/* Enlace de cada tarjeta */
+
+.support-link {
+    width: 48%;
+    margin-right: 2%;
+    margin-bottom: 12px;
+    text-decoration: none;
+}
+
+
+/* Tarjeta */
+
+.support-card {
+    width: 100%;
+    background-color: #3f4448;
+    border: none;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 20px 10px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+
+.support-card:hover {
+    background-color: #4f5459;
+}
+
+
+/* Icono */
+
+.support-card__icono {
+    width: 32px;
+    height: 32px;
+    background-color: #e2e800;
+    padding: 2px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+}
+
+
+/* ==========================================
+   ENCABEZADOS DE SECCIÓN
+========================================== */
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+
+.square-icon {
+    width: 28px;
+    height: 28px;
+    background-color: #e2e800;
+    padding: 2px;
+    border-radius: 4px;
+    margin-right: 12px;
+}
+
+
+.section-title {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+/* ==========================================
+   FAQS
+========================================== */
+
+.faqs {
+    margin-bottom: 25px;
+}
+
+
+.faqs__item {
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: #2b3035;
+    border: 1px solid #3f4448;
+    overflow: hidden;
+}
+
+
+summary {
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+}
+
+
+.faqs__item[open] summary {
+    background-color: #e2e800;
+    color: #000000;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+
+.faqs__content {
+    padding: 12px 5px;
+    color: #cccccc;
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   CONTACTO
+========================================== */
+
+.contact-section {
+    margin-bottom: 25px;
+}
+
+
+.contact-text {
+    color: #cccccc;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+
+.contact-email {
+    color: #e2e800;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+
+.contact-email:hover {
+    text-decoration: underline;
+}
+
+
+/* ==========================================
+   REPORTAR BUG
+========================================== */
+
+.bug-section {
+    margin-bottom: 25px;
+}
+
+
+.bug-form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    background-color: #3f4448;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+}
+
+
+.form-input {
+    margin-bottom: 12px;
+}
+
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: #a0a0a0;
+}
+
+
+.form-textarea {
+    height: 120px;
+    resize: none;
+}
+
+
+/* ==========================================
+   TABLET
+   768px o superior
+========================================== */
+
+@media screen and (min-width: 768px) {
+
+    /* Header */
+
+    .header {
+        padding: 0 30px;
+    }
+
+
+    .menu {
+        display: none;
+    }
+
+
+    .header__link {
+        display: block;
+        font-size: 13px;
+    }
+
+
+    /* Main */
+
+    .main-content {
+        max-width: 700px;
+        padding: 30px 20px;
+    }
+
+
+    /* Tarjetas */
+
+    .support {
+        justify-content: center;
+    }
+
+
+    .support-link {
+        width: 200px;
+        margin: 0 7px 12px;
+    }
+
+
+    .support-card {
+        padding: 22px 12px;
+    }
+
+
+    .support-card__icono {
+        width: 34px;
+        height: 34px;
+    }
+
+
+    /* Bug */
+
+    .form-textarea {
+        height: 130px;
+    }
+
+}
+
+
+/* ==========================================
+   PC
+   1024px o superior
+========================================== */
+
+@media screen and (min-width: 1024px) {
+
+    /* Header */
+
+    .header {
+        height: 80px;
+        padding: 0 40px;
+    }
+
+
+    .header__link {
+        font-size: 14px;
+    }
+
+
+    /* Main */
+
+    .main-content {
+        max-width: 850px;
+        padding: 40px 20px;
+    }
+
+
+    .title {
+        font-size: 32px;
+    }
+
+
+    /* Tarjetas */
+
+    .support-link {
+        width: 220px;
+        margin: 0 10px 20px;
+    }
+
+
+    .support-card {
+        padding: 25px 15px;
+    }
+
+
+    .support-card__icono {
+        width: 36px;
+        height: 36px;
+    }
+
+
+    .support-card .text {
+        font-size: 14px;
+    }
+
+
+    /* Bug */
+
+    .form-textarea {
+        height: 140px;
+    }
+
+}

@@ -1,0 +1,551 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+background-color: #2b2e30;
+color: #ffffff;
+font-family: "Roboto", sans-serif;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+overflow-x: hidden;
+}
+
+.link {
+text-decoration: none;
+}
+
+/* ==========================================
+    HEADER
+========================================== */
+
+.header {
+position: sticky;
+top: 0;
+height: 65px;
+background-color: #3f4448;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+z-index: 100;
+}
+
+.menu {
+border: none;
+background-color: transparent;
+font-size: 1.8em;
+color: #ffffff;
+cursor: pointer;
+}
+
+.logotipo {
+color: #ffffff;
+font-size: 24px;
+font-family: "Orbitron";
+font-weight: 700;
+}
+
+.logotipo--GG {
+color: #e2e800;
+}
+
+.header__nav {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.header__link {
+display: none;
+color: #ffffff;
+text-decoration: none;
+font-size: 14px;
+}
+
+.avatar__link {
+display: flex;
+}
+
+.avatar {
+width: 38px;
+height: 38px;
+background-color: #e2e800;
+border-radius: 50%;
+}
+
+/* ==========================================
+MAIN
+========================================== */
+
+.main-content {
+width: 100%;
+padding: 20px 15px;
+display: flex;
+flex-direction: column;
+align-items: center;
+flex: 1;
+}
+
+/* ==========================================
+AVATAR SUPERIOR
+========================================== */
+
+.top-avatar {
+width: 80px;
+height: 80px;
+background-color: #e2e800;
+color: #000000;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 20px;
+margin-bottom: 20px;
+}
+
+/* ==========================================
+FORMULARIO
+========================================== */
+
+.edit-card {
+width: 100%;
+background-color: #404447;
+border-radius: 16px;
+padding: 20px 16px;
+}
+
+.edit-card__header {
+text-align: center;
+margin-bottom: 20px;
+}
+
+.edit-card__title {
+font-size: 22px;
+font-weight: 400;
+color: #e5e5e5;
+margin-bottom: 4px;
+}
+
+.edit-card__subtitle {
+font-size: 11px;
+color: #a0a0a0;
+}
+
+.form-item {
+display: flex;
+flex-direction: column;
+margin-bottom: 14px;
+}
+
+.form-item label {
+font-size: 12px;
+color: #d6d6d6;
+margin-bottom: 6px;
+}
+
+.form-item input {
+height: 36px;
+background-color: #262729;
+border: none;
+border-radius: 6px;
+padding: 0 10px;
+color: #ffffff;
+font-size: 13px;
+}
+
+/* ==========================================
+SELECCIONAR ARCHIVO
+========================================== */
+
+.file-input {
+display: none;
+}
+
+.file-button {
+width: 130px;
+background-color: #2b2e30;
+color: #d0d0d0;
+font-size: 11px;
+padding: 12px;
+border-radius: 6px;
+cursor: pointer;
+margin-bottom: 12px;
+text-align: center;
+}
+
+.profile-preview {
+width: 100%;
+height: 100px;
+background-color: #262a2b;
+color: #000000;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 28px;
+font-weight: bold;
+margin-bottom: 12px;
+}
+
+/* ==========================================
+MODIFICAR USUARIO
+========================================== */
+
+.faqs__item {
+margin-top: 20px;
+margin-bottom: 10px;
+border-radius: 8px;
+background-color: #2b3035;
+border: 1px solid #3f4448;
+overflow: hidden;
+}
+
+summary {
+padding: 12px 16px;
+cursor: pointer;
+font-size: 14px;
+font-weight: 500;
+list-style: none;
+display: flex;
+justify-content: space-between;
+align-items: center;
+color: #ffffff;
+}
+
+.faqs__item[open] summary {
+background-color: #e2e800;
+color: #000000;
+border-radius: 8px;
+font-weight: bold;
+}
+
+.faqs__content {
+padding: 12px 5px;
+color: #cccccc;
+font-size: 13px;
+}
+
+.login__input {
+width: 100%;
+height: 42px;
+margin-top: 10px;
+margin-bottom: 15px;
+background-color: #3f4448;
+border-radius: 6px;
+border: none;
+padding: 0 12px;
+color: #ffffff;
+font-size: 14px;
+outline: none;
+}
+
+.link-button {
+display: block;
+text-decoration: none;
+}
+
+.publish {
+width: 100%;
+height: 50px;
+margin: 5px auto 0;
+border: none;
+border-radius: 6px;
+background-color: #e2e800;
+color: #121212;
+font-family: "Roboto", sans-serif;
+font-size: 16px;
+font-weight: 600;
+cursor: pointer;
+}
+
+/* ==========================================
+BOTONES FINALES
+========================================== */
+
+.actions {
+width: 100%;
+display: flex;
+flex-direction: column;
+gap: 12px;
+margin-top: 20px;
+}
+
+.action-link {
+width: 100%;
+text-decoration: none;
+}
+
+.btn {
+width: 100%;
+height: 42px;
+border: none;
+border-radius: 4px;
+font-size: 15px;
+font-weight: bold;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.btn-confirm {
+background-color: #e2e800;
+color: #000000;
+}
+
+.btn-remove {
+background-color: #0f0f0f;
+color: #e50914;
+border: 2px solid #e50914;
+}
+
+/* ==========================================
+FOOTER
+========================================== */
+.footer {
+    width: 100%;
+    background-color: #3f4448;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+
+.footer__links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.footer__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.footer__icons {
+    display: flex;
+    gap: 10px;
+}
+
+.icon-box {
+    width: 20px;
+    height: 20px;
+}
+
+.copyright {
+    font-size: 11px;
+    color: #d6d6d6;
+    text-align: center;
+}
+.link-footer{
+    color:#d6d6d6;
+    text-decoration: none;
+}
+/* ==========================================
+TABLET
+========================================== */
+
+@media screen and (min-width: 768px) {
+.header {
+    padding: 0 30px;
+}
+
+.menu {
+    display: none;
+}
+
+.header__link {
+    display: block;
+}
+
+.avatar__link {
+    display: flex;
+}
+
+.main-content {
+    padding: 30px 30px;
+}
+
+.top-avatar {
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    font-size: 24px;
+    margin-bottom: 25px;
+}
+.top-avatar img{
+    width: 100px;
+    height: 100px;
+}
+.edit-card {
+    padding: 30px;
+}
+
+.edit-card__title {
+    font-size: 28px;
+}
+
+.edit-card__subtitle {
+    font-size: 13px;
+}
+
+.form-item {
+    margin-bottom: 18px;
+}
+
+.form-item label {
+    font-size: 13px;
+}
+
+.form-item input {
+    height: 42px;
+    font-size: 14px;
+}
+
+.file-button {
+    width: 150px;
+    padding: 14px;
+    font-size: 12px;
+}
+
+.profile-preview {
+    height: 130px;
+    font-size: 32px;
+}
+
+.faqs__content {
+    padding: 18px 10px;
+}
+
+.publish {
+    height: 48px;
+}
+
+.actions {
+    flex-direction: row;
+    gap: 15px;
+}
+
+.action-link {
+    width: 50%;
+}
+
+.footer {
+    padding: 25px 40px;
+}
+
+.footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+}
+}
+
+/* ==========================================
+PC
+========================================== */
+
+@media screen and (min-width: 1024px) {
+.header {
+    height: 80px;
+    padding: 0 40px;
+}
+
+.header__link {
+    font-size: 15px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+}
+
+.main-content {
+    padding: 40px 50px;
+}
+
+.top-avatar {
+    width: 120px;
+    height: 120px;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.edit-card {
+    padding: 35px 40px;
+}
+
+.edit-card__header {
+    margin-bottom: 30px;
+}
+
+.edit-card__title {
+    font-size: 32px;
+}
+
+.edit-card__subtitle {
+    font-size: 14px;
+}
+
+.form-item {
+    margin-bottom: 22px;
+}
+
+.form-item label {
+    font-size: 14px;
+}
+
+.form-item input {
+    height: 46px;
+    font-size: 15px;
+}
+
+.file-button {
+    width: 170px;
+    padding: 15px;
+    font-size: 13px;
+}
+
+.profile-preview {
+    height: 160px;
+    font-size: 36px;
+}
+
+.faqs__content {
+    padding: 20px 15px;
+    font-size: 14px;
+}
+
+.login__input {
+    height: 46px;
+}
+
+.publish {
+    height: 52px;
+}
+
+.btn {
+    height: 48px;
+    font-size: 16px;
+}
+
+.footer {
+    padding: 30px 80px;
+}
+
+.footer__links {
+    gap: 40px;
+}
+
+.footer__bottom {
+    margin-top: 10px;
+}
+}

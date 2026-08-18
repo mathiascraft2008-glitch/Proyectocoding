@@ -1,0 +1,334 @@
+body{
+    margin: 0;
+    background-color: #262A2B;
+    font-family: "Roboto";
+}
+
+/* ==========================================
+    HEADER
+========================================== */
+
+.header {
+position: sticky;
+top: 0;
+height: 65px;
+background-color: #3f4448;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+z-index: 100;
+}
+
+.menu {
+border: none;
+background-color: transparent;
+font-size: 1.8em;
+color: #ffffff;
+cursor: pointer;
+}
+
+.logotipo {
+color: #ffffff;
+font-size: 24px;
+font-family: "Orbitron";
+font-weight: 700;
+}
+
+.logotipo--GG {
+color: #e2e800;
+}
+
+.header__nav {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.header__link {
+display: none;
+color: #ffffff;
+text-decoration: none;
+font-size: 14px;
+}
+
+.avatar__link {
+display: flex;
+}
+
+.avatar {
+width: 38px;
+height: 38px;
+background-color: #e2e800;
+border-radius: 50%;
+}
+
+/* ==========================================
+    MAIN
+========================================== */
+
+.title{
+    margin-top: 8vh;
+    text-align: center;
+    font-family: "Orbitron";
+    font-weight: 400;
+    padding-top: 10px;
+    color: #FFF;
+}
+.text{
+    text-align: left;
+    line-height: 1.4em;
+    word-break: pretty;
+    font-family: "Roboto";
+    font-weight: 400;
+    color: #D6D6D6;
+    padding: 10px 20px;
+    margin: 0;
+}
+
+.text-subtitle{
+    font-size: 1.25em;
+    font-weight: 500;
+    position: relative;
+    right: 40%;
+    margin: 0;
+}
+.link{
+    font-family: "Roboto";
+    font-weight: 400;
+    text-decoration: none;
+    color: #E2E800;
+}
+.background_form{
+    margin-top: 10vh;
+    background-color: #444;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    Align-items:center;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+
+
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .header {
+        padding: 0 30px;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .header__link {
+        display: block;
+    }
+
+    .main-content {
+        max-width: 700px;
+        padding: 30px 20px;
+    }
+
+    .hero {
+        padding: 40px 30px;
+    }
+
+    .hero__logo {
+        font-size: 42px;
+    }
+
+    .hero__tagline {
+        font-size: 17px;
+    }
+
+    .hero__subtitle {
+        font-size: 14px;
+    }
+
+    .highlight-banner {
+        padding: 18px 20px;
+    }
+
+    .highlight-banner__text {
+        font-size: 17px;
+    }
+
+    .feature {
+        flex-direction: row;
+        align-items: center;
+        padding: 25px;
+        gap: 25px;
+    }
+
+    .feature--reverse {
+        flex-direction: row-reverse;
+    }
+
+    .feature__heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        flex-shrink: 0;
+        width: 90px;
+    }
+
+    .feature--reverse .feature__heading {
+        align-items: flex-end;
+        justify-content: flex-start;
+    }
+
+    .feature__number {
+        font-size: 30px;
+    }
+
+    .feature__text {
+        flex: 1;
+        font-size: 14px;
+    }
+
+    .feature--reverse .feature__text {
+        text-align: left;
+    }
+
+    .feature__image {
+        width: 120px;
+        height: 90px;
+        align-self: center;
+    }
+
+    .feature--reverse .feature__image {
+        align-self: center;
+    }
+}
+
+/* ==========================================
+   MEDIA QUERY: DESKTOP (1024px o superior)
+========================================== */
+
+@media screen and (min-width: 1024px) {
+
+    .menu {
+        display: none;
+    }
+
+    .header {
+        height: 80px;
+        padding: 0 40px;
+    }
+
+    .header__link {
+        display: block;
+        font-size: 15px;
+    }
+
+    .avatar {
+        width: 48px;
+        height: 48px;
+    }
+
+    .main-content {
+        max-width: 900px;
+        padding: 40px 20px;
+    }
+
+    .hero {
+        padding: 50px 40px;
+        margin-bottom: 40px;
+    }
+
+    .hero__logo {
+        font-size: 52px;
+    }
+
+    .hero__tagline {
+        font-size: 20px;
+    }
+
+    .hero__subtitle {
+        font-size: 16px;
+    }
+
+    .highlight-banner {
+        padding: 22px 25px;
+        margin-bottom: 45px;
+    }
+
+    .highlight-banner__text {
+        font-size: 20px;
+    }
+
+    .features {
+        gap: 25px;
+    }
+
+    .feature {
+        flex-direction: row;
+        align-items: center;
+        padding: 30px 40px;
+        gap: 35px;
+    }
+
+    .feature--reverse {
+        flex-direction: row-reverse;
+    }
+
+    .feature__heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        flex-shrink: 0;
+        width: 110px;
+    }
+
+    .feature--reverse .feature__heading {
+        align-items: flex-end;
+    }
+
+    .feature__number {
+        font-size: 36px;
+    }
+
+    .feature__title {
+        font-size: 16px;
+    }
+
+    .feature__text {
+        flex: 1;
+        font-size: 15px;
+    }
+
+    .feature--reverse .feature__text {
+        text-align: left;
+    }
+
+    .feature__image {
+        width: 150px;
+        height: 110px;
+        align-self: center;
+        font-size: 13px;
+    }
+
+    .feature--reverse .feature__image {
+        align-self: center;
+    }
+
+    .footer {
+        padding: 30px 80px;
+    }
+
+    .footer__links {
+        gap: 40px;
+    }
+
+    .footer__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+}

@@ -1,0 +1,442 @@
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+background-color: #2b2e30;
+color: #ffffff;
+font-family: "Roboto";
+display: flex;
+flex-direction: column;
+overflow-x: hidden;
+}
+
+.link {
+text-decoration: none;
+}
+
+/* ==========================================
+    HEADER
+========================================== */
+
+.header {
+position: sticky;
+top: 0;
+height: 65px;
+background-color: #3f4448;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+z-index: 100;
+}
+
+.menu {
+border: none;
+background-color: transparent;
+font-size: 1.8em;
+color: #ffffff;
+cursor: pointer;
+}
+
+.logotipo {
+color: #ffffff;
+font-size: 24px;
+font-family: "Orbitron";
+font-weight: 700;
+}
+
+.logotipo--GG {
+color: #e2e800;
+}
+
+.header__nav {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.header__link {
+display: none;
+color: #ffffff;
+text-decoration: none;
+font-size: 14px;
+}
+
+.avatar__link {
+display: flex;
+}
+
+.avatar {
+width: 38px;
+height: 38px;
+background-color: #e2e800;
+border-radius: 50%;
+}
+
+/* ==========================================
+MAIN
+========================================== */
+
+.main-content {
+width: 100%;
+padding: 20px 15px;
+display: flex;
+flex-direction: column;
+align-items: center;
+flex: 1;
+}
+
+/* ==========================================
+IMAGEN
+========================================== */
+
+.img {
+width: 100%;
+height: 100px;
+border: 2px solid #ffffff;
+border-radius: 24px;
+margin-bottom: 20px;
+}
+
+/* ==========================================
+TITULO
+========================================== */
+
+.tournament-title {
+font-size: 28px;
+font-weight: 400;
+color: #ffffff;
+margin-bottom: 20px;
+text-align: center;
+}
+
+/* ==========================================
+TARJETA DE DETALLES
+========================================== */
+
+.tournament-card {
+width: 100%;
+background-color: #404447;
+border-radius: 16px;
+padding: 20px 16px;
+display: flex;
+flex-direction: column;
+gap: 14px;
+}
+
+.card-section-title {
+font-size: 15px;
+font-weight: 700;
+color: #ffffff;
+text-align: center;
+margin: 6px 0;
+}
+
+/* ==========================================
+CAMPOS
+========================================== */
+
+.form-row {
+display: flex;
+flex-direction: column;
+gap: 14px;
+width: 100%;
+}
+
+.form-group {
+display: flex;
+flex-direction: column;
+gap: 6px;
+width: 100%;
+}
+
+.form-group.full-width {
+width: 100%;
+}
+
+.form-group label {
+font-size: 12px;
+color: #d0d0d0;
+text-align: center;
+}
+
+.info-box {
+width: 100%;
+height: 38px;
+background-color: #2b2e30;
+border-radius: 8px;
+}
+
+.info-box-textarea {
+height: 90px;
+}
+
+/* ==========================================
+BOTONES
+========================================== */
+
+.actions {
+width: 100%;
+display: flex;
+flex-direction: column;
+gap: 12px;
+margin-top: 20px;
+}
+
+.action-link {
+width: 100%;
+text-decoration: none;
+}
+
+.btn {
+width: 100%;
+height: 44px;
+border: none;
+border-radius: 6px;
+font-size: 18px;
+font-weight: 700;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 8px;
+}
+
+.btn-ins {
+background-color: #e2e800;
+color: #000000;
+}
+
+.btn-like {
+background-color: #3f4448;
+color: #ffffff;
+border: 1px solid #ffffff;
+}
+
+.ico {
+font-size: 16px;
+}
+
+/* ==========================================
+FOOTER
+========================================== */
+
+.footer {
+width: 100%;
+background-color: #3f4448;
+padding: 25px 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 15px;
+margin-top: 40px;
+}
+
+.footer__links {
+display: flex;
+justify-content: center;
+gap: 15px;
+flex-wrap: wrap;
+}
+
+.footer__bottom {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+width: 100%;
+}
+
+.footer__icons {
+display: flex;
+gap: 10px;
+}
+
+.icon-box {
+width: 20px;
+height: 20px;
+}
+
+.copyright {
+font-size: 11px;
+color: #d6d6d6;
+text-align: center;
+}
+
+.link-footer {
+color: #d6d6d6;
+text-decoration: none;
+}
+
+/* ==========================================
+TABLET
+========================================== */
+
+@media screen and (min-width: 768px) {
+
+.header {
+    padding: 0 30px;
+}
+
+.menu {
+    display: none;
+}
+
+.header__link {
+    display: block;
+}
+
+.avatar__link {
+    display: flex;
+}
+
+.main-content {
+    padding: 30px 30px;
+}
+
+.img {
+    height: 160px;
+    margin-bottom: 25px;
+}
+
+.tournament-title {
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.tournament-card {
+    padding: 30px;
+    gap: 18px;
+}
+
+.card-section-title {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.form-row {
+    flex-direction: row;
+    gap: 20px;
+}
+
+.form-group label {
+    font-size: 13px;
+}
+
+.info-box {
+    height: 44px;
+}
+
+.info-box-textarea {
+    height: 110px;
+}
+
+.actions {
+    flex-direction: row;
+    gap: 15px;
+}
+
+.action-link {
+    width: 50%;
+}
+
+.btn {
+    height: 48px;
+}
+
+.footer {
+    padding: 25px 40px;
+}
+
+.footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+}
+
+/* ==========================================
+PC
+========================================== */
+
+@media screen and (min-width: 1024px) {
+
+.header {
+    height: 80px;
+    padding: 0 40px;
+}
+
+.header__link {
+    font-size: 15px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+}
+
+.main-content {
+    padding: 40px 50px;
+}
+
+.img {
+    height: 220px;
+    margin-bottom: 30px;
+}
+
+.tournament-title {
+    font-size: 38px;
+    margin-bottom: 30px;
+}
+
+.tournament-card {
+    padding: 40px;
+    gap: 22px;
+}
+
+.card-section-title {
+    font-size: 20px;
+    margin: 12px 0;
+}
+
+.form-row {
+    gap: 30px;
+}
+
+.form-group label {
+    font-size: 14px;
+}
+
+.info-box {
+    height: 48px;
+}
+
+.info-box-textarea {
+    height: 130px;
+}
+
+.actions {
+    margin-top: 25px;
+}
+
+.btn {
+    height: 52px;
+    font-size: 19px;
+}
+
+.footer {
+    padding: 30px 80px;
+}
+
+.footer__links {
+    gap: 40px;
+}
+
+.footer__bottom {
+    margin-top: 10px;
+}
+
+}

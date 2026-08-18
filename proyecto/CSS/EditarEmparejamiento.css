@@ -1,0 +1,458 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #262a2b;
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+    HEADER
+========================================== */
+
+.header {   
+position: sticky;
+top: 0;
+height: 65px;
+background-color: #3f4448;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+z-index: 100;
+}
+
+.menu {
+border: none;
+background-color: transparent;
+font-size: 1.8em;
+color: #ffffff;
+cursor: pointer;
+}
+
+.logotipo {
+color: #ffffff;
+font-size: 24px;
+font-family: "Orbitron";
+font-weight: 700;
+}
+
+.logotipo--GG {
+color: #e2e800;
+}
+
+.header__nav {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.header__link {
+display: none;
+color: #ffffff;
+text-decoration: none;
+font-size: 14px;
+}
+
+.avatar__link {
+display: flex;
+}
+
+.avatar {
+width: 38px;
+height: 38px;
+background-color: #e2e800;
+border-radius: 50%;
+}
+
+/* ==========================================
+   MAIN CONTENT & VERSUS
+========================================== */
+
+.main-content {
+    padding: 20px;
+    flex: 1;
+    max-width: 450px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-family: "Orbitron", sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: left;
+    color: #ffffff;
+    margin-bottom: 25px;
+}
+
+.link,
+.link-submit {
+    text-decoration: none;
+    width: 100%;
+    display: block;
+}
+
+/* Sección Versus */
+.versus {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.photo {
+    height: 90px;
+    width: 90px;
+    background-color: #d6d6d6;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.versus__vs {
+    font-family: "Orbitron", sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.versus--names {
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+.versus__name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    text-align: center;
+    width: 90px;
+}
+
+/* ==========================================
+   TARJETAS DE RESULTADO
+========================================== */
+
+.result {
+    background-color: #3f4448;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.subtitle {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+/* Ganador por botones */
+.result--winner-container {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.result__panel {
+    flex: 1;
+    border: none;
+    background-color: #2b3035;
+    padding: 18px 8px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 1.3;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.result__panel:focus,
+.result__panel.active {
+    background-color: #e2e800;
+    color: #000000;
+}
+
+/* Entradas numéricas (Puntos, Sets, etc.) */
+.result__inputs-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.result__separator {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.result__input {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    font-size: 2.5em;
+    border: none;
+    border-radius: 8px;
+    background-color: #2b3035;
+    color: #ffffff;
+    outline: none;
+}
+
+/* Ocultos según configuración */
+.result--points,
+.result--sets,
+.result--custom {
+    display: none;
+}
+
+/* ==========================================
+   FORMULARIO Y BOTÓN
+========================================== */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.form-label {
+    text-align: left;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.textarea {
+    width: 100%;
+    height: 140px;
+    background-color: #2b3035;
+    border: 1px solid #3f4448;
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 12px;
+    font-size: 14px;
+    outline: none;
+    resize: none;
+}
+
+.textarea::placeholder {
+    color: #a0a0a0;
+}
+
+.btn-submit {
+    background-color: #e2e800;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    width: 100%;
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn-submit:hover {
+    opacity: 0.9;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+.footer {
+    width: 100%;
+    background-color: #3f4448;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+
+.footer__links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.footer__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.footer__icons {
+    display: flex;
+    gap: 10px;
+}
+
+.icon-box {
+    width: 20px;
+    height: 20px;
+}
+
+.copyright {
+    font-size: 11px;
+    color: #d6d6d6;
+    text-align: center;
+}
+.link-footer{
+    color:#d6d6d6;
+    text-decoration: none;
+}
+/* ==========================================
+   MEDIA QUERY: TABLET (768px - 1023px)
+========================================== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .header {
+        padding: 0px 30px;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .header__link {
+        display: block;
+    }
+
+    .main-content {
+        max-width: 650px;
+        padding: 30px 20px;
+    }
+
+    .title {
+        font-size: 26px;
+    }
+
+    .photo {
+        height: 100px;
+        width: 100px;
+    }
+
+    .versus__name {
+        width: 100px;
+        font-size: 15px;
+    }
+
+    .result {
+        padding: 18px;
+    }
+
+    .result__panel {
+        padding: 20px 12px;
+        font-size: 14px;
+    }
+
+    .link-submit {
+        max-width: 340px;
+        margin: 0 auto;
+    }
+
+    .footer {
+        padding: 25px 40px;
+    }
+
+    .footer__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* ==========================================
+   MEDIA QUERY: DESKTOP (1024px o superior)
+========================================== */
+
+@media screen and (min-width: 1024px) {
+
+    .menu {
+        display: none;
+    }
+
+    .header {
+        height: 80px;
+        padding: 0 40px;
+    }
+
+    .header__link {
+        display: block;
+
+    }
+
+    .avatar {
+        width: 48px;
+        height: 48px;
+    }
+
+    .main-content {
+        max-width: 750px;
+        padding: 40px 20px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .photo {
+        height: 110px;
+        width: 110px;
+    }
+
+    .versus__name {
+        width: 110px;
+        font-size: 15px;
+    }
+
+    .result {
+        padding: 22px;
+    }
+
+    .result__panel {
+        padding: 22px 15px;
+        font-size: 14px;
+    }
+
+    .link-submit {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .footer {
+        padding: 25px 60px;
+    }
+
+    .footer__links {
+        gap: 40px;
+    }
+
+    .footer__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+}

@@ -1,0 +1,358 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #262A2B;
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+.link{
+    text-decoration: none;
+}
+
+/* ==========================================
+    HEADER
+========================================== */
+
+.header {
+position: sticky;
+top: 0;
+height: 65px;
+background-color: #3f4448;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+z-index: 100;
+}
+
+.menu {
+border: none;
+background-color: transparent;
+font-size: 1.8em;
+color: #ffffff;
+cursor: pointer;
+}
+
+.logotipo {
+color: #ffffff;
+font-size: 24px;
+font-family: "Orbitron";
+font-weight: 700;
+}
+
+.logotipo--GG {
+color: #e2e800;
+}
+
+.header__nav {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.header__link {
+display: none;
+color: #ffffff;
+text-decoration: none;
+font-size: 14px;
+}
+
+.avatar__link {
+display: flex;
+}
+
+.avatar {
+width: 38px;
+height: 38px;
+background-color: #e2e800;
+border-radius: 50%;
+}
+
+/*main */
+
+main {
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    font-family: "Roboto";
+}
+
+
+
+.page-title {
+    font-family: "Orbitron";
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+}
+
+.page-title h1 {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.back {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background-color: #d6d6d6;
+    color: #262A2B;
+    font-size: 32px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/*info de grupo*/
+.group-info {
+    display: flex;
+    align-items: flex-start;
+    background-color: #666666;
+    padding: 20px 16px;
+    gap: 16px;
+}
+
+.group-image {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+    background-color: #e2e800;
+    border-radius: 50%;
+}
+
+.group-data {
+    flex: 1;
+}
+
+.form__item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.form__item label {
+    color: #ffffff;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.form__item input,
+.form__item textarea {
+    width: 100%;
+    border: none;
+    border-radius: 7px;
+    background-color: #2d2d2d;
+    color: #ffffff;
+    padding: 10px;
+    outline: none;
+    font-family: inherit;
+}
+
+.form__item input {
+    height: 38px;
+}
+
+.form__item textarea {
+    height: 72px;
+    resize: none;
+}
+
+
+
+.users-section {
+    padding: 16px 16px 0;
+}
+
+.section-title {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+
+
+.search-user input {
+    width: 100%;
+    height: 38px;
+    border: none;
+    border-radius: 7px;
+    background-color: #d6d6d6;
+    color: #262A2B;
+    padding: 0 12px;
+    font-family: inherit;
+    outline: none;
+}
+
+/* lista usaurio*/
+
+.user-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.user-item {
+    height: 40px;
+    background-color: #444444;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+}
+
+.user-item p {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+
+
+.add-user,
+.remove-user {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background-color: #e2e800;
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+
+
+.create-group {
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    height: 48px;
+    margin: 30px auto 0;
+    border: none;
+    border-radius: 6px;
+    background-color: #e2e800;
+    font-family: "Roboto";
+    color: #121212;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.create-group:hover {
+    background-color: #f6f6f3;
+}
+/*tablet*/
+
+@media screen and (min-width: 600px) and (max-width: 1023px) {
+    .header {
+        padding: 0 30px;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .header__link {
+        display: block;
+    }
+
+    main {
+        max-width: 680px;
+        padding-top: 20px;
+    }
+
+    .page-title h1 {
+        font-size: 28px;
+    }
+
+    .group-info {
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    .group-image {
+        width: 110px;
+        height: 110px;
+    }
+
+    .create-group {
+        width: 60%;
+        height: 50px;
+    }
+}
+
+/*pc*/
+
+@media screen and (min-width: 1024px) {
+    .menu {
+        display: none;
+    }
+
+    .header {
+        height: 80px;
+        padding: 0 40px;    
+    }
+
+    .header__link {
+        display: block;
+        font-size: 15px;
+    }
+
+    .avatar {
+        width: 48px;
+        height: 48px;
+    }
+
+    main {
+        max-width: 760px;
+        padding-top: 30px;
+    }
+
+    .page-title {
+        padding: 20px 0;
+    }
+
+    .page-title h1 {
+        font-size: 32px;
+    }
+
+    .group-info {
+        border-radius: 12px;
+        padding: 28px;
+        gap: 24px;
+    }
+
+    .group-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .users-section {
+        padding: 20px 0 0;
+    }
+
+    .create-group {
+        width: 50%;
+        height: 52px;
+        font-size: 19px;
+    }
+}

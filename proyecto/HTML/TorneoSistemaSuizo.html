@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/TorneoSistemaSuizo.css">
+    <link rel="stylesheet" href="../fonts/fonts.css">
+    <title>Torneo - Sistema suizo - GGchamp</title>
+</head>
+
+<body>  
+
+    <!-- HEADER -->
+    <header class="header">
+        <button class="menu">☰</button>
+
+        <a href="mainUsuario.html" class="link">
+            <p class="logotipo">
+                <span class="logotipo--GG">GG</span>champ
+            </p>
+        </a>
+
+        <div class="header__nav">
+            <a href="AcercaDeNosotros.html" class="header__link">Acerca de nosotros</a>
+            <a href="notificaciones.html" class="header__link">Notificaciones</a>
+            <a href="competencias.html" class="header__link">Competencias</a>
+            <a href="rankings.html" class="header__link">rankings</a>
+
+            <a href="perfil.html" class="avatar__link"><img class="avatar" src="../images/ui_user_profile_avatar_person_icon_208734.webp" alt=""></a>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="main-content">
+
+        <!-- Encabezado del torneo -->
+        <section class="tournament-header">
+            <h1 class="title">Torneo</h1>
+            <p class="subtitle">Sistema suizo</p>
+        </section>
+
+        <!-- Ronda actual -->
+        <section class="round-selector">
+            <h2 class="section-title">Ronda actual</h2>
+
+            <div class="round-tabs">
+                <button class="round-tab round-tab--active" type="button">R1</button>
+                <button class="round-tab round-tab--active" type="button">R2</button>
+                <button class="round-tab round-tab--active" type="button">R3</button>
+                <button class="round-tab round-tab--disabled" type="button" disabled>R4</button>
+            </div>
+        </section>
+
+        <!-- Partidos de la ronda -->
+        <section class="matches">
+            <h2 class="section-title">PARTIDOS - RONDA 3</h2>
+
+            <div class="matches-list">
+
+                <div class="match-row">
+                    <span class="match-row__name">Nombre</span>
+                    <div class="match-row__result">
+                        <span class="match-row__score">2-1</span>
+                        <span class="match-row__status">Finalizado</span>
+                    </div>
+                    <span class="match-row__name">Nombre</span>
+                </div>
+
+                <div class="match-row">
+                    <span class="match-row__name">Nombre</span>
+                    <div class="match-row__result">
+                        <span class="match-row__score">2-1</span>
+                        <span class="match-row__status">Finalizado</span>
+                    </div>
+                    <span class="match-row__name">Nombre</span>
+                </div>
+
+                <div class="match-row">
+                    <span class="match-row__name">Nombre</span>
+                    <div class="match-row__result">
+                        <span class="match-row__score">-</span>
+                        <span class="match-row__status">Pendiente</span>
+                    </div>
+                    <span class="match-row__name">Nombre</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Ver ranking -->
+        <a href="rankings.html" class="link"><button class="btn btn--ranking" type="button">Ver ranking</button></a>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/EditarPerfil.css">
+    <link rel="stylesheet" href="../fonts/fonts.css">
+    <title>Editar Perfil - GGchamp</title>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <button class="menu">☰</button>
+
+        <a href="mainUsuario.html" class="link">
+            <p class="logotipo">
+                <span class="logotipo--GG">GG</span>champ
+            </p>
+        </a>
+
+        <div class="header__nav">
+            <a href="AcercaDeNosotros.html" class="header__link">Acerca de nosotros</a>
+            <a href="notificaciones.html" class="header__link">Notificaciones</a>
+            <a href="competencias.html" class="header__link">Competencias</a>
+            <a href="rankings.html" class="header__link">rankings</a>
+
+            <a href="perfil.html" class="avatar__link"><img class="avatar" src="../images/ui_user_profile_avatar_person_icon_208734.webp" alt=""></a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="profile-card">
+            <div class="image-preview"></div>
+            
+            <h1 class="title">Editar Perfil</h1>
+            <p class="subtitle">Las opciones que no rellenes quedarán sin cambios</p>
+
+            <form action="userController.php" method="post" enctype="multipart/form-data" class="edit-form">
+                <!-- indicador para el controlador -->
+                    <input type="hidden" name="action" value="editProfile">
+                <div class="form-group">
+                    <label for="email" class="form-label">Nuevo Email</label>
+                    <input type="email" name="email" id="email" class="form-input" placeholder="correo@ejemplo.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="new-name" class="form-label">Nuevo nombre</label>
+                    <input type="text" name="username" id="new-name" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="profile-picture" class="form-label">Nueva foto de perfil</label>
+                    <input type="file" name="foto" id="profile-picture" class="form-input-file">
+                </div>
+
+                <button type="submit" class="btn-submit">Guardar Cambios</button>
+            </form>
+
+            <form action="userController.php" method="post" class="seguridad-form">
+                <div class="form-group">
+                    <label for="new-password" class="form-label">Nueva contraseña</label>
+                    <input type="password" required name="new-password" id="new-password" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-new-password" class="form-label">Confirmar nueva contraseña</label>
+                    <input type="password" required name="confirm-new-password" id="confirm-new-password" class="form-input">
+                </div>
+
+                <input type="hidden" name="action" value="changePassword">
+                <button type="submit" class="btn-submit">Cambiar Contraseña</button>
+            </form>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <a href="mainUsuario.html" class="link"><p class="logotipo"><span class="logotipo--GG">GG</span>champ</p></a>
+        <div class="footer__links">
+            <a href="Terminos&Condiciones.html" class="link-footer">Términos</a>
+            <a href="Terminos&Condiciones.html" class="link-footer">Privacidad</a>
+            <a href="AcercaDeNosotros.html" class="link-footer">Acerca de</a>
+            <a href="soporte.html" class="link-footer">Contacto</a>
+        </div>
+        <div class="footer__bottom">
+            <div class="footer__icons">
+                <img class="icon-box" src="../images/instagram.png" alt="">
+                <img class="icon-box" src="../images/x.png" alt="">
+                <img class="icon-box" src="../images/facebook.png" alt="">
+            </div>
+            <p class="copyright">Copyright© todos los derechos reservados</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

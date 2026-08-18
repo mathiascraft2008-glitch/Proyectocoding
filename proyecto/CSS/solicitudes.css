@@ -1,0 +1,369 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #262A2B;
+    color: #ffffff;
+    font-family: "Roboto";
+    overflow-x: hidden;
+}
+
+/* ==========================================
+    HEADER
+========================================== */
+
+.header {
+position: sticky;
+top: 0;
+height: 65px;
+background-color: #3f4448;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+z-index: 100;
+}
+
+.menu {
+border: none;
+background-color: transparent;
+font-size: 1.8em;
+color: #ffffff;
+cursor: pointer;
+}
+
+.logotipo {
+color: #ffffff;
+font-size: 24px;
+font-family: "Orbitron";
+font-weight: 700;
+}
+
+.logotipo--GG {
+color: #e2e800;
+}
+
+.header__nav {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.header__link {
+display: none;
+color: #ffffff;
+text-decoration: none;
+font-size: 14px;
+}
+
+.avatar__link {
+display: flex;
+}
+
+.avatar {
+width: 38px;
+height: 38px;
+background-color: #e2e800;
+border-radius: 50%;
+}
+
+/* ==========================================
+   MAIN CONTENT (MÓVIL BASE)
+========================================== */
+
+.main-content {
+    padding: 20px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+/* Botón Volver y Título */
+.back-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    background-color: transparent;
+    color: #d6d6d6;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    font-family: "Orbitron";
+    font-size: 28px;
+    font-weight: 500;
+    color: #ffffff;
+}
+.link{
+    text-decoration: none;
+}
+/* Buscador (Estilo Móvil) */
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: #3f4448;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+}
+
+.search-icon {
+    width: 16px;
+    height: 16px;
+    background-color: #d6d6d6;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.search-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    width: 100%;
+    font-size: 14px;
+}
+
+.search-input::placeholder {
+    color: #a0a0a0;
+}
+
+/* Contenedor principal de la lista */
+.box {
+    background-color: #3f4448;
+    border-radius: 12px;
+    padding: 15px 15px 5px;
+}
+
+/* Filtros */
+.filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.filter__item {
+    background-color: #262A2B;
+    color: #d6d6d6;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.filter__item.active {
+    background-color: #e2e800;
+    color: #121212;
+}
+
+/* Opciones / Lista de Participantes */
+.options-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    padding: 12px 5px;
+    border-bottom: 1px solid #555555;
+    background-color: transparent;
+}
+
+.option:last-child {
+    border-bottom: none;
+}
+
+.img {
+    width: 44px;
+    height: 44px;
+    background-color: #d6d6d6;
+    border-radius: 50%;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.option__item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.name {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.status {
+    color: #4cd964;
+    font-size: 12px;
+}
+
+/* ==========================================
+   MEDIA QUERIES: TABLET (768px - 1023px)
+========================================== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .header {
+        padding: 0 30px;
+    }
+
+    /* En Tablet mostramos los enlaces del header con fuente ajustada */
+    .menu {
+        display: none;
+    }
+
+    .header__link {
+        display: block;
+        font-size: 13px;
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+    .main-content {
+        max-width: 700px;
+        padding: 30px 20px;
+    }
+
+    /* Buscador adaptado a tamaño mediano */
+    .search-box {
+        max-width: 100%;
+        padding: 12px 18px;
+        border-radius: 8px;
+    }
+
+    .search-input {
+        font-size: 15px;
+    }
+
+    /* Caja contenedora táctil amplia */
+    .box {
+        padding: 20px;
+    }
+
+    .filter__item {
+        padding: 11px 24px;
+        font-size: 14px;
+    }
+
+    .option {
+        padding: 14px 10px;
+    }
+
+    .img {
+        width: 46px;
+        height: 46px;
+    }
+
+    .name {
+        font-size: 15px;
+    }
+
+    .status {
+        font-size: 13px;
+    }
+}
+
+/* ==========================================
+   MEDIA QUERIES: DESKTOP (min-width: 1024px)
+========================================== */
+
+@media screen and (min-width: 1024px) {
+
+    .header {
+        height: 80px;
+        padding: 0 40px;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .header__link {
+        display: block;
+    }
+
+    .main-content {
+        max-width: 900px;
+        padding: 40px 20px;
+    }
+
+    /* Buscador blanco estilo PC */
+    .search-box {
+        background-color: #ffffff;
+        border-radius: 6px;
+        padding: 8px 15px;
+        max-width: 450px;
+        margin-bottom: 30px;
+        flex-direction: row-reverse; /* Pone la lupa al lado derecho */
+    }
+
+    .search-input {
+        color: #121212;
+        font-size: 13px;
+    }
+
+    .search-input::placeholder {
+        color: #666666;
+    }
+
+    .search-icon {
+        background-color: #121212;
+        margin-right: 0;
+        margin-left: 10px;
+        width: 12px;
+        height: 12px;
+    }
+
+    /* Ajuste del Box en PC */
+    .box {
+        background-color: transparent;
+        padding: 0;
+        border-radius: 0;
+    }
+
+    .filter {
+        border-bottom: 1px solid #555555;
+        padding-bottom: 20px;
+        margin-bottom: 0;
+    }
+
+    .filter__item {
+        padding: 12px 30px;
+        border-radius: 10px;
+        font-size: 14px;
+    }
+
+    .option {
+        padding: 16px 10px;
+        border-bottom: 1px solid #444444;
+    }
+
+    .img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .name {
+        font-size: 15px;
+    }
+
+    .status {
+        font-size: 13px;
+    }
+}

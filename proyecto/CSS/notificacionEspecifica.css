@@ -1,0 +1,315 @@
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+background-color: #2b2e30;
+color: #ffffff;
+font-family: "Roboto";
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+overflow-x: hidden;
+}
+
+.link {
+text-decoration: none;
+}
+
+/* ==========================================
+    HEADER
+========================================== */
+
+.header {
+position: sticky;
+top: 0;
+height: 65px;
+background-color: #3f4448;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+z-index: 100;
+}
+
+.menu {
+border: none;
+background-color: transparent;
+font-size: 1.8em;
+color: #ffffff;
+cursor: pointer;
+}
+
+.logotipo {
+color: #ffffff;
+font-size: 24px;
+font-family: "Orbitron";
+font-weight: 700;
+}
+
+.logotipo--GG {
+color: #e2e800;
+}
+
+.header__nav {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.header__link {
+display: none;
+color: #ffffff;
+text-decoration: none;
+font-size: 14px;
+}
+
+.avatar__link {
+display: flex;
+}
+
+.avatar {
+width: 38px;
+height: 38px;
+background-color: #e2e800;
+border-radius: 50%;
+}
+
+/* ==========================================
+MAIN
+========================================== */
+
+.main-content {
+width: 100%;
+padding: 20px 15px;
+flex: 1;
+}
+
+.page-title {
+font-size: 28px;
+font-weight: 400;
+color: #ffffff;
+margin-bottom: 20px;
+}
+
+/* ==========================================
+REPORTES
+========================================== */
+
+.reports-container {
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+
+.report-card {
+background-color: #404447;
+border-radius: 12px;
+padding: 18px 16px;
+}
+
+.report-card__header {
+margin-bottom: 20px;
+}
+
+.report-card__username {
+font-size: 16px;
+font-weight: 700;
+color: #e0e0e0;
+margin-bottom: 4px;
+}
+
+.report-card__id {
+font-size: 14px;
+color: #a0a0a0;
+}
+
+.report-card__body {
+font-size: 13px;
+color: #d8d8d8;
+line-height: 1.5;
+}
+
+/* ==========================================
+FOOTER
+========================================== */
+
+.footer {
+width: 100%;
+background-color: #3f4448;
+padding: 25px 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 15px;
+margin-top: 40px;
+}
+
+.footer__links {
+display: flex;
+justify-content: center;
+gap: 15px;
+flex-wrap: wrap;
+}
+
+.footer__bottom {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+width: 100%;
+}
+
+.footer__icons {
+display: flex;
+gap: 10px;
+}
+
+.icon-box {
+width: 20px;
+height: 20px;
+}
+
+.copyright {
+font-size: 11px;
+color: #d6d6d6;
+text-align: center;
+}
+
+.link-footer {
+color: #d6d6d6;
+text-decoration: none;
+}
+
+/* ==========================================
+TABLET
+========================================== */
+
+@media screen and (min-width: 768px) {
+
+.header {
+    padding: 0 30px;
+}
+
+.menu {
+    display: none;
+}
+
+.header__link {
+    display: block;
+}
+
+.main-content {
+    padding: 30px;
+}
+
+.page-title {
+    font-size: 34px;
+    margin-bottom: 25px;
+}
+
+.reports-container {
+    gap: 20px;
+}
+
+.report-card {
+    padding: 22px;
+}
+
+.report-card__header {
+    margin-bottom: 22px;
+}
+
+.report-card__username {
+    font-size: 18px;
+}
+
+.report-card__id {
+    font-size: 14px;
+}
+
+.report-card__body {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.footer {
+    padding: 25px 40px;
+}
+
+.footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+}
+
+/* ==========================================
+PC
+========================================== */
+
+@media screen and (min-width: 1024px) {
+
+.header {
+    height: 80px;
+    padding: 0 40px;
+}
+
+.header__link {
+    font-size: 15px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+}
+
+.main-content {
+    padding: 40px 50px;
+}
+
+.page-title {
+    font-size: 38px;
+    margin-bottom: 30px;
+}
+
+.reports-container {
+    gap: 25px;
+}
+
+.report-card {
+    padding: 28px;
+}
+
+.report-card__header {
+    margin-bottom: 25px;
+}
+
+.report-card__username {
+    font-size: 20px;
+}
+
+.report-card__id {
+    font-size: 15px;
+}
+
+.report-card__body {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.footer {
+    padding: 30px 80px;
+}
+
+.footer__links {
+    gap: 40px;
+}
+
+.footer__bottom {
+    margin-top: 10px;
+}
+
+}

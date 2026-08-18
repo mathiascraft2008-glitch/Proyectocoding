@@ -1,0 +1,242 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #262A2B;
+    color: #FFFFFF;
+    font-family: "Roboto", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==========================================
+   MAIN CONTAINER & CARD (MOBILE FIRST)
+========================================== */
+
+.main-container {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-card {
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image {
+    background-color: #E2E800;
+    color: #000000;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.image img{
+    width: 80px;
+}
+
+.title {
+    text-align: center;
+    font-family: "Orbitron", sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #A0A0A0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.link{
+    text-decoration: none;
+}
+/* ==========================================
+   FORMULARIO E INPUTS
+========================================== */
+
+.login {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.text {
+    font-family: "Roboto", sans-serif;
+    color: #D6D6D6;
+}
+
+.text-label {
+    text-align: left;
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    color: #CCCCCC;
+}
+
+.login__input {
+    width: 100%;
+    height: 42px;
+    margin-bottom: 15px;
+    background-color: #3F4448;
+    border-radius: 6px;
+    border: none;
+    padding: 0 12px;
+    color: #FFFFFF;
+    font-size: 14px;
+    outline: none;
+}
+
+.login__input:focus {
+    border: 1px solid #E2E800;
+}
+
+.login__submit {
+    background-color: #E2E800;    
+    border: none;
+    border-radius: 6px;
+    height: 48px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #121212;
+    font-size: 15px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.login__submit:hover {
+    background-color: #f5fa28;
+}
+
+.link {
+    font-family: "Roboto", sans-serif;
+    text-decoration: none;
+    color: #E2E800;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================
+   FOOTER DEL FORMULARIO (MÓVIL)
+========================================== */
+
+.form-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+}
+
+.text-login {
+    font-size: 13px;
+    text-align: center;
+}
+
+.terms-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.checkbox-input {
+    width: 28px;
+    height: 28px;
+    accent-color: #E2E800;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.text-terms {
+    font-size: 12px;
+    text-align: left;
+    line-height: 1.3;
+}
+
+/* ==========================================
+   MEDIA QUERY: TABLET (768px - 1023px)
+========================================== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .register-card {
+        max-width: 480px;
+        background-color: #2F3436;
+        padding: 35px 40px;
+        border-radius: 12px;
+    }
+
+    .title {
+        font-size: 26px;
+    }
+
+    .image {
+        width: 90px;
+        height: 90px;
+    }
+
+    .login__submit {
+        height: 50px;
+        font-size: 16px;
+    }
+}
+
+/* ==========================================
+   MEDIA QUERY: DESKTOP (1024px o superior)
+========================================== */
+
+@media screen and (min-width: 1024px) {
+
+    .register-card {
+        max-width: 520px;
+        background-color: #2F3436;
+        padding: 40px 45px;
+        border-radius: 12px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    /* En Desktop acomodamos los términos y el login en fila como la captura de Figma */
+    .form-footer {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .text-login {
+        text-align: right;
+        font-size: 12px;
+    }
+
+    .terms-container {
+        justify-content: flex-start;
+    }
+
+    .text-terms {
+        font-size: 12px;
+    }
+}

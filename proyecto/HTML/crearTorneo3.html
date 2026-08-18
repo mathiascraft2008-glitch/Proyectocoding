@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/crearTorneo3.css">
+    <link rel="stylesheet" href="../fonts/fonts.css">
+    <title>Revisión Torneo - GGchamp</title>
+</head>
+
+<body>  
+  
+    <header class="header">
+        <button class="menu">☰</button>
+
+        <a href="mainUsuario.html" class="link">
+            <p class="logotipo">
+                <span class="logotipo--GG">GG</span>champ
+            </p>
+        </a>
+
+        <div class="header__nav">
+            <a href="AcercaDeNosotros.html" class="header__link">Acerca de nosotros</a>
+            <a href="notificaciones.html" class="header__link">Notificaciones</a>
+            <a href="competencias.html" class="header__link">Competencias</a>
+            <a href="rankings.html" class="header__link">rankings</a>
+
+            <a href="perfil.html" class="avatar__link"><img class="avatar" src="../images/ui_user_profile_avatar_person_icon_208734.webp" alt=""></a>
+        </div>
+    </header>
+
+    <!--main-->
+    <main class="main-content">
+        <h1 class="title">Crear torneo</h1>
+
+        
+        <section class="steps-container">
+            <div class="step-item step-item--active">
+                <div class="step-number">1</div>
+                <span class="step-text">Información</span>
+            </div>
+            <div class="step-item step-item--active">
+                <div class="step-number">2</div>
+                <span class="step-text">Configuración</span>
+            </div>
+            <div class="step-item step-item--active">
+                <div class="step-number">3</div>
+                <span class="step-text">Revisión</span>
+            </div>
+        </section>
+
+
+        
+
+        <form class="form-container">
+            <h2 class="form-title">Revisión</h2>
+
+            <!--nom toreno-->
+            <div class="form-group">
+                <label>Nombre del torneo</label>
+                <div class="review-display">Torneo Intercolegial 2026</div>
+            </div>
+
+            <!--lugar y disciplina-->
+            <div class="form__item">
+                <div class="form-group">
+                    <label>Disciplina</label>
+                    <div class="review-display">Fútbol</div>
+                </div>
+                <div class="form-group">
+                    <label>Lugar</label>
+                    <div class="review-display">Montevideo</div>
+                </div>
+            </div>
+
+            <!--fechas-->
+            <div class="form__item">
+                <div class="form-group">
+                    <label>Fecha de inicio</label>
+                    <div class="review-display">20/07/2026</div>
+                </div>
+                <div class="form-group">
+                    <label>Fecha de finalizado</label>
+                    <div class="review-display">25/07/2026</div>
+                </div>
+            </div>
+
+            <!--descripcion-->
+            <div class="form-group">
+                <label>Descripción</label>
+                <div class="review-display review-display--textarea">
+                    Torneo de fútbol organizado para estudiantes de secundaria.
+                </div>
+            </div>
+
+            <!--fromato y participacion-->
+            <div class="form__item">
+                <div class="form-group">
+                    <label>Tipo de participación</label>
+                    <div class="review-display">Equipos</div>
+                </div>
+                <div class="form-group">
+                    <label>Formato</label>
+                    <div class="review-display">Suizo</div>
+                </div>
+            </div>
+
+            <!--max eq y participantes-->
+            <div class="form-group">
+                <label>Máximo de equipos/participantes</label>
+                <div class="review-display">20 equipos</div>
+            </div>
+
+            <!--max participantes por equipos -->
+            <div class="form-group">
+                <label>Máximo de participantes por equipo (solo si equipo)</label>
+                <div class="review-display">5 participantes</div>
+            </div>
+
+
+            <div class="privacy-box">
+                <div class="status-indicator">
+                    <span class="square square--off"></span>
+                    <span>Público</span>
+                </div>
+                <div class="status-indicator">
+                    <span class="square square--on"></span>
+                    <span>Privado</span>
+                </div>
+            </div>
+
+
+            <div class="sub-card">
+                <h3 class="sub-card-title">Tipo de resultado elegido</h3>
+                <p class="sub-card-value">Nombre del marcador</p>
+            </div>
+
+
+            <div class="form-group">
+                <h3 class="sub-section-title">Inscripción</h3>
+                <label>Fecha de cierre de inscripciones</label>
+                <div class="review-display">19/07/2026</div>
+            </div>
+
+
+            <div class="form-group">
+                <h3 class="sub-section-title">Modalidad</h3>
+                <div class="status-indicator">
+                    <span class="square square--on"></span>
+                    <span>Presencial</span>
+                </div>
+                <div class="status-indicator" style="margin-top: 6px;">
+                    <span class="square square--off"></span>
+                    <span>online</span>
+                </div>
+            </div>
+
+  
+            <div class="form-group">
+                <h3 class="sub-section-title">Reglas básicas</h3>
+                <div class="rules-list">
+                    <div class="status-indicator">
+                        <span class="square square--off"></span>
+                        <span>No se permite lenguaje ofensivo</span>
+                    </div>
+                    <div class="status-indicator">
+                        <span class="square square--off"></span>
+                        <span>Juego limpio</span>
+                    </div>
+                    <div class="status-indicator">
+                        <span class="square square--off"></span>
+                        <span>Se sancionan las ausencias</span>
+                    </div>
+                    <div class="status-indicator">
+                        <span class="square square--off"></span>
+                        <span>Respetar horarios</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label>Reglas adicionales</label>
+                <div class="review-display review-display--textarea"></div>
+            </div>
+
+            <button type="submit" class="btn-submit">Crear torneo</button>
+        </form>
+    </main>
+
+
+    <footer class="footer">
+        <a href="mainUsuario.html" class="link"><p class="logotipo"><span class="logotipo--GG">GG</span>champ</p></a>
+        <div class="footer__links">
+            <a href="Terminos&Condiciones.html" class="link-footer">Términos</a>
+            <a href="Terminos&Condiciones.html" class="link-footer">Privacidad</a>
+            <a href="AcercaDeNosotros.html" class="link-footer">Acerca de</a>
+            <a href="soporte.html" class="link-footer">Contacto</a>
+        </div>
+        <div class="footer__bottom">
+            <div class="footer__icons">
+                <img class="icon-box" src="../images/instagram.png" alt="">
+                <img class="icon-box" src="../images/x.png" alt="">
+                <img class="icon-box" src="../images/facebook.png" alt="">
+            </div>
+            <p class="copyright">Copyright© todos los derechos reservados</p>
+        </div>
+    </footer>
+</body>
+
+</html>

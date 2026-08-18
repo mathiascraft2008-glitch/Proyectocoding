@@ -1,0 +1,178 @@
+<?php
+require_once "../HTML/UsuarioModelo.php";
+require_once "../HTML/conexion.php";
+$action = $_POST['action'];
+
+if ($action == 'register') {
+    registerUser($conexion);
+}
+
+if ($action == 'login') {
+    loginUser($conexion);
+}
+if ($action == 'editProfile') {
+    editProfile($conexion);
+}
+if ($action == 'delete') {
+    deleteUser($conexion);
+}
+if ($action == 'logout') {
+    logoutUser($conexion);
+}
+if ($action == 'editUser') {
+    editUser($conexion);
+}
+if ($action == 'changePassword') {
+    editPassword($conexion);
+}
+function registerUser($conexion) {
+
+    $name = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $passwordConfirm = $_POST['confirm-password'];
+
+    if (!validatePassword($password)) {
+        echo "La contraseña no cumple con la política de seguridad";
+        return;
+    }
+
+    if ($password !== $passwordConfirm) {
+        echo "Las contraseñas no coinciden";
+        return;
+    }
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    
+
+
+    $usuarioModelo = new UsuarioModelo($conexion);
+
+    $resultado = $usuarioModelo->registrarUsuario($name,$email,$passwordHash);
+
+    if ($resultado) {
+        header("Location: ../HTML/login.html"); exit;
+    } else {
+        echo "<script>alert('Error al registrar el usuari');</script>";
+    }
+    
+
+    
+}
+
+
+function validatePassword($password) {
+
+    if (strlen($password) < 8) {
+        return false;
+    }
+
+    if (!preg_match('/[A-Z]/', $password)) {
+        return false;
+    }
+
+    if (!preg_match('/[a-z]/', $password)) {
+        return false;
+    }
+
+    if (!preg_match('/[0-9]/', $password)) {
+        return false;
+    }
+
+    if (!preg_match('/[^A-Za-z0-9]/', $password)) {
+        return false;
+    }
+
+    return true;
+}
+function loginUser($conexion) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+    $usuarioModelo= new UsuarioModelo($conexion);
+    $usuario = $usuarioModelo->BuscarUsuarioPorEmail($email);
+    if($usuario==false){
+        echo "Usuario no encontrado";   
+        return;
+    }
+
+    if(password_verify($password, $usuario['CONTRASEÑA'])){
+        //usar session_start() para iniciar la sesión y guardar los datos del usuario en variables de sesión
+        session_start();
+
+        $_SESSION['id'] = $usuario['ID'];
+        $_SESSION['nombre'] = $usuario['NOMBRE'];
+        $_SESSION['email'] = $usuario['MAIL'];
+        $_SESSION['rol'] = $usuario['ROL'];
+        header("Location: ../HTML/mainUsuario.html"); exit;
+    }else{
+        echo "No se pudo iniciar sesión";
+    }
+    
+    
+}
+function editUser($conexion) {
+    //hay que verificar que el que quiere editar el usuario sea un administrador, para eso se puede usar la variable de sesión que guarda el rol del usuario
+    session_start();
+    if ($_SESSION['rol'] !== 'administrador') {
+        echo "no sos admin";
+        return;
+    }else{
+
+    }
+}
+
+function deleteUser($conexion) {
+
+    // Verificar mail y contraseña o directamente ID del usuario en la bdd, posiblemente mejor solo ID 
+    echo "La cuenta feu sido eliminada";
+}
+
+function logoutUser($conexion) {
+    // eliminar la sesion y redirigirlo a la página de inicio de sesión
+    session_start();
+    session_destroy();
+
+    header("Location: ../HTML/login.html"); exit;
+}
+
+function editProfile($conexion) {
+    session_start();
+    $id = $_SESSION['id'];
+    $name = $_POST['username'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $usuarioModelo = new UsuarioModelo($conexion);
+    $resultado = $usuarioModelo->editarPerfil($id,$name,$email);
+    
+    if ($resultado) {
+        echo "Perfil actualizado correctamente";
+    } else {
+        echo "No se modificó ningún dato";
+    }
+}
+
+function editPassword($conexion) {
+    session_start();
+    $id = $_SESSION['id'];
+    $newPassword = $_POST['new-password'] ?? '';
+    $confirmNewPassword = $_POST['confirm-new-password'] ?? '';
+
+    if ($newPassword !== $confirmNewPassword) {
+        echo "Las nuevas contraseñas no coinciden";
+        return;
+    }
+
+    if (!validatePassword($newPassword)) {
+        echo "La nueva contraseña no cumple con la política de seguridad";
+        return;
+    }
+
+    $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+    $usuarioModelo = new UsuarioModelo($conexion);
+    $resultado = $usuarioModelo->editarPassword($id, $newPasswordHash);
+
+    if ($resultado) {
+        echo "Contraseña actualizada correctamente";
+    } else {
+        echo "No se pudo actualizar la contraseña";
+    }
+}

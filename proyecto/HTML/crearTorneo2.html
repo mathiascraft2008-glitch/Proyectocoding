@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/crearTorneo2.css">
+    <link rel="stylesheet" href="../fonts/fonts.css">
+    <title>Configuración Torneo - GGchamp</title>
+</head>
+
+<body> 
+    <header class="header">
+        <button class="menu">☰</button>
+
+        <a href="mainUsuario.html" class="link">
+            <p class="logotipo">
+                <span class="logotipo--GG">GG</span>champ
+            </p>
+        </a>
+
+        <div class="header__nav">
+            <a href="AcercaDeNosotros.html" class="header__link">Acerca de nosotros</a>
+            <a href="notificaciones.html" class="header__link">Notificaciones</a>
+            <a href="competencias.html" class="header__link">Competencias</a>
+            <a href="rankings.html" class="header__link">rankings</a>
+
+            <a href="perfil.html" class="avatar__link"><img class="avatar" src="../images/ui_user_profile_avatar_person_icon_208734.webp" alt=""></a>
+        </div>
+    </header>
+
+   
+    <main class="main-content">
+        <h1 class="title">Crear torneo</h1>
+
+        <!--pasos arriba-->
+        <section class="steps-container">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <span class="step-text">Información</span>
+            </div>
+            <div class="step-item step-item--active">
+                <div class="step-number">2</div>
+                <span class="step-text">Configuración</span>
+            </div>
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <span class="step-text">Revisión</span>
+            </div>
+        </section>
+
+
+        <form class="form-container">
+            <h2 class="form-title">Configuración</h2>
+
+            <!--tipo de aprticipacion -->
+            <div class="form-group">
+                <label for="participacion">Tipo de participación</label>
+                <select id="participacion" name="participacion">
+                    <option value="" disabled selected hidden>Individual o equipo</option>
+                    <option value="individual">Individual</option>
+                    <option value="equipos">Equipos</option>
+                </select>
+            </div>
+
+            <!--participantes por equipo-->
+            <div class="form-group">
+                <label for="participantes-equipo">Participantes por equipo</label>
+                <select id="participantes-equipo" name="participantes-equipo">
+                    <option value="" disabled selected hidden>Selecciona una opción</option>
+                    <option value="2">2 participantes</option>
+                    <option value="3">3 participantes</option>
+                    <option value="5">5 participantes</option>
+                </select>
+            </div>
+
+            <!--max equipo-->
+            <div class="form-group">
+                <label for="maximo-equipos">Máximo de equipos</label>
+                <select id="maximo-equipos" name="maximo-equipos">
+                    <option value="" disabled selected hidden>Selecciona cantidad</option>
+                    <option value="10">10 equipos</option>
+                    <option value="20">20 equipos</option>
+                </select>
+            </div>
+
+            <!--max participantes-->
+            <div class="form-group">
+                <label for="maximo-participantes">Máximo de participantes individuales</label>
+                <select id="maximo-participantes" name="maximo-participantes">
+                    <option value="" disabled selected hidden>Selecciona cantidad</option>
+                    <option value="10">10 participantes</option>
+                    <option value="20">20 participantes</option>
+                </select>
+            </div>
+
+            <!-- formato -->
+            <div class="form-group">
+                <label for="formato">Formato de torneo</label>
+                <select id="formato" name="formato">
+                    <option value="" disabled selected hidden>Selecciona un formato</option>
+                    <option value="suizo">Suizo</option>
+                    <option value="eliminacion">Eliminación directa</option>
+                </select>
+            </div>
+
+            <div class="privacy-box">
+                <label class="radio-option">
+                    <input type="radio" name="privacidad" value="publico">
+                    <span>Público</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="privacidad" value="privado" checked>
+                    <span>Privado</span>
+                </label>
+            </div>
+
+            <!-- tipo resultado-->
+            <div class="sub-card">
+                <h3 class="sub-card-title">Tipo de resultado</h3>
+                
+                <label class="radio-option">
+                    <input type="radio" name="resultado" value="ganador">
+                    <span>Solo ganador</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="resultado" value="marcador">
+                    <span>Marcador</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="resultado" value="sets">
+                    <span>Sets</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="resultado" value="tiempo">
+                    <span>Tiempo</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="resultado" value="personalizado" checked>
+                    <span>Personalizado</span>
+                </label>
+
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="nombre-marcador">Nombre del marcador personalizado</label>
+                    <input type="text" id="nombre-marcador" name="nombre-marcador" placeholder="Ej. Kills, Puntos, Goles">
+                </div>
+            </div>
+
+            <!-- inscripcion-->
+            <div class="form-group">
+                <h3 class="sub-section-title">Inscripción</h3>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="solicitud" value="permitir">
+                    <span>Permitir solicitudes de inscripción</span>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="fecha-cierre">Fecha de cierre de inscripciones</label>
+                <input type="text" id="fecha-cierre" name="fecha-cierre" placeholder="Fecha de cierre" onfocus="(this.type='date')">
+            </div>
+
+            <!--modo-->
+            <div class="form-group">
+                <h3 class="sub-section-title">Modalidad</h3>
+                <label class="radio-option">
+                    <input type="radio" name="modalidad" value="presencial" checked>
+                    <span>Presencial</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="modalidad" value="online">
+                    <span>Online</span>
+                </label>
+            </div>
+
+            <!--regla-->
+            <div class="form-group">
+                <h3 class="sub-section-title">Reglas básicas</h3>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="reglas" value="ofensivo">
+                    <span>No se permite lenguaje ofensivo</span>
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="reglas" value="juego-limpio">
+                    <span>Juego limpio</span>
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="reglas" value="sanciones">
+                    <span>Se sancionan las ausencias</span>
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="reglas" value="horarios">
+                    <span>Respetar horarios</span>
+                </label>
+            </div>
+
+
+            <div class="form-group">
+                <label for="reglas-adicionales">Reglas adicionales</label>
+                <textarea id="reglas-adicionales" name="reglas-adicionales" rows="4" placeholder="Escribe aquí otras reglas que deban considerar los participantes..."></textarea>
+            </div>
+
+
+            <button type="submit" class="btn-next">
+                <span>Siguiente</span>
+                <span class="arrow-icon">→</span>
+            </button>
+        </form>
+    </main>
+
+
+    <footer class="footer">
+        <a href="mainUsuario.html" class="link"><p class="logotipo"><span class="logotipo--GG">GG</span>champ</p></a>
+        <div class="footer__links">
+            <a href="Terminos&Condiciones.html" class="link-footer">Términos</a>
+            <a href="Terminos&Condiciones.html" class="link-footer">Privacidad</a>
+            <a href="AcercaDeNosotros.html" class="link-footer">Acerca de</a>
+            <a href="soporte.html" class="link-footer">Contacto</a>
+        </div>
+        <div class="footer__bottom">
+            <div class="footer__icons">
+                <img class="icon-box" src="../images/instagram.png" alt="">
+                <img class="icon-box" src="../images/x.png" alt="">
+                <img class="icon-box" src="../images/facebook.png" alt="">
+            </div>
+            <p class="copyright">Copyright© todos los derechos reservados</p>
+        </div>
+    </footer>
+
+</body>
+</html>
