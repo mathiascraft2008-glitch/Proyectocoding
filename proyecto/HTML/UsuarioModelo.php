@@ -76,6 +76,13 @@ class UsuarioModelo {
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
+    function obtenerUsuarioPorId($id) {
+        $sql = "SELECT * FROM usuario WHERE ID = :id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
 
 

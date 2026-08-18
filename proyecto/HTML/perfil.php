@@ -1,5 +1,11 @@
 <?php
 session_start();
+require_once "UsuarioModelo.php";
+require_once "conexion.php";
+$id = $_SESSION['id'];
+$usuarioModelo = new UsuarioModelo($conexion);
+
+$usuario = $usuarioModelo->obtenerUsuarioPorId($id);
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +35,7 @@ session_start();
             <a href="competencias.html" class="header__link">Competencias</a>
             <a href="rankings.html" class="header__link">rankings</a>
 
-            <a href="perfil.html" class="avatar__link"><img class="avatar" src="../images/ui_user_profile_avatar_person_icon_208734.webp" alt=""></a>
+            <a href="perfil.php" class="avatar__link"><img class="avatar" src="../images/ui_user_profile_avatar_person_icon_208734.webp" alt=""></a>
         </div>
     </header>
 
@@ -38,9 +44,9 @@ session_start();
         <section class="profile">
             <div class="profile__avatar">IMG</div>
             <div class="profile__info">
-                <h2 class="profile__name"><?php echo $_SESSION['nombre']; ?></h2>
-                <p class="profile__mail"><?php echo $_SESSION['email']; ?></p>
-                <p class="profile__id">ID: <?php echo $_SESSION['id']; ?></p>
+                <h2 class="profile__name"><?php echo $usuario['NOMBRE']; ?></h2>
+                <p class="profile__mail"><?php echo $usuario['MAIL']; ?></p>
+                <p class="profile__id">ID: <?php echo $usuario['ID']; ?></p>
             </div>
         </section>
         
