@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+
+require_once "UsuarioModelo.php";
+require_once "conexion.php";
+
+$usuarioModelo = new UsuarioModelo($conexion);
+
+$registros = $usuarioModelo->obtenerRegistros();
+
+?>
 <!DOCTYPE html>
 
 <html lang="es">
@@ -56,67 +68,21 @@
     <!-- Registros de auditoría -->
     <div class="audit-container">
 
-        <!-- Registro 1 -->
-        <article class="audit-card">
 
-            <div class="audit-card__header">
+        <?php foreach ($registros as $r) { ?>
 
-                <h2 class="audit-card__username">
-                    Nombre de usuario
-                </h2>
+            <article class="audit-card">
 
-                <p class="audit-card__id">
-                    id: 283745693826
-                </p>
+                <h2>ID: <?php echo $r['IDUSUARIO']; ?></h2>
 
-            </div>
+                <p><?php echo $r['ACCION']; ?></p>
 
-            <div class="audit-card__content">
+                <p><?php echo $r['FECHA']; ?></p>
 
-                <p>
-                    Este usuario creó el torneo "Nombre torneo"
-                </p>
+            </article>
 
-                <p>
-                    ID: 129862346
-                </p>
+        <?php } ?>
 
-            </div>
-
-            <p class="audit-card__date">
-                Fecha y hora
-            </p>
-
-        </article>
-
-        <!-- Registro 2 -->
-        <article class="audit-card">
-
-            <div class="audit-card__header">
-
-                <h2 class="audit-card__username">
-                    Nombre de usuario
-                </h2>
-
-                <p class="audit-card__id">
-                    id: 283745693826
-                </p>
-
-            </div>
-
-            <div class="audit-card__content">
-
-                <p>
-                    Este usuario creó su cuenta
-                </p>
-
-            </div>
-
-            <p class="audit-card__date">
-                Fecha y hora
-            </p>
-
-        </article>
 
     </div>
 

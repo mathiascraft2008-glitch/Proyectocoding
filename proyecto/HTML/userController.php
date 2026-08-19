@@ -103,6 +103,8 @@ function loginUser($conexion) {
         $_SESSION['nombre'] = $usuario['NOMBRE'];
         $_SESSION['email'] = $usuario['MAIL'];
         $_SESSION['rol'] = $usuario['ROL'];
+        // Registrar la acción en la auditoría
+        $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se inició sesión');
         header("Location: ../HTML/mainUsuario.html"); exit;
     }else{
         echo "No se pudo iniciar sesión";
@@ -110,6 +112,8 @@ function loginUser($conexion) {
     
     
 }
+
+
 function editUser($conexion) {
     //hay que verificar que el que quiere editar el usuario sea un administrador, para eso se puede usar la variable de sesión que guarda el rol del usuario
     session_start();
@@ -131,19 +135,26 @@ function logoutUser($conexion) {
     // eliminar la sesion y redirigirlo a la página de inicio de sesión
     session_start();
     session_destroy();
-
+    // Registrar la acción en la auditoría
+    $usuarioModelo = new UsuarioModelo($conexion);
+    $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se cerró sesión');
     header("Location: ../HTML/login.html"); exit;
 }
 
 function editProfile($conexion) {
+    //iniciar la sesion para saber que usaurio esta logueado y obtener su id, luego usar el modelo de usuario para editar los datos del usuario en la base de datos
     session_start();
     $id = $_SESSION['id'];
+    //obtener fatos del formulario y verificar caules estan vacios,
+    //si estan vacios no se modifican, si no estan vacios se modifican
     $name = $_POST['username'] ?? '';
     $email = $_POST['email'] ?? '';
     $usuarioModelo = new UsuarioModelo($conexion);
     $resultado = $usuarioModelo->editarPerfil($id,$name,$email);
     
     if ($resultado) {
+        // Registrar la acción en la auditoría
+        $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se actualizó el perfil');
         echo "Perfil actualizado correctamente";
     } else {
         echo "No se modificó ningún dato";
@@ -153,6 +164,8 @@ function editProfile($conexion) {
 function editPassword($conexion) {
     session_start();
     $id = $_SESSION['id'];
+    //obtener fatos del formulario y verificar caules estan vacios,
+    //si estan vacios no se modifican, si no estan vacios se modifican
     $newPassword = $_POST['new-password'] ?? '';
     $confirmNewPassword = $_POST['confirm-new-password'] ?? '';
 
@@ -171,6 +184,9 @@ function editPassword($conexion) {
     $resultado = $usuarioModelo->editarPassword($id, $newPasswordHash);
 
     if ($resultado) {
+        // Registrar la acción en la auditoría
+        $usuarioModelo = new UsuarioModelo($conexion);
+        $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se actualizó la contraseña');
         echo "Contraseña actualizada correctamente";
     } else {
         echo "No se pudo actualizar la contraseña";

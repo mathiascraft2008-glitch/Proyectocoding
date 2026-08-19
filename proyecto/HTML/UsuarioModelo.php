@@ -84,6 +84,20 @@ class UsuarioModelo {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    function registroAuditoria($id, $accion) {
+        $sql = "INSERT INTO registro (IDUSUARIO, ACCION, FECHA) VALUES (:idu, :accion, NOW())";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':idu', $id);
+        $stmt->bindParam(':accion', $accion);
+        $stmt->execute();
+    }
+
+    function obtenerRegistros() {
+        $sql = "SELECT * FROM registro ORDER BY FECHA DESC";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 
     
