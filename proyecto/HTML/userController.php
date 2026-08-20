@@ -94,6 +94,25 @@ function loginUser($conexion) {
         echo "Usuario no encontrado";   
         return;
     }
+    //mandar al mainAdministrador.html o mainUsuario.html segun el rol del usuario, para eso se puede usar un if
+    if($usuario['ROL']=='administrador'){
+        
+        if(password_verify($password, $usuario['CONTRASEÑA'])){
+            //usar session_start() para iniciar la sesión y guardar los datos del usuario en variables de sesión
+            session_start();
+
+            $_SESSION['id'] = $usuario['ID'];
+            $_SESSION['nombre'] = $usuario['NOMBRE'];
+            $_SESSION['email'] = $usuario['MAIL'];
+            $_SESSION['rol'] = $usuario['ROL'];
+            // Registrar la acción en la auditoría
+            $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se inició sesión como administrador');
+            header("Location: ../HTML/mainAdministrador.html"); exit;
+        }else{
+            echo "No se pudo iniciar sesión";
+        
+        }
+        }
 
     if(password_verify($password, $usuario['CONTRASEÑA'])){
         //usar session_start() para iniciar la sesión y guardar los datos del usuario en variables de sesión
@@ -115,14 +134,27 @@ function loginUser($conexion) {
 
 
 function editUser($conexion) {
-    //hay que verificar que el que quiere editar el usuario sea un administrador, para eso se puede usar la variable de sesión que guarda el rol del usuario
     session_start();
     if ($_SESSION['rol'] !== 'administrador') {
         echo "no sos admin";
         return;
-    }else{
-
     }
+    $id = $_POST['id'];
+    $name = $_POST['nombre'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['contrasena'] ?? '';
+
+    $usuarioModelo = new UsuarioModelo($conexion);
+    $resultado = $usuarioModelo->editarUsuario($id, $name, $email, $password);
+
+    // Registrar la acción en la auditoría
+    if ($resultado) {
+        $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se editó un usuario con ID: ' . $id);
+        echo "Usuario editado correctamente";
+    } else {
+        echo "No se pudo editar el usuario";
+    }
+    
 }
 
 function deleteUser($conexion) {

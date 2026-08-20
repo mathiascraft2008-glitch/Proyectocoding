@@ -30,18 +30,80 @@ class UsuarioModelo {
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();      
- 
         
     }
+    
+    
+
+
     function editarUsuario($id, $name, $email, $password) {
-        $sql = "UPDATE usuario SET NOMBRE=:name, MAIL=:mail, CONTRASEÑA=:password where ID=:id;";
-        $stmt = $this->conexion->prepare($sql);
-        $stmt->bindParam(':name',$name);
-        $stmt->bindParam(':mail',$email);
-        $stmt->bindParam(':password',$password);
-        $stmt->bindParam(':id',$id);
-        $stmt->execute();
+
+    if ($name == '' && $email == '' && $password == '') {
+        return false;
     }
+
+    if ($name != '' && $email != '' && $password != '') {
+        $sql = "UPDATE usuario SET NOMBRE = :name, MAIL = :mail, CONTRASEÑA = :password WHERE ID = :id";
+        $stmt = $this->conexion->prepare($sql);
+
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':mail', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':id', $id);
+
+    } elseif ($name != '' && $email != '') {
+        $sql = "UPDATE usuario SET NOMBRE = :name, MAIL = :mail WHERE ID = :id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':mail', $email);
+        $stmt->bindParam(':id', $id);
+
+    } elseif ($name != '' && $password != '') {
+
+        $sql = "UPDATE usuario SET NOMBRE = :name, CONTRASEÑA = :password WHERE ID = :id";
+
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':id', $id);
+
+    } elseif ($email != '' && $password != '') {
+
+        $sql = "UPDATE usuario SET MAIL = :mail, CONTRASEÑA = :password WHERE ID = :id";
+
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':mail', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':id', $id);
+
+    } elseif ($name != '') {
+
+        $sql = "UPDATE usuario SET NOMBRE = :name WHERE ID = :id";
+
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':id', $id);
+
+    } elseif ($email != '') {
+
+        $sql = "UPDATE usuario SET MAIL = :mail WHERE ID = :id";
+
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':mail', $email);
+        $stmt->bindParam(':id', $id);
+
+    } elseif ($password != '') {
+
+        $sql = "UPDATE usuario SET CONTRASEÑA = :password WHERE ID = :id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':id', $id);
+    }
+    return $stmt->execute();
+}
+
+
+
 
     function editarPerfil($id, $name, $email) {
         if ($name == '' && $email == '') {

@@ -51,6 +51,10 @@
                 La opción que no rellene quedará de la misma manera
             </p>
         </div>
+        <div class="form-item">
+            <label for="id">Ingrese ID del usuario a editar</label>
+            <input type="text" id="id" name="id" required>
+        </div>
 
         <div class="form-item">
             <label for="nombre">Nuevo Nombre</label>
@@ -67,28 +71,8 @@
             <input type="email" id="email" name="email">
         </div>
 
-        <!-- Nueva foto -->
-        <div class="form-item">
 
-            <label for="foto-perfil">Nueva foto de perfil</label>
-
-            <label for="foto-perfil" class="file-button">
-                Seleccionar archivo
-            </label>
-
-            <input type="file" id="foto-perfil" name="foto-perfil" class="file-input">
-
-            <div class="profile-preview">
-                <span>IMG</span>
-            </div>
-
-        </div>
-
-                <a href="" class="link-button">
-                    <button class="publish" type="button">
-                        Modificar usuario
-                    </button>
-                </a>
+        <input type="submit" class="publish" value="Modificar usuario">        
 
     </form>
 
@@ -104,11 +88,7 @@
         <input type="number" name="idUsuario" required>
         
 
-        <a href="" class="action-link">
-            <button type="button" class="btn btn-remove">
-                Eliminar usuario
-            </button>
-        </a>
+        <input type="submit" class="publish" value="Eliminar usuario">        
 
     </form>
 
