@@ -15,20 +15,15 @@ CREATE TABLE usuario (
   CONTRASEÑA VARCHAR(255) NOT NULL,
 
   ROL ENUM('usuario', 'administrador') NOT NULL,
+  
+  ACTIVO BOOLEAN NOT NULL DEFAULT TRUE,
 
   PRIMARY KEY (ID)
 
 );
 
 
-delete from usuario where ID=1;
 
-update usuario set NOMBRE='a', MAIL='a', CONTRASEÑA='a' where id=1;
-insert into usuario( ID, NOMBRE,MAIL ,CONTRASEÑA, ROL) values (1, 'gamer','dfkofd@gmail.com','frgddthh','MAESTRO');
-
-insert into usuario( ID, NOMBRE,MAIL ,CONTRASEÑA, ROL) values (23, 'gamer','dosfkofd@gmail.com','frgddthh','MAESTRO');
-
-select * from usuario;
 CREATE TABLE torneo (
 
   ID INT NOT NULL AUTO_INCREMENT,
@@ -159,4 +154,3 @@ CREATE TABLE registro (
   FOREIGN KEY (IDUSUARIO) REFERENCES usuario (ID)
 
 );
-select * from usuario

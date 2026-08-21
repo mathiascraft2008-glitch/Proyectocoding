@@ -25,6 +25,9 @@ if ($action == 'editUser') {
 if ($action == 'changePassword') {
     editPassword($conexion);
 }
+if ($action == 'alta') {
+    altaUser($conexion);
+}
 function registerUser($conexion) {
 
     $name = $_POST['username'];
@@ -91,7 +94,7 @@ function loginUser($conexion) {
     $usuarioModelo= new UsuarioModelo($conexion);
     $usuario = $usuarioModelo->BuscarUsuarioPorEmail($email);
     if($usuario==false){
-        echo "Usuario no encontrado";   
+        echo "No se encontró el usuario o la contraseña es incorrecta o el usuario está de baja";   
         return;
     }
     //mandar al mainAdministrador.html o mainUsuario.html segun el rol del usuario, para eso se puede usar un if
@@ -158,10 +161,46 @@ function editUser($conexion) {
 }
 
 function deleteUser($conexion) {
+    
+    session_start();
+    if ($_SESSION['rol'] !== 'administrador') {
+        echo "no sos admin";
+        return;
+    }
+    $id = $_POST['idUsuario'];
 
-    // Verificar mail y contraseña o directamente ID del usuario en la bdd, posiblemente mejor solo ID 
-    echo "La cuenta feu sido eliminada";
+    $usuarioModelo = new UsuarioModelo($conexion);
+    $resultado = $usuarioModelo->DeleteUsuario($id);
+
+    // Registrar la acción en la auditoría
+    if ($resultado) {
+        $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se eliminó un usuario con ID: ' . $id);
+    } else {
+        echo "No se pudo eliminar el usuario";
+    }
 }
+
+function altaUser($conexion) {
+    
+    session_start();
+    if ($_SESSION['rol'] !== 'administrador') {
+        echo "no sos admin";
+        return;
+    }
+    $id = $_POST['idUsuario'];
+
+    $usuarioModelo = new UsuarioModelo($conexion);
+    $resultado = $usuarioModelo->AltaUsuario($id);
+    
+    // Registrar la acción en la auditoría
+    if ($resultado) {
+        $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se dio de alta un usuario con ID: ' . $id);
+    } else {
+        echo "No se pudo dar de alta el usuario";
+    }
+}
+
+
 
 function logoutUser($conexion) {
     // eliminar la sesion y redirigirlo a la página de inicio de sesión

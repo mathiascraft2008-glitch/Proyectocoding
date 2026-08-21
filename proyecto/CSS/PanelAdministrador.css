@@ -12,7 +12,13 @@ body {
     font-family: "Roboto";
     overflow-x: hidden;
 }
+.link-logo{
+    text-decoration: none;
 
+    font-family: "Orbitron";
+    font-weight: 700;
+    font-size: 24px;
+}
 
 /* ==========================================
     HEADER
@@ -48,10 +54,6 @@ font-weight: 700;
 .logotipo--GG {
 color: #e2e800;
 }
-.link{
-    text-decoration: none;
-    
-}
 
 .header__nav {
 display: flex;
@@ -76,7 +78,6 @@ height: 38px;
 background-color: #e2e800;
 border-radius: 50%;
 }
-
 
 
 /* ==========================================
@@ -136,6 +137,69 @@ ul{
 
 @media screen and (min-width: 768px) {
 
+    .header {
+        padding: 0 30px;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .header__link {
+        display: block;
+    }
+
+    .main-content {
+        max-width: 700px;
+        padding: 30px 20px;
+    }
+
+    .hero {
+        flex-direction: row;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .hero__text {
+        flex: 1;
+    }
+
+    .hero__image {
+        flex: 1;
+    }
+
+    .hero__title {
+        font-size: 26px;
+    }
+
+    .hero__actions {
+        flex-direction: row;
+    }
+
+    .tournament-card {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .tournament__image {
+        flex: 1;
+        margin-bottom: 0;
+    }
+
+    .tournament__info {
+        flex: 1;
+    }
+
+    .footer {
+        padding: 25px 40px;
+    }
+
+    .footer__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 
 }
 
@@ -149,14 +213,23 @@ ul{
 
     /* Header */
 
+    .menu {
+        display: none;
+    }
+
     .header {
         height: 80px;
         padding: 0 40px;
     }
 
-
     .header__link {
-        font-size: 14px;
+        display: block;
+        font-size: 15px;
+    }
+
+    .avatar {
+        width: 48px;
+        height: 48px;
     }
 
 

@@ -17,23 +17,30 @@ class UsuarioModelo {
 
     }
     function BuscarUsuarioPorEmail($email) {
-        $sql = "SELECT * FROM usuario WHERE MAIL = :mail";
+        $sql = "SELECT * FROM usuario WHERE MAIL = :mail AND ACTIVO = TRUE";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':mail', $email);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    function DeleteUsuario($id, $password){
-
-        $sql = "DELETE FROM usuario WHERE ID=:id;";
+    function DeleteUsuario($id){
+    
+        $sql = "UPDATE usuario SET ACTIVO = FALSE WHERE ID = :id";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':id', $id);
-        $stmt->execute();      
-        
+        return $stmt->execute();      
+
     }
     
+    function AltaUsuario($id){
     
+        $sql = "UPDATE usuario SET ACTIVO = TRUE WHERE ID = :id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();      
+
+    }
 
 
     function editarUsuario($id, $name, $email, $password) {
