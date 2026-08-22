@@ -65,24 +65,16 @@
 
         <div class="form-group">
 
-            <label for="nom">
-                Nombre del torneo
-            </label>
+            <label for="nom">Nombre del torneo</label>
 
-            <input
-                type="text"
-                id="nom"
-                name="nom"
-            >
+            <input type="text" id="nom" name="nom">
 
         </div>
 
 
         <div class="form-group">
 
-            <label for="format">
-                Tipo de formato
-            </label>
+            <label for="format">Tipo de formato</label>
 
             <div class="select-wrapper">
 
@@ -95,7 +87,7 @@
                         Eliminación directa
                     </option>
 
-                    <option value="eliminacion">
+                    <option value="liga">
                         Liga
                     </option>
 
@@ -109,18 +101,33 @@
         <!-- disciplina-->
         <div class="form-group">
 
-            <label for="disciplina">
-                Disciplina
-            </label>
+            <label for="disciplina">Disciplina</label>
 
             <div class="select-wrapper">
 
-                <select id="disciplina" name="disciplina">
-                    <option value="futbol">Fútbol</option>
+                <select name="disciplina" id="disciplina">
 
-                    <option value="basket">Básquetbol</option>
+                    <optgroup label="Deportes">
+                        <option value="futbol">Fútbol</option>
+                        <option value="basquetbol">Básquetbol</option>
+                        <option value="tenis">Tenis</option>
+                        <option value="tenis_mesa">Tenis de mesa</option>
+                        <option value="voleibol">Voleibol</option>
+                    </optgroup>
 
-                    <option value="ajedrez">Ajedrez</option>
+                    <optgroup label="Juegos mentales y de mesa">
+                        <option value="ajedrez">Ajedrez</option>
+                        <option value="damas">Damas</option>
+                        <option value="uno">UNO</option>
+                        <option value="cartas">Juegos de cartas</option>
+                    </optgroup>
+
+                    <optgroup label="Esports">
+                        <option value="fifa">EA Sports FC</option>
+                        <option value="valorant">Valorant</option>
+                        <option value="league_of_legends">League of Legends</option>
+                        <option value="counter_strike">Counter-Strike</option>
+                    </optgroup>
 
                 </select>
 
@@ -128,96 +135,37 @@
 
         </div>
 
-
         <!--fecha-->
         <div class="dates-row">
-
             <div class="form-group">
-
-                <label for="fecha-inicio">
-                    Fecha de inicio
-                </label>
-
-                <input
-                    type="date"
-                    id="fecha-inicio"
-                    name="fecha-inicio">
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="fecha-final">
-                    Fecha de finalizado
-                </label>
-
-                <input
-                    type="date"
-                    id="fecha-final"
-                    name="fecha-final">
-
-            </div>
-
+                <label for="fecha-inicio">Fecha de inicio </label>
+                <input type="date" id="fecha-inicio" name="fecha-inicio"></div>
         </div>
 
 
     <!-- lugar-->
         <div class="form-group">
-
-            <label for="lugar">
-                Lugar
-            </label>
-
-            <input
-                type="text"
-                id="lugar"
-                name="lugar"
-            >
-
+            <label for="lugar">Lugar</label>
+            <input type="text" id="lugar" name="lugar">
         </div>
+        
 
-
-        <!--descripcion-->
+        <!-- modo individual o por equipos -->
         <div class="form-group">
+            <label for="modo">Modo de juego</label>
 
-            <label for="descripcion">
-                Descripción
-            </label>
+            <div class="select-wrapper">
+                <select id="modo" name="modo">
+                    <option value="individual">Individual</option>
+                    <option value="equipos">Por equipos</option>
+                </select>
 
-            <textarea
-                id="descripcion"
-                name="descripcion"
-                rows="4"
-            ></textarea>
-
+            </div>
         </div>
 
 
-        <!--banner -->
-        <div class="form-group">
-
-            <label for="banner">
-                Imagen del banner del torneo
-            </label>
-
-            <input
-                type="file"
-                id="banner"
-                name="banner"
-                class="file-input"
-            >
-
-        </div>
-
-        <button
-            type="submit"
-            class="btn-next"
-        >
-
+        <button type="submit" class="btn-next" >
             <span>Siguiente</span>
-
-
         </button>
 
     </form>
