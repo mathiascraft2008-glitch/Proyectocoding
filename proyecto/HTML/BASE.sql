@@ -36,8 +36,15 @@ CREATE TABLE torneo (
 
   FORMATO ENUM('suizo', 'liga', 'eliminacion') NOT NULL,
 
-  DISCIPLINA ENUM('deporte', 'mesa') NOT NULL,
-
+  DISCIPLINA ENUM('futbol','basquetbol','tenis','tenis_mesa','voleibol','ajedrez','damas','uno',
+  'fifa','valorant','league_of_legends','counter_strike','rocket_league') NOT NULL,
+  
+  LUGAR VARCHAR (40) NOT NULL,
+  
+  PARTICIPACION ENUM('solo', 'equipo') NOT NULL,
+  
+  CONTRASENA VARCHAR(255) NOT NULL,	
+	
   PRIMARY KEY (ID),
   FOREIGN KEY (IDORGANIZADOR) REFERENCES usuario (ID)
 

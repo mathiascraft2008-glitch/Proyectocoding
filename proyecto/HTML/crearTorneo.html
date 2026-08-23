@@ -51,8 +51,9 @@
 
     </section>
 
-    <form class="form-container">
-
+    <form class="form-container" action="torneoController.php" method="post">
+        <!-- indicador para el controlador -->
+            <input type="hidden" name="action" value="formularioTorneo">
         <h2 class="form-title">
             Información básica
         </h2>
@@ -62,6 +63,14 @@
             <label for="nom">Nombre del torneo</label>
 
             <input type="text" id="nom" name="nom" required placeholder="Ingrese Un Nombre">
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="nom">Contraseña</label>
+
+            <input type="password" id="contra" name="pass" required placeholder="Ingrese Una Contraseña para el torneo">
 
         </div>
 
@@ -150,8 +159,8 @@
 
             <div class="select-wrapper">
                 <select id="modo" name="modo" required>
-                    <option value="individual">Individual</option>
-                    <option value="equipos">Por equipos</option>
+                    <option value="solo">solo</option>
+                    <option value="equipo">equipo</option>
                 </select>
 
             </div>
