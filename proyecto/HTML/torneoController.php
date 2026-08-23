@@ -1,6 +1,7 @@
 <?php
 require_once "../HTML/torneoModelo.php";
 require_once "../HTML/conexion.php";
+require_once "../HTML/UsuarioModelo.php";
 $action = $_POST['action'];
 
 if ($action == 'formularioTorneo') {
@@ -25,15 +26,17 @@ function crearTorneo($conexion) {
     $contraseñaHash = password_hash($contraseña, PASSWORD_DEFAULT);
 
     $torneoModelo = new torneoModelo($conexion);
+    $usuarioModelo = new UsuarioModelo($conexion);
 
     $resultado = $torneoModelo->crear($idOrganizador,$nombre,$fecha,$formato,$disciplina,$lugar,$participacion,$contraseñaHash);
 
     if ($resultado) {
     $usuarioModelo->registroAuditoria(
-        $_SESSION['id'],'Se creó el torneo con ID: ' . $idTorneo
+        $_SESSION['id'],'Se creó un nuevo torneo'
     );
-    header("Location: ../HTML/mainUsuario.html"); exit;
+    header("Location: ../HTML/mainUsuario.php"); exit;
     } else {
         echo "No se pudo crear el torneo";
     }
 }
+

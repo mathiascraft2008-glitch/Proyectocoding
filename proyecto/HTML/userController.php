@@ -127,7 +127,7 @@ function loginUser($conexion) {
         $_SESSION['rol'] = $usuario['ROL'];
         // Registrar la acción en la auditoría
         $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se inició sesión');
-        header("Location: ../HTML/mainUsuario.html"); exit;
+        header("Location: ../HTML/mainUsuario.php"); exit;
     }else{
         echo "No se pudo iniciar sesión";
     }

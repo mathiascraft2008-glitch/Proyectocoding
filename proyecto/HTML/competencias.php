@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+
+require_once "../HTML/conexion.php";
+require_once "../HTML/torneoModelo.php";
+
+$idUsuario = $_SESSION['id'];
+
+$torneoModelo = new torneoModelo($conexion);
+$torneos = $torneoModelo->obtenerTorneosDisponibles($idUsuario);
+
+?>
 <!DOCTYPE html>
 
 <html lang="es">
@@ -78,7 +91,10 @@
             <div class="tournaments-list">
 
                 <!-- Tarjeta 1 -->
-                <a class="link" href="detallesTorneo.html">
+                <?php foreach ($torneos as $torneo) { ?>
+
+                <a class="link" href="detallesTorneo.php?id=<?php echo $torneo['ID'] ?>">
+
                     <article class="card">
 
                         <div class="card__img-placeholder">
@@ -88,19 +104,31 @@
                         <div class="card__content">
 
                             <div class="card__header">
-                                <h3 class="card__category">Fútbol 5</h3>
+                                <h3 class="card__category">
+                                    <?php echo $torneo['NOMBRE']; ?>
+                                </h3>
                             </div>
 
                             <div class="card__details">
 
                                 <div class="detail-row">
                                     <img src="../images/reloj.svg" class="iconn" alt="">
-                                    <span>Fecha / online</span>
+                                    <span>
+                                        <?php echo $torneo['FECHA']; ?>
+                                    </span>
                                 </div>
 
                                 <div class="detail-row">
                                     <img src="../images/usuarios.svg" class="iconn" alt="">
-                                    <span>7 / 10</span>
+                                    <span>
+                                        <?php echo $torneo['DISCIPLINA']; ?>
+                                    </span>
+                                </div>
+
+                                <div class="detail-row">
+                                    <span>
+                                        <?php echo $torneo['FORMATO']; ?>
+                                    </span>
                                 </div>
 
                             </div>
@@ -112,123 +140,11 @@
                         </div>
 
                     </article>
+
                 </a>
 
+            <?php } ?>
 
-                <!-- Tarjeta 2 -->
-                <a class="link" href="detallesTorneo.html">
-                    <article class="card">
-
-                        <div class="card__img-placeholder">
-                            <span class="img-icon">📷</span>
-                        </div>
-
-                        <div class="card__content">
-
-                            <div class="card__header">
-                                <h3 class="card__category">Ajedrez</h3>
-                            </div>
-
-                            <div class="card__details">
-
-                                <div class="detail-row">
-                                    <img src="../images/reloj.svg" class="iconn" alt="">
-                                    <span>Fecha / lugar</span>
-                                </div>
-
-                                <div class="detail-row">
-                                    <img src="../images/usuarios.svg" class="iconn" alt="">
-                                    <span>7 / 10</span>
-                                </div>
-
-                            </div>
-
-                            <span class="card__status">
-                                Inscripción abierta
-                            </span>
-
-                        </div>
-
-                    </article>
-                </a>
-
-
-                <!-- Tarjeta 3 -->
-                <a class="link" href="detallesTorneo.html">
-                    <article class="card">
-
-                        <div class="card__img-placeholder">
-                            <span class="img-icon">📷</span>
-                        </div>
-
-                        <div class="card__content">
-
-                            <div class="card__header">
-                                <h3 class="card__category">Valorant</h3>
-                            </div>
-
-                            <div class="card__details">
-
-                                <div class="detail-row">
-                                    <img src="../images/reloj.svg" class="iconn" alt="">
-                                    <span>Fecha / online</span>
-                                </div>
-
-                                <div class="detail-row">
-                                    <img src="../images/usuarios.svg" class="iconn" alt="">
-                                    <span>7 / 10</span>
-                                </div>
-
-                            </div>
-
-                            <span class="card__status">
-                                Inscripción abierta
-                            </span>
-
-                        </div>
-
-                    </article>
-                </a>
-
-
-                <!-- Tarjeta 4 -->
-                <a class="link" href="detallesTorneo.html">
-                    <article class="card">
-
-                        <div class="card__img-placeholder">
-                            <span class="img-icon">📷</span>
-                        </div>
-
-                        <div class="card__content">
-
-                            <div class="card__header">
-                                <h3 class="card__category">Juegos de cartas</h3>
-                            </div>
-                            
-                            <div class="card__details">
-
-                                <div class="detail-row">
-                                    <img src="../images/reloj.svg" class="iconn" alt="">
-                                    <span>Fecha / online</span>
-                                </div>
-
-                                <div class="detail-row">
-                                    <img src="../images/usuarios.svg" class="iconn" alt="">
-                                    <span>7 / 10</span>
-                                </div>
-
-                            </div>
-
-                            <span class="card__status">
-                                Inscripción abierta
-                            </span>
-
-                        </div>
-
-                    </article>
-                </a>
-
-            </div>
 
         </section>
 
