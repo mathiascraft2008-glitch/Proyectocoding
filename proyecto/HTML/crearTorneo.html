@@ -44,14 +44,8 @@
             <div class="step-number">1</div>
             <span class="step-text">Información</span>
         </div>
-
         <div class="step-item">
             <div class="step-number">2</div>
-            <span class="step-text">Configuración</span>
-        </div>
-
-        <div class="step-item">
-            <div class="step-number">3</div>
             <span class="step-text">Revisión</span>
         </div>
 
@@ -67,7 +61,7 @@
 
             <label for="nom">Nombre del torneo</label>
 
-            <input type="text" id="nom" name="nom">
+            <input type="text" id="nom" name="nom" required placeholder="Ingrese Un Nombre">
 
         </div>
 
@@ -78,7 +72,7 @@
 
             <div class="select-wrapper">
 
-                <select id="format" name="format">
+                <select id="format" name="format" required>
                     <option value="suizo">
                         Suizo
                     </option>
@@ -105,7 +99,7 @@
 
             <div class="select-wrapper">
 
-                <select name="disciplina" id="disciplina">
+                <select name="disciplina" id="disciplina" required>
 
                     <optgroup label="Deportes">
                         <option value="futbol">Fútbol</option>
@@ -139,14 +133,14 @@
         <div class="dates-row">
             <div class="form-group">
                 <label for="fecha-inicio">Fecha de inicio </label>
-                <input type="date" id="fecha-inicio" name="fecha-inicio"></div>
+                <input type="date" id="fecha-inicio" name="fecha-inicio" required></div>
         </div>
 
 
     <!-- lugar-->
         <div class="form-group">
             <label for="lugar">Lugar</label>
-            <input type="text" id="lugar" name="lugar">
+            <input type="text" id="lugar" name="lugar" required placeholder="Ingrese El Lugar">
         </div>
         
 
@@ -155,7 +149,7 @@
             <label for="modo">Modo de juego</label>
 
             <div class="select-wrapper">
-                <select id="modo" name="modo">
+                <select id="modo" name="modo" required>
                     <option value="individual">Individual</option>
                     <option value="equipos">Por equipos</option>
                 </select>
@@ -163,10 +157,12 @@
             </div>
         </div>
 
-
-        <button type="submit" class="btn-next" >
+        
+            <button type="submit" class="btn-next" >
             <span>Siguiente</span>
-        </button>
+            </button>
+        
+        
 
     </form>
 
