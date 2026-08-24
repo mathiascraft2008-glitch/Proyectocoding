@@ -6,6 +6,9 @@ $action = $_POST['action'];
 if ($action == 'register') {
     registerUser($conexion);
 }
+if ($action == 'registerA') {
+    registerUserAdmin($conexion);
+}
 
 if ($action == 'login') {
     loginUser($conexion);
@@ -28,6 +31,7 @@ if ($action == 'changePassword') {
 if ($action == 'alta') {
     altaUser($conexion);
 }
+
 function registerUser($conexion) {
 
     $name = $_POST['username'];
@@ -87,6 +91,43 @@ function validatePassword($password) {
 
     return true;
 }
+
+function registerUserAdmin($conexion) {
+
+    $name = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $passwordConfirm = $_POST['confirm-password'];
+
+    if (!validatePassword($password)) {
+        echo "La contraseña no cumple con la política de seguridad";
+        return;
+    }
+
+    if ($password !== $passwordConfirm) {
+        echo "Las contraseñas no coinciden";
+        return;
+    }
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    
+
+
+    $usuarioModelo = new UsuarioModelo($conexion);
+
+    $resultado = $usuarioModelo->registrarUsuarioAdmin($name,$email,$passwordHash);
+
+    if ($resultado) {
+        header("Location: ../HTML/PanelAdministrador.html"); exit;
+    } else {
+        echo "<script>alert('Error al registrar el usuari');</script>";
+    }
+    
+
+    
+}
+
+
+
 function loginUser($conexion) {
     $email = $_POST['email'];
     $password = $_POST['password'];

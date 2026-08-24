@@ -16,6 +16,18 @@ class UsuarioModelo {
         return $stmt->execute();
 
     }
+
+    public function registrarUsuarioAdmin($nombre, $email, $passwordHash) {
+        $sql = "INSERT INTO usuario (NOMBRE, MAIL, CONTRASEÑA, ROL)
+        VALUES (:nombre, :mail, :pass, 'administrador')";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':mail', $email);
+        $stmt->bindParam(':pass', $passwordHash);
+        return $stmt->execute();
+
+    }
+
     function BuscarUsuarioPorEmail($email) {
         $sql = "SELECT * FROM usuario WHERE MAIL = :mail AND ACTIVO = TRUE";
         $stmt = $this->conexion->prepare($sql);
