@@ -69,4 +69,14 @@ function obtenerTorneo($id){
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+function obtenerTorneosParticipante($idUsuario) {
+    $sql = "SELECT * FROM torneo
+            JOIN inscripcion ON inscripcion.IDTORNEO = torneo.ID WHERE inscripcion.IDPARTICIPANTE = :id";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bindParam(':id', $idUsuario);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 } 

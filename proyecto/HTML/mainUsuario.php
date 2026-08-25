@@ -4,12 +4,14 @@ session_start();
 
 require_once "../HTML/conexion.php";
 require_once "../HTML/torneoModelo.php";
+require_once "../HTML/inscripcionModelo.php";
 
 $id = $_SESSION['id'];
 
 $torneoModelo = new torneoModelo($conexion);
 
 $torneosCreados = $torneoModelo->obtenerTorneosCreados($id);
+$torneosParticipo = $torneoModelo->obtenerTorneosParticipante($id);
 
 ?>
 <!DOCTYPE html>
@@ -52,23 +54,21 @@ $torneosCreados = $torneoModelo->obtenerTorneosCreados($id);
         <section class="participate">
             <h2 class="section-title">Torneos en los que participo</h2>
 
-            <div class="tournament-row">
-                <div class="tournament-row__image">
-                    <div class="image__placeholder"></div>
-                </div>
-                <div class="tournament-row__info">
-                    <h3 class="tournament-row__name">Fútbol 5</h3>
-                    <div class="tournament-row__detail">
-                        <img src="../images/reloj.svg" class="detail__icon" alt="">
-                        <p>Fecha / online</p>
+                <?php foreach ($torneosParticipo as $torneo) { ?>
+
+                    <div class="tournament-row">
+                        <h3>
+                            <?php echo $torneo['NOMBRE']; ?>
+                        </h3>
+
+                        <p>
+                            Fecha: <?php echo $torneo['FECHA']; ?>
+                        </p>
                     </div>
-                    <div class="tournament-row__detail">
-                        <img src="../images/reloj.svg" class="detail__icon" alt="">
-                        <p>Próximo partido: <span class="tournament-row__date">25/7/26</span></p>
-                    </div>
-                </div>
-            </div>
+
+                <?php } ?>
         </section>
+        
 
         <!-- Mis torneos (organizador) -->
         <section class="organize">
@@ -76,7 +76,7 @@ $torneosCreados = $torneoModelo->obtenerTorneosCreados($id);
 
             <?php foreach ($torneosCreados as $torneo) { ?>
 
-                <article class="torneo-card">
+                <article class="tournament-row">
 
                     <h2><?php echo $torneo['NOMBRE']; ?></h2>
 
@@ -88,7 +88,7 @@ $torneosCreados = $torneoModelo->obtenerTorneosCreados($id);
 
                     <p>Modo: <?php echo $torneo['PARTICIPACION']; ?></p>
 
-                    <a href="torneo.php?id=<?php echo $torneo['ID']; ?>">
+                    <a href="PanelOrganizador.php?id=<?php echo $torneo['ID']; ?>">
                         Ver torneo
                     </a>
 

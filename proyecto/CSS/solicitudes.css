@@ -30,15 +30,6 @@ body {
     margin-bottom: 20px;
 }
 
-.back-button {
-    background-color: transparent;
-    color: #d6d6d6;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-}
 
 .title {
     font-family: "Orbitron";
@@ -87,28 +78,7 @@ body {
     padding: 15px 15px 5px;
 }
 
-/* Filtros */
-.filter {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
 
-.filter__item {
-    background-color: #262A2B;
-    color: #d6d6d6;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.filter__item.active {
-    background-color: #e2e800;
-    color: #121212;
-}
 
 /* Opciones / Lista de Participantes */
 .options-list {

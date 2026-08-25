@@ -56,7 +56,7 @@ $usuario = $usuarioModelo->obtenerUsuarioPorId($id);
         <h2 class="section-title">Configuración</h2>
 
         <section class="settings">
-            <a href="EditarPerfil.html" class="settings__item">
+            <a href="EditarPerfil.php" class="settings__item">
                 <div class="settings__icon"></div>
                 <p class="settings__label">Editar perfil</p>
             </a>

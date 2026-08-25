@@ -18,4 +18,20 @@ class inscripcionModelo {
 
         return $stmt->execute();
     }
+    //inscripciones para mostrar en solicitudes
+    function obtenerInscripciones($idTorneo){
+        $sql = "SELECT * FROM inscripcion WHERE IDTORNEO=:id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':id', $idTorneo);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function eliminarInscripcion($idInscripcion) {
+        $sql = "DELETE FROM inscripcion WHERE ID = :id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':id', $idInscripcion);
+
+        return $stmt->execute();
+    }
 }

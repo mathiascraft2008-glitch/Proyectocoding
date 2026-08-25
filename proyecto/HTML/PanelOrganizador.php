@@ -1,3 +1,14 @@
+<?php
+
+require_once "../HTML/conexion.php";
+require_once "../HTML/torneoModelo.php";
+
+$idTorneo = $_GET['id'];
+
+$torneoModelo = new torneoModelo($conexion);
+$torneo = $torneoModelo->obtenerTorneo($idTorneo);
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -77,11 +88,11 @@
 
             <h2 class="section-title">Herramientas del organizador</h2>
 
-            <a href="solicitudes.html" class="tools__item">
+            <a href="solicitudes.php?id=<?php echo $idTorneo; ?>" class="tools__item">
                 <span class="tools__icon"></span>
                 <span class="tools__text">
-                    <strong>Solicitudes</strong>
-                    <span>Ver, aprobar y gestionar solicitudes</span>
+                    <strong>Ver Inscripciónes</strong>
+                    <span>Gestionar inscripciónes</span>
                 </span>
                 <span class="tools__arrow">→</span>
             </a>
@@ -95,7 +106,7 @@
                 <span class="tools__arrow">→</span>
             </a>
 
-            <a href="rankings.html" class="tools__item">
+            <a href="rankings.php" class="tools__item">
                 <span class="tools__icon"></span>
                 <span class="tools__text">
                     <strong>Tabla de posiciones</strong>
