@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/crearTorneo3.css">
+    <link rel="stylesheet" href="../CSS/headerYfooter.css">
     <link rel="stylesheet" href="../fonts/fonts.css">
     <title>Revisión Torneo - GGchamp</title>
 </head>

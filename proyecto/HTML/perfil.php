@@ -15,29 +15,13 @@ $usuario = $usuarioModelo->obtenerUsuarioPorId($id);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/perfil.css">
     <link rel="stylesheet" href="../fonts/fonts.css">
+    <link rel="stylesheet" href="../CSS/headerYfooter.css">
     <title>Perfil - GGchamp</title>
 </head>
 <body> 
     
     <!-- HEADER -->
-    <header class="header">
-        <button class="menu">☰</button>
-
-        <a href="mainUsuario.html" class="link">
-            <p class="logotipo">
-                <span class="logotipo--GG">GG</span>champ
-            </p>
-        </a>
-
-        <div class="header__nav">
-            <a href="AcercaDeNosotros.html" class="header__link">Acerca de nosotros</a>
-            <a href="notificaciones.html" class="header__link">Notificaciones</a>
-            <a href="competencias.html" class="header__link">Competencias</a>
-            <a href="rankings.html" class="header__link">rankings</a>
-
-            <a href="perfil.php" class="avatar__link"><img class="avatar" src="../images/ui_user_profile_avatar_person_icon_208734.webp" alt=""></a>
-        </div>
-    </header>
+    <?php include 'headerAdmin.php'; ?>
 
     <!-- Main -->
     <main>

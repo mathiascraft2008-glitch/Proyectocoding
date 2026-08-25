@@ -6,30 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/PanelOrganizador.css">
     <link rel="stylesheet" href="../fonts/fonts.css">
+    <link rel="stylesheet" href="../CSS/headerYfooter.css">
     <title>Panel Organizador - GGchamp</title>
 </head>
 
 <body>
 
     <!-- HEADER -->
-    <header class="header">
-        <button class="menu">☰</button>
-
-        <a href="mainUsuario.html" class="link">
-            <p class="logotipo">
-                <span class="logotipo--GG">GG</span>champ
-            </p>
-        </a>
-
-        <div class="header__nav">
-            <a href="AcercaDeNosotros.html" class="header__link">Acerca de nosotros</a>
-            <a href="notificaciones.html" class="header__link">Notificaciones</a>
-            <a href="competencias.html" class="header__link">Competencias</a>
-            <a href="rankings.html" class="header__link">rankings</a>
-
-            <a href="perfil.php" class="avatar__link"><img class="avatar" src="../images/ui_user_profile_avatar_person_icon_208734.webp" alt=""></a>
-        </div>
-    </header>
+    <?php include 'headerAdmin.php'; ?>
 
     <!-- Main -->
     <main class="main-content">
@@ -125,23 +109,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <a href="mainUsuario.html" class="link"><p class="logotipo"><span class="logotipo--GG">GG</span>champ</p></a>
-        <div class="footer__links">
-            <a href="Terminos&Condiciones.html" class="link-footer">Términos</a>
-            <a href="Terminos&Condiciones.html" class="link-footer">Privacidad</a>
-            <a href="AcercaDeNosotros.html" class="link-footer">Acerca de</a>
-            <a href="soporte.html" class="link-footer">Contacto</a>
-        </div>
-        <div class="footer__bottom">
-            <div class="footer__icons">
-                <img class="icon-box" src="../images/instagram.png" alt="">
-                <img class="icon-box" src="../images/x.png" alt="">
-                <img class="icon-box" src="../images/facebook.png" alt="">
-            </div>
-            <p class="copyright">Copyright© todos los derechos reservados</p>
-        </div>
-    </footer>
+    <?php include 'footerAdmin.php'; ?>
 
 </body>
 

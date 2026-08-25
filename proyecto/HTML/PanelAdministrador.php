@@ -4,32 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/PanelAdministrador.css">
+    <link rel="stylesheet" href="../CSS/headerYfooter.css">
     <link rel="stylesheet" href="../fonts/fonts.css">
     <title>Panel Administrador - GGchamp</title>
 </head>
 <body>  
 
     <!-- HEADER -->
-    <header class="header">
-        <button class="menu">☰</button>
-
-        <a href="mainAdministrador.html" class="link-logo">
-            <p class="logotipo">
-                <span class="logotipo--GG">GG</span>champ
-            </p>
-        </a>
-
-        <div class="header__nav">
-            <a href="AcercaDeNosotros.html" class="header__link">Acerca de nosotros</a>
-            <a href="notificaciones.html" class="header__link">Notificaciones</a>
-            <a href="competencias.html" class="header__link">Competencias</a>
-            <a href="rankings.html" class="header__link">Rankings</a>
-
-            <a href="perfil.php" class="avatar__link">
-                <img class="avatar" src="../images/ui_user_profile_avatar_person_icon_208734.webp" alt="Perfil de usuario">
-            </a>
-        </div>
-    </header>
+    <?php include 'headerAdmin.php'; ?>
     
     <!-- MAIN CONTENT -->
     <main class="main-content">
@@ -45,7 +27,7 @@
                 <ul class="admin-card__list">
                     <li><a href="registerAdmin.html" class="admin-card__link">Crear usuario administrativo</a></li>
                     <br>
-                    <li><a href="editarUser.html" class="admin-card__link">Editar/Suspender usuario</a></li>
+                    <li><a href="editarUser.php" class="admin-card__link">Editar/Suspender usuario</a></li>
                     
                 </ul>
             </section>

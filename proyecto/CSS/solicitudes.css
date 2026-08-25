@@ -12,65 +12,6 @@ body {
 }
 
 /* ==========================================
-    HEADER
-========================================== */
-
-.header {
-position: sticky;
-top: 0;
-height: 65px;
-background-color: #3f4448;
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 0 20px;
-z-index: 100;
-}
-
-.menu {
-border: none;
-background-color: transparent;
-font-size: 1.8em;
-color: #ffffff;
-cursor: pointer;
-}
-
-.logotipo {
-color: #ffffff;
-font-size: 24px;
-font-family: "Orbitron";
-font-weight: 700;
-}
-
-.logotipo--GG {
-color: #e2e800;
-}
-
-.header__nav {
-display: flex;
-align-items: center;
-gap: 20px;
-}
-
-.header__link {
-display: none;
-color: #ffffff;
-text-decoration: none;
-font-size: 14px;
-}
-
-.avatar__link {
-display: flex;
-}
-
-.avatar {
-width: 38px;
-height: 38px;
-background-color: #e2e800;
-border-radius: 50%;
-}
-
-/* ==========================================
    MAIN CONTENT (MÓVIL BASE)
 ========================================== */
 
@@ -219,22 +160,6 @@ border-radius: 50%;
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
 
-    .header {
-        padding: 0 30px;
-    }
-
-    /* En Tablet mostramos los enlaces del header con fuente ajustada */
-    .menu {
-        display: none;
-    }
-
-    .header__link {
-        display: block;
-        font-size: 13px;
-        margin-left: 12px;
-        margin-right: 12px;
-    }
-
     .main-content {
         max-width: 700px;
         padding: 30px 20px;
@@ -284,19 +209,6 @@ border-radius: 50%;
 ========================================== */
 
 @media screen and (min-width: 1024px) {
-
-    .header {
-        height: 80px;
-        padding: 0 40px;
-    }
-
-    .menu {
-        display: none;
-    }
-
-    .header__link {
-        display: block;
-    }
 
     .main-content {
         max-width: 900px;

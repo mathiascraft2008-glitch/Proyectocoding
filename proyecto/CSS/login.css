@@ -91,6 +91,7 @@ body{
     .background_form{
         border-radius: 15px;
         width: auto;
+        width: 50%;
     }
     .main{
         display: flex;

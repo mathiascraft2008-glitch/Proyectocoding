@@ -14,64 +14,6 @@ body {
     overflow-x: hidden;
 }
 
-/* ==========================================
-    HEADER
-========================================== */
-
-.header {
-position: sticky;
-top: 0;
-height: 65px;
-background-color: #3f4448;
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 0 20px;
-z-index: 100;
-}
-
-.menu {
-border: none;
-background-color: transparent;
-font-size: 1.8em;
-color: #ffffff;
-cursor: pointer;
-}
-
-.logotipo {
-color: #ffffff;
-font-size: 24px;
-font-family: "Orbitron";
-font-weight: 700;
-}
-
-.logotipo--GG {
-color: #e2e800;
-}
-
-.header__nav {
-display: flex;
-align-items: center;
-gap: 20px;
-}
-
-.header__link {
-display: none;
-color: #ffffff;
-text-decoration: none;
-font-size: 14px;
-}
-
-.avatar__link {
-display: flex;
-}
-
-.avatar {
-width: 38px;
-height: 38px;
-background-color: #e2e800;
-border-radius: 50%;
-}
 
 /* ==========================================
    MAIN CONTENT (MÓVIL BASE)
@@ -301,74 +243,12 @@ border-radius: 50%;
     flex-shrink: 0;
 }
 
-/* ==========================================
-    FOOTER
-========================================== */
-
-.footer {
-    width: 100%;
-    background-color: #3f4448;
-    padding: 25px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-top: 40px;
-}
-
-
-.footer__links {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.footer__bottom {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-}
-
-.footer__icons {
-    display: flex;
-    gap: 10px;
-}
-
-.icon-box {
-    width: 20px;
-    height: 20px;
-}
-
-.copyright {
-    font-size: 11px;
-    color: #d6d6d6;
-    text-align: center;
-}
-.link-footer{
-    color:#d6d6d6;
-    text-decoration: none;
-}
 
 /* ==========================================
    MEDIA QUERY: TABLET (768px - 1023px)
 ========================================== */
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-
-    .header {
-        padding: 0 30px;
-    }
-
-    .menu {
-        display: none;
-    }
-
-    .header__link {
-        display: block;
-    }
 
     .main-content {
         max-width: 650px;
@@ -385,14 +265,6 @@ border-radius: 50%;
         padding: 20px;
     }
 
-    .footer {
-        padding: 25px 40px;
-    }
-
-    .footer__bottom {
-        flex-direction: row;
-        justify-content: space-between;
-    }
 }
 
 /* ==========================================
@@ -401,24 +273,6 @@ border-radius: 50%;
 
 @media screen and (min-width: 1024px) {
 
-    .menu {
-        display: none;
-    }
-
-    .header {
-        height: 80px;
-        padding: 0 40px;
-    }
-
-    .header__link {
-        display: block;
-        font-size: 15px;
-    }
-
-    .avatar {
-        width: 48px;
-        height: 48px;
-    }
 
     .main-content {
         max-width: 750px;
@@ -442,17 +296,4 @@ border-radius: 50%;
         font-size: 15px;
     }
 
-    .footer {
-        padding: 30px 80px;
-    }
-
-    .footer__links {
-        gap: 40px;
-    }
-
-    .footer__bottom {
-        flex-direction: row;
-        justify-content: space-between;
-        margin-top: 10px;
-    }
 }

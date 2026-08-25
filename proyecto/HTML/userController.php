@@ -117,7 +117,7 @@ function registerUserAdmin($conexion) {
     $resultado = $usuarioModelo->registrarUsuarioAdmin($name,$email,$passwordHash);
 
     if ($resultado) {
-        header("Location: ../HTML/PanelAdministrador.html"); exit;
+        header("Location: ../HTML/PanelAdministrador.php"); exit;
     } else {
         echo "<script>alert('Error al registrar el usuari');</script>";
     }
@@ -151,7 +151,7 @@ function loginUser($conexion) {
             $_SESSION['rol'] = $usuario['ROL'];
             // Registrar la acción en la auditoría
             $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se inició sesión como administrador');
-            header("Location: ../HTML/mainAdministrador.html"); exit;
+            header("Location: ../HTML/mainAdministrador.php"); exit;
         }else{
             echo "No se pudo iniciar sesión";
         
