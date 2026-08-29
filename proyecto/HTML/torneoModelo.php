@@ -1,4 +1,5 @@
 <?php
+require_once "../HTML/Torneo.php";
 class torneoModelo{
     private $conexion;
 
@@ -6,18 +7,18 @@ class torneoModelo{
         $this->conexion = $conexion;
     }
 
-    function crear($idOrganizador,$nombre,$fecha,$formato,$disciplina,$lugar,$participacion,$passwordHash){
+    function crear(Torneo $torneo){
         $sql = "INSERT INTO torneo (IDORGANIZADOR, NOMBRE, FECHA, FORMATO, DISCIPLINA, LUGAR, PARTICIPACION, CONTRASENA)
         VALUES (:idO, :nombre, :fecha, :formato, :disciplina, :lugar, :participacion, :contrasena)";
         $stmt = $this->conexion->prepare($sql);
-        $stmt->bindParam(':idO', $idOrganizador);
-        $stmt->bindParam(':nombre', $nombre);
-        $stmt->bindParam(':fecha', $fecha);
-        $stmt->bindParam(':formato', $formato);
-        $stmt->bindParam(':disciplina', $disciplina);
-        $stmt->bindParam(':lugar', $lugar);
-        $stmt->bindParam(':participacion', $participacion);
-        $stmt->bindParam(':contrasena', $passwordHash);
+        $stmt->bindValue(':idO', $torneo->getIdOrganizador());
+        $stmt->bindValue(':nombre', $torneo->getNombre());
+        $stmt->bindValue(':fecha', $torneo->getFecha());
+        $stmt->bindValue(':formato', $torneo->getFormato());
+        $stmt->bindValue(':disciplina', $torneo->getDisciplina());
+        $stmt->bindValue(':lugar', $torneo->getLugar());
+        $stmt->bindValue(':participacion', $torneo->getParticipacion());
+        $stmt->bindValue(':contrasena', $torneo->getContrasena());
         return $stmt->execute();
     }
 
@@ -32,7 +33,25 @@ function obtenerTorneosCreados($idUsuario) {
     $stmt->bindParam(':id', $idUsuario);
     $stmt->execute();
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $torneos = [];
+
+    foreach ($datos as $dato) {
+            $torneos[] = new Torneo(
+            $dato['ID'],
+            $dato['IDORGANIZADOR'],
+            $dato['NOMBRE'],
+            $dato['FECHA'],
+            $dato['FORMATO'],
+            $dato['DISCIPLINA'],
+            $dato['LUGAR'],
+            $dato['PARTICIPACION'],
+            $dato['CONTRASENA']
+        );
+    }
+
+    return $torneos;
 }
 
 //function obtenerTorneosParticipa($idUsuario) {
@@ -55,7 +74,25 @@ function obtenerTorneosDisponibles($idUsuario) {
     $stmt->bindParam(':id', $idUsuario);
     $stmt->execute();
     //retornar todos los troneos
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $torneos = [];
+
+    foreach ($datos as $dato) {
+            $torneos[] = new Torneo(
+            $dato['ID'],
+            $dato['IDORGANIZADOR'],
+            $dato['NOMBRE'],
+            $dato['FECHA'],
+            $dato['FORMATO'],
+            $dato['DISCIPLINA'],
+            $dato['LUGAR'],
+            $dato['PARTICIPACION'],
+            $dato['CONTRASENA']
+        );
+    }
+
+    return $torneos;
 }
 
 //funcion para obtener la informacion del torneo a mostrar y verificar en detallesTorneo.php
@@ -66,7 +103,15 @@ function obtenerTorneo($id){
     $stmt->bindParam(':id', $id);
     $stmt->execute();
 
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+    $datos = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return new Torneo(
+        $datos['ID'],$datos['IDORGANIZADOR'],$datos['NOMBRE'],$datos['FECHA'],$datos['FORMATO'],
+        $datos['DISCIPLINA'],
+        $datos['LUGAR'],
+        $datos['PARTICIPACION'],
+        $datos['CONTRASENA']
+    );
 }
 
 function obtenerTorneosParticipante($idUsuario) {
@@ -76,7 +121,25 @@ function obtenerTorneosParticipante($idUsuario) {
     $stmt->bindParam(':id', $idUsuario);
     $stmt->execute();
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $torneos = [];
+
+    foreach ($datos as $dato) {
+        $torneos[] = new Torneo(
+            $dato['ID'],
+            $dato['IDORGANIZADOR'],
+            $dato['NOMBRE'],
+            $dato['FECHA'],
+            $dato['FORMATO'],
+            $dato['DISCIPLINA'],
+            $dato['LUGAR'],
+            $dato['PARTICIPACION'],
+            $dato['CONTRASENA']
+        );
+    }
+
+    return $torneos;
 }
 
 } 

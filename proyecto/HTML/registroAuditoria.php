@@ -1,13 +1,15 @@
-<?php
 
+<?php
+require_once "../HTML/registroModelo.php";
+require_once "../HTML/Registro.php";
 session_start();
 
 require_once "UsuarioModelo.php";
 require_once "conexion.php";
 
-$usuarioModelo = new UsuarioModelo($conexion);
+$RegistroModelo = new RegistroModelo($conexion);
 
-$registros = $usuarioModelo->obtenerRegistros();
+$registros = $RegistroModelo->obtenerRegistros();
 
 ?>
 <!DOCTYPE html>
@@ -57,11 +59,11 @@ $registros = $usuarioModelo->obtenerRegistros();
 
             <article class="audit-card">
 
-                <h2>ID: <?php echo $r['IDUSUARIO']; ?></h2>
+                <h2>ID: <?php echo $r->getIdUsuario(); ?></h2>
 
-                <p><?php echo $r['ACCION']; ?></p>
+                <p><?php echo $r->getAccion(); ?></p>
 
-                <p><?php echo $r['FECHA']; ?></p>
+                <p><?php echo $r->getFecha(); ?></p>
 
             </article>
 

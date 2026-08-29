@@ -37,7 +37,7 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
     <div class="img"></div>
 
     <h1 class="tournament-title">
-        <?php echo $torneo['NOMBRE'];?>
+        <?php echo $torneo->getNombre();?>
     </h1>
 
     <div class="tournament-card">
@@ -50,7 +50,7 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
             <!-- indicador para el controlador -->
                     <input type="hidden" name="action" value="passwordTorneo">
             <!-- mandar id para ver a que torneo se quiere inscribir-->
-                    <input type="hidden" name="idTorneo" value="<?php echo $torneo['ID']; ?>">
+                    <input type="hidden" name="idTorneo" value="<?php echo $torneo->getId(); ?>">
 
             <!-- contraseña para entrar -->
             <div class="form-row">

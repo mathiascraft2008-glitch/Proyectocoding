@@ -28,9 +28,9 @@ $usuario = $usuarioModelo->obtenerUsuarioPorId($id);
         <section class="profile">
             <div class="profile__avatar">IMG</div>
             <div class="profile__info">
-                <h2 class="profile__name"><?php echo $usuario['NOMBRE']; ?></h2>
-                <p class="profile__mail"><?php echo $usuario['MAIL']; ?></p>
-                <p class="profile__id">ID: <?php echo $usuario['ID']; ?></p>
+                <h2 class="profile__name"><?php echo $usuario->getNombre(); ?></h2>
+                <p class="profile__mail"><?php echo $usuario->getMail(); ?></p>
+                <p class="profile__id">ID: <?php echo $usuario->getId(); ?></p>
             </div>
         </section>
         

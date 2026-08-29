@@ -47,12 +47,12 @@ $listar = $inscripciones->obtenerInscripciones($idTorneo);
                         <div class="option__item">
 
                             <h3 class="name">
-                                ID Usuario: <?php echo $lista['IDPARTICIPANTE']; ?>
+                                ID Usuario: <?php echo $lista->getIdParticipante(); ?>
                             </h3>
 
                             <form action="inscripcionController.php" method="post">
                                 <input type="hidden" name="action" value="eliminarInscripcion">
-                                <input type="hidden" name="idInscripcion" value="<?php echo $lista['ID']; ?>">
+                                <input type="hidden" name="idInscripcion" value="<?php echo $lista->getId(); ?>">
                                 <input type="hidden" name="idTorneo" value="<?php echo $idTorneo; ?>">
                                 <button type="submit">
                                     Eliminar

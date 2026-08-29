@@ -1,6 +1,9 @@
 <?php
 require_once "../HTML/UsuarioModelo.php";
 require_once "../HTML/conexion.php";
+require_once "../HTML/Usuario.php";
+require_once "../HTML/Registro.php";
+require_once "../HTML/RegistroModelo.php";
 $action = $_POST['action'];
 
 if ($action == 'register') {
@@ -53,8 +56,9 @@ function registerUser($conexion) {
 
 
     $usuarioModelo = new UsuarioModelo($conexion);
+    $usuario=new Usuario(null,$name,$email,$passwordHash,'usuario',true);
 
-    $resultado = $usuarioModelo->registrarUsuario($name,$email,$passwordHash);
+    $resultado = $usuarioModelo->registrarUsuario($usuario);
 
     if ($resultado) {
         header("Location: ../HTML/login.html"); exit;
@@ -109,20 +113,17 @@ function registerUserAdmin($conexion) {
         return;
     }
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-    
-
 
     $usuarioModelo = new UsuarioModelo($conexion);
+    $usuario=new Usuario(null,$name,$email,$passwordHash,'administrador',true);
 
-    $resultado = $usuarioModelo->registrarUsuarioAdmin($name,$email,$passwordHash);
+    $resultado = $usuarioModelo->registrarUsuarioAdmin($usuario);
 
     if ($resultado) {
         header("Location: ../HTML/PanelAdministrador.php"); exit;
     } else {
         echo "<script>alert('Error al registrar el usuari');</script>";
     }
-    
-
     
 }
 
@@ -133,42 +134,49 @@ function loginUser($conexion) {
     $password = $_POST['password'];
     
     $usuarioModelo= new UsuarioModelo($conexion);
+    $registroModelo = new RegistroModelo($conexion);
+
     $usuario = $usuarioModelo->BuscarUsuarioPorEmail($email);
     if($usuario==false){
         echo "No se encontró el usuario o la contraseña es incorrecta o el usuario está de baja";   
         return;
     }
     //mandar al mainAdministrador.html o mainUsuario.html segun el rol del usuario, para eso se puede usar un if
-    if($usuario['ROL']=='administrador'){
+    if($usuario->getRol() =='administrador'){
         
-        if(password_verify($password, $usuario['CONTRASEÑA'])){
+        if(password_verify($password, $usuario->getContrasena())){
             //usar session_start() para iniciar la sesión y guardar los datos del usuario en variables de sesión
             session_start();
 
-            $_SESSION['id'] = $usuario['ID'];
-            $_SESSION['nombre'] = $usuario['NOMBRE'];
-            $_SESSION['email'] = $usuario['MAIL'];
-            $_SESSION['rol'] = $usuario['ROL'];
+            $_SESSION['id'] = $usuario->getId();
+            $_SESSION['nombre'] = $usuario->getNombre();
+            $_SESSION['email'] = $usuario->getMail();
+            $_SESSION['rol'] = $usuario->getRol();
             // Registrar la acción en la auditoría
-            $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se inició sesión como administrador');
-            header("Location: ../HTML/mainAdministrador.php"); exit;
+            
+            $registro=new Registro(null,"Se inició sesión como admin ",$usuario->getId(),null);
+            $registroModelo->registroAuditoria($registro);
+            header("Location: ../HTML/mainAdministrador.php");
+            exit;
         }else{
             echo "No se pudo iniciar sesión";
         
         }
         }
 
-    if(password_verify($password, $usuario['CONTRASEÑA'])){
+    if(password_verify($password, $usuario->getContrasena())){
         //usar session_start() para iniciar la sesión y guardar los datos del usuario en variables de sesión
         session_start();
 
-        $_SESSION['id'] = $usuario['ID'];
-        $_SESSION['nombre'] = $usuario['NOMBRE'];
-        $_SESSION['email'] = $usuario['MAIL'];
-        $_SESSION['rol'] = $usuario['ROL'];
+        $_SESSION['id'] = $usuario->getId();
+        $_SESSION['nombre'] = $usuario->getNombre();
+        $_SESSION['email'] = $usuario->getMail();
+        $_SESSION['rol'] = $usuario->getRol();
         // Registrar la acción en la auditoría
-        $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se inició sesión');
-        header("Location: ../HTML/mainUsuario.php"); exit;
+        $registro=new Registro(null,"Se inició sesión ",$usuario->getId(),null);
+            $registroModelo->registroAuditoria($registro);
+        header("Location: ../HTML/mainUsuario.php"); 
+        exit;
     }else{
         echo "No se pudo iniciar sesión";
     }
@@ -189,11 +197,26 @@ function editUser($conexion) {
     $password = $_POST['contrasena'] ?? '';
 
     $usuarioModelo = new UsuarioModelo($conexion);
-    $resultado = $usuarioModelo->editarUsuario($id, $name, $email, $password);
+    $usuario = $usuarioModelo->obtenerUsuarioPorId($id);
 
+    if ($name != '') {
+    $usuario->setNombre($name);
+    }
+
+    if ($email != '') {
+        $usuario->setMail($email);
+    }
+    if ($password != '') {
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    $usuario->setContrasena($password);
+    }
+
+    $resultado = $usuarioModelo->editarUsuario($usuario);
     // Registrar la acción en la auditoría
+    $registroModelo = new RegistroModelo($conexion);
+    $registro=new Registro(null,"Se editó un usuario con id: ",$id,null);
     if ($resultado) {
-        $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se editó un usuario con ID: ' . $id);
+        $registroModelo->registroAuditoria($registro);
         echo "Usuario editado correctamente";
     } else {
         echo "No se pudo editar el usuario";
@@ -211,11 +234,12 @@ function deleteUser($conexion) {
     $id = $_POST['idUsuario'];
 
     $usuarioModelo = new UsuarioModelo($conexion);
+    $registroModelo = new RegistroModelo($conexion);
     $resultado = $usuarioModelo->DeleteUsuario($id);
-
+    $registro=new Registro(null,"se eliminó un usuario con id: ",$id,null);
     // Registrar la acción en la auditoría
     if ($resultado) {
-        $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se eliminó un usuario con ID: ' . $id);
+        $registroModelo->registroAuditoria($registro);
     } else {
         echo "No se pudo eliminar el usuario";
     }
@@ -231,11 +255,12 @@ function altaUser($conexion) {
     $id = $_POST['idUsuario'];
 
     $usuarioModelo = new UsuarioModelo($conexion);
+    $registroModelo = new RegistroModelo($conexion);
     $resultado = $usuarioModelo->AltaUsuario($id);
-    
+    $registro=new Registro(null,"se dió de alta un usuario con id: ",$id,null);
     // Registrar la acción en la auditoría
     if ($resultado) {
-        $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se dio de alta un usuario con ID: ' . $id);
+        $registroModelo->registroAuditoria($registro);
     } else {
         echo "No se pudo dar de alta el usuario";
     }
@@ -246,11 +271,16 @@ function altaUser($conexion) {
 function logoutUser($conexion) {
     // eliminar la sesion y redirigirlo a la página de inicio de sesión
     session_start();
-    session_destroy();
-    // Registrar la acción en la auditoría
+    $id = $_SESSION['id'];
     $usuarioModelo = new UsuarioModelo($conexion);
-    $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se cerró sesión');
-    header("Location: ../HTML/login.html"); exit;
+    $registroModelo = new RegistroModelo($conexion);
+
+    $registro=new Registro(null,"logout ",$id,null);
+    $registroModelo->registroAuditoria($registro);
+    session_destroy();
+
+    header("Location: ../HTML/login.html");
+    exit;
 }
 
 function editProfile($conexion) {
@@ -262,16 +292,30 @@ function editProfile($conexion) {
     $name = $_POST['username'] ?? '';
     $email = $_POST['email'] ?? '';
     $usuarioModelo = new UsuarioModelo($conexion);
-    $resultado = $usuarioModelo->editarPerfil($id,$name,$email);
+    //obtiene el objeto del return del modelo
+    $usuario = $usuarioModelo->obtenerUsuarioPorId($id);
+
+    if ($name != '') {
+    $usuario->setNombre($name);
+    }
+
+    if ($email != '') {
+        $usuario->setMail($email);
+    }
     
+    $resultado = $usuarioModelo->editarPerfil($usuario);
+    $registroModelo = new RegistroModelo($conexion);
+    $registro=new Registro(null,"Se editó el perfil ",$id,null);
     if ($resultado) {
         // Registrar la acción en la auditoría
-        $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se actualizó el perfil');
+        $registroModelo->registroAuditoria($registro);
         echo "Perfil actualizado correctamente";
     } else {
         echo "No se modificó ningún dato";
     }
 }
+
+
 
 function editPassword($conexion) {
     session_start();
@@ -282,7 +326,10 @@ function editPassword($conexion) {
     $confirmNewPassword = $_POST['confirm-new-password'] ?? '';
 
     if ($newPassword !== $confirmNewPassword) {
-        echo "Las nuevas contraseñas no coinciden";
+        //alerta de error, y volver atrás para no mostrar una pagina en blanco
+        echo "<script> alert('La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un símbolo.');
+                    window.history.back(); </script>";
+        exit;
         return;
     }
 
@@ -293,12 +340,17 @@ function editPassword($conexion) {
 
     $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
     $usuarioModelo = new UsuarioModelo($conexion);
-    $resultado = $usuarioModelo->editarPassword($id, $newPasswordHash);
+    //obtiene el objeto del return del modelo
+    $usuario = $usuarioModelo->obtenerUsuarioPorId($id);
+
+    $usuario->setContrasena($newPasswordHash);
+    $resultado = $usuarioModelo->editarPassword($usuario);
+    $registroModelo = new RegistroModelo($conexion);
+    $registro=new Registro(null,"Se editó la contraseña ",$id,null);
 
     if ($resultado) {
         // Registrar la acción en la auditoría
-        $usuarioModelo = new UsuarioModelo($conexion);
-        $usuarioModelo->registroAuditoria($_SESSION['id'], 'Se actualizó la contraseña');
+        $registroModelo->registroAuditoria($registro);
         echo "Contraseña actualizada correctamente";
     } else {
         echo "No se pudo actualizar la contraseña";

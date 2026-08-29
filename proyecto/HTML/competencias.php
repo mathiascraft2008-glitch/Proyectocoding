@@ -77,7 +77,7 @@ $torneos = $torneoModelo->obtenerTorneosDisponibles($idUsuario);
                 <!-- Tarjeta 1 -->
                 <?php foreach ($torneos as $torneo) { ?>
 
-                <a class="link" href="detallesTorneo.php?id=<?php echo $torneo['ID'] ?>">
+                <a class="link" href="detallesTorneo.php?id=<?php echo $torneo->getId(); ?>">
 
                     <article class="card">
 
@@ -89,7 +89,7 @@ $torneos = $torneoModelo->obtenerTorneosDisponibles($idUsuario);
 
                             <div class="card__header">
                                 <h3 class="card__category">
-                                    <?php echo $torneo['NOMBRE']; ?>
+                                    <?php echo $torneo->getNombre(); ?>
                                 </h3>
                             </div>
 
@@ -98,20 +98,20 @@ $torneos = $torneoModelo->obtenerTorneosDisponibles($idUsuario);
                                 <div class="detail-row">
                                     <img src="../images/reloj.svg" class="iconn" alt="">
                                     <span>
-                                        <?php echo $torneo['FECHA']; ?>
+                                        <?php echo $torneo->getFecha(); ?>
                                     </span>
                                 </div>
 
                                 <div class="detail-row">
                                     <img src="../images/usuarios.svg" class="iconn" alt="">
                                     <span>
-                                        <?php echo $torneo['DISCIPLINA']; ?>
+                                        <?php echo $torneo->getDisciplina(); ?>
                                     </span>
                                 </div>
 
                                 <div class="detail-row">
                                     <span>
-                                        <?php echo $torneo['FORMATO']; ?>
+                                        <?php echo $torneo->getFormato(); ?>
                                     </span>
                                 </div>
 

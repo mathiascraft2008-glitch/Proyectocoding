@@ -58,11 +58,11 @@ $torneosParticipo = $torneoModelo->obtenerTorneosParticipante($id);
 
                     <div class="tournament-row">
                         <h3>
-                            <?php echo $torneo['NOMBRE']; ?>
+                            <?php echo $torneo->getNombre(); ?>
                         </h3>
 
                         <p>
-                            Fecha: <?php echo $torneo['FECHA']; ?>
+                            Fecha: <?php echo $torneo->getFecha(); ?>
                         </p>
                     </div>
 
@@ -78,17 +78,17 @@ $torneosParticipo = $torneoModelo->obtenerTorneosParticipante($id);
 
                 <article class="tournament-row">
 
-                    <h2><?php echo $torneo['NOMBRE']; ?></h2>
+                    <h2><?php echo $torneo->getNombre(); ?></h2>
 
-                    <p>Fecha: <?php echo $torneo['FECHA']; ?></p>
+                    <p>Fecha: <?php echo $torneo->getFecha(); ?></p>
 
-                    <p>Formato: <?php echo $torneo['FORMATO']; ?></p>
+                    <p>Formato: <?php echo $torneo->getFormato(); ?></p>
 
-                    <p>Disciplina: <?php echo $torneo['DISCIPLINA']; ?></p>
+                    <p>Disciplina: <?php echo $torneo->getDisciplina(); ?></p>
 
-                    <p>Modo: <?php echo $torneo['PARTICIPACION']; ?></p>
+                    <p>Modo: <?php echo $torneo->getParticipacion(); ?></p>
 
-                    <a href="PanelOrganizador.php?id=<?php echo $torneo['ID']; ?>">
+                    <a href="PanelOrganizador.php?id=<?php echo $torneo->getId(); ?>">
                         Ver torneo
                     </a>
 
