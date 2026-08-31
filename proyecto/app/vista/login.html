@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../html/CSS/login.css">
+    <link rel="stylesheet" href="../../html/fonts/fonts.css">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <div class="main">
+            <div class="image">
+                <img src="../../html/images/usuario.svg" alt="">
+            </div>
+            <div class="background_form">
+                <h1 class="title">Bienvenido</h1>
+                <p class="text text-nomargin">Ingrese a su cuenta para continuar</p>
+                <form action="../controlador/userController.php" method="post" enctype="multipart/form-data" class="login">
+                    <!-- indicador para el controlador -->
+                    <input type="hidden" name="action" value="login">
+                    <label for="" class="text text-label">Email</label>
+                    <input type="email" class="login__input" required name="email">
+                    <label for="" class="text text-label">Contraseña</label>
+                    <input type="password" class="login__input" required name="password">
+                    <!-- <a href="EditarPerfil.html" class="link">¿Olvidaste tu contraseña?</a> -->
+                    <input type="submit" class="login__submit" value="Iniciar sesión">
+                    <p class="text">¿No tienes una cuenta? <a href="register.html" class="link">Registrate</a></p>
+                    <p class="text text-nomargin">Al continuar aceptas nuestros</p>
+                    <p class="text text-nomargin"><a href="Terminos&Condiciones.html" class="link">terminos de servcio</a> y <a href="Terminos&Condiciones.html" class="link">politicas de privacidad</a></p>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

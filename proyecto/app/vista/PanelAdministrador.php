@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../html/CSS/PanelAdministrador.css">
+    <link rel="stylesheet" href="../../html/CSS/headerYfooter.css">
+    <link rel="stylesheet" href="../../html/fonts/fonts.css">
+    <title>Panel Administrador - GGchamp</title>
+</head>
+<body>  
+
+    <!-- HEADER -->
+    <?php include 'headerAdmin.php'; ?>
+    
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        
+        <h1 class="title">Panel Administrador</h1>
+
+        <!-- GRID DE MÓDULOS DE ADMINISTRACIÓN -->
+        <div class="admin">
+
+            <!-- 1. Gestión de usuarios -->
+            <section class="admin-card">
+                <h2 class="admin-card__title">Gestión de Usuarios</h2>
+                <ul class="admin-card__list">
+                    <li><a href="registerAdmin.html" class="admin-card__link">Crear usuario administrativo</a></li>
+                    <br>
+                    <li><a href="editarUser.php" class="admin-card__link">Editar/Suspender usuario</a></li>
+                    
+                </ul>
+            </section>
+
+            <!-- 4. Auditoría -->
+            <section class="admin-card">
+                <h2 class="admin-card__title">Auditoría</h2>
+                <ul class="admin-card__list">
+                    <li><a href="registroAuditoria.php" class="admin-card__link">Ver registros de auditoría</a></li>
+                </ul>
+            </section>
+
+            <!-- 5. Reportes -->
+            <section class="admin-card">
+                <h2 class="admin-card__title">Reportes</h2>
+                <ul class="admin-card__list">
+                    <li><a href="reportes.php" class="admin-card__link">Consultar reportes</a></li>
+                </ul>
+            </section>
+
+            <!-- 6. Configuración -->
+            <section class="admin-card">
+                <h2 class="admin-card__title">Configuración</h2>
+                <ul class="admin-card__list">
+                    <li><a href="configuracionGeneral.html" class="admin-card__link">Configuración general</a></li>
+                    <li><a href="modulos.php" class="admin-card__link">Habilitar / deshabilitar módulos</a></li>
+                </ul>
+            </section>
+
+        </div>
+
+    </main>
+    
+</body>
+</html>
