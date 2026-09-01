@@ -106,6 +106,24 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
                 <span class="tools__arrow">→</span>
             </a>
 
+            <a href="crearGrupo.php?id=<?php echo $idTorneo; ?>" class="tools__item">
+                <span class="tools__icon"></span>
+                <span class="tools__text">
+                    <strong>Crear un nuevo grupo</strong>
+                    <span></span>
+                </span>
+                <span class="tools__arrow">→</span>
+            </a>
+
+            <a href="gestionGrupo.php?id=<?php echo $idTorneo; ?>" class="tools__item">
+                <span class="tools__icon"></span>
+                <span class="tools__text">
+                    <strong>Gestionar grupos</strong>
+                    <span>Añada o saque a participantes de sus grupos</span>
+                </span>
+                <span class="tools__arrow">→</span>
+            </a>
+
             <a href="rankings.php" class="tools__item">
                 <span class="tools__icon"></span>
                 <span class="tools__text">
