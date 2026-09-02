@@ -37,7 +37,7 @@
 
     </section>
 
-    <form class="form-container" action="torneoController.php" method="post">
+    <form class="form-container" action="../controlador/torneoController.php" method="post">
         <!-- indicador para el controlador -->
             <input type="hidden" name="action" value="formularioTorneo">
         <h2 class="form-title">
