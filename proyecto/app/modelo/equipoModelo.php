@@ -46,4 +46,20 @@ class equipoModelo {
         $stmt->bindValue(':id', $id);
         return $stmt->execute();
     }
+
+
+    function obtenerEquipoPorIdTorneoYnombre($idTorneo, $nombre) {
+        $sql = "SELECT * FROM equipo WHERE IDTORNEO = :idTorneo AND NOMBRE = :nombre";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':idTorneo', $idTorneo);
+        $stmt->bindValue(':nombre', $nombre);
+        $stmt->execute();
+        $dato = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new Equipo(
+            $dato['ID'],
+            $dato['NOMBRE'],
+            $dato['IDTORNEO']
+        );
+    }
 }

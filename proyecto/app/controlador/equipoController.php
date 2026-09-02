@@ -6,6 +6,8 @@ require_once "../modelo/Registro.php";
 require_once "../modelo/Inscripcion.php";
 require_once "../modelo/inscripcionModelo.php";
 require_once "../modelo/registroModelo.php";
+require_once "../modelo/Competidor.php";
+require_once "../modelo/competidorModelo.php";
 $action = $_POST['action'];
 
 if ($action == 'crearGrupo') {
@@ -29,6 +31,13 @@ function crear($conexion){
     $equipo=new Equipo(null,$name,$idTorneo);
 
     $resultado=$equipoModelo->crearEquipo($equipo);
+    //NUEVO COMPETIDOR EQUIPO---------------------------------------------------------------------
+    $idEquipo=$equipoModelo->obtenerEquipoPorIdTorneoYnombre($idTorneo,$name);
+    
+    //OBTENER ID EQUIPO CON NOMBRE E ID TORNEO
+    $competidor=new Competidor(null,$idTorneo,'equipo',NULL,$idEquipo->getId());
+    $competidorModelo = new CompetidorModelo($conexion);
+    $competidorModelo->NewCompetidorEquipo($competidor);
     
     if ($resultado) {
         header("Location: ../vista/PanelOrganizador.php?id=$idTorneo"); exit;
@@ -76,6 +85,7 @@ function quitar($conexion){
 
 function eliminarEquipo($conexion){
     $idE=$_POST['idE'];
+    $idTorneo=$_POST['idT'];
     $equipoModelo=new equipoModelo($conexion);
     $resultado=$equipoModelo->eliminarEquipo($idE);
     if ($resultado) {

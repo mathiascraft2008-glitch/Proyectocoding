@@ -43,6 +43,7 @@ $equipos=$equipoModelo->obtenerEquipos($idTorneo);
                 <form action="../controlador/equipoController.php" method="post">
                     <input type="hidden" name="action" value="eliminarEq">
                     <input type="hidden" name="idE" value="<?php echo $equipo->getId();?>">
+                    <input type="hidden" name="idT" value="<?php echo $idTorneo ?>">
                     <button type="submit">Eliminar</button>
                 </form>
 
