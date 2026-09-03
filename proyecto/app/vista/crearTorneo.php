@@ -86,6 +86,17 @@
 
         </div>
 
+        <div class="form-group">
+            <label for="maxInscripciones">Máximo de inscripciones</label>
+            <div class="select-wrapper">
+                <select name="maxInscripciones" required>
+                    <option value="4">4 Participantes (Semifinales)</option>
+                    <option value="8" selected>8 Participantes (Cuartos de final)</option>
+                    <option value="16">16 Participantes (Octavos de final)</option>
+                    <option value="32">32 Participantes (Dieciseisavos)</option>
+                </select>
+            </div>
+        </div>
 
         <!-- disciplina-->
         <div class="form-group">

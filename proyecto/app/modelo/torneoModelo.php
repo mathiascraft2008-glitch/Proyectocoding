@@ -8,8 +8,8 @@ class torneoModelo{
     }
 
     function crear(Torneo $torneo){
-        $sql = "INSERT INTO torneo (IDORGANIZADOR, NOMBRE, FECHA, FORMATO, DISCIPLINA, LUGAR, PARTICIPACION, CONTRASENA)
-        VALUES (:idO, :nombre, :fecha, :formato, :disciplina, :lugar, :participacion, :contrasena)";
+        $sql = "INSERT INTO torneo (IDORGANIZADOR, NOMBRE, FECHA, FORMATO, DISCIPLINA, LUGAR, PARTICIPACION, CONTRASENA, MAXINSCRIPCIONES)
+        VALUES (:idO, :nombre, :fecha, :formato, :disciplina, :lugar, :participacion, :contrasena, :maxInscripciones)";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindValue(':idO', $torneo->getIdOrganizador());
         $stmt->bindValue(':nombre', $torneo->getNombre());
@@ -19,6 +19,7 @@ class torneoModelo{
         $stmt->bindValue(':lugar', $torneo->getLugar());
         $stmt->bindValue(':participacion', $torneo->getParticipacion());
         $stmt->bindValue(':contrasena', $torneo->getContrasena());
+        $stmt->bindValue(':maxInscripciones', $torneo->getMaxInscripciones());
         return $stmt->execute();
     }
 
@@ -47,7 +48,8 @@ function obtenerTorneosCreados($idUsuario) {
             $dato['DISCIPLINA'],
             $dato['LUGAR'],
             $dato['PARTICIPACION'],
-            $dato['CONTRASENA']
+            $dato['CONTRASENA'],
+            $dato['MAXINSCRIPCIONES']
         );
     }
 
@@ -88,7 +90,8 @@ function obtenerTorneosDisponibles($idUsuario) {
             $dato['DISCIPLINA'],
             $dato['LUGAR'],
             $dato['PARTICIPACION'],
-            $dato['CONTRASENA']
+            $dato['CONTRASENA'],
+            $dato['MAXINSCRIPCIONES']
         );
     }
 
@@ -110,7 +113,8 @@ function obtenerTorneo($id){
         $datos['DISCIPLINA'],
         $datos['LUGAR'],
         $datos['PARTICIPACION'],
-        $datos['CONTRASENA']
+        $datos['CONTRASENA'],
+        $datos['MAXINSCRIPCIONES']
     );
 }
 
@@ -135,7 +139,8 @@ function obtenerTorneosParticipante($idUsuario) {
             $dato['DISCIPLINA'],
             $dato['LUGAR'],
             $dato['PARTICIPACION'],
-            $dato['CONTRASENA']
+            $dato['CONTRASENA'],
+            $dato['MAXINSCRIPCIONES']
         );
     }
 

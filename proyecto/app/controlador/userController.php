@@ -231,6 +231,7 @@ function editUser($conexion) {
     $registro=new Registro(null,"Se editó un usuario ",$id,null);
     if ($resultado) {
         $registroModelo->registroAuditoria($registro);
+        header("Location: ../vista/PanelAdministrador.php"); exit;
     } else {
         echo "<script> alert('Error al editar el usuario.');
                     window.history.back(); </script>";
@@ -333,6 +334,8 @@ function editProfile($conexion) {
     if ($resultado) {
         // Registrar la acción en la auditoría
         $registroModelo->registroAuditoria($registro);
+        header("Location: ../vista/perfil.php");
+        exit;
     } else {
         echo "<script> alert('No se modificó ningun dato');
                     window.history.back(); </script>";
@@ -378,6 +381,8 @@ function editPassword($conexion) {
     if ($resultado) {
         // Registrar la acción en la auditoría
         $registroModelo->registroAuditoria($registro);
+        header("Location: ../vista/perfil.php");
+        exit;
     } else {
         echo "<script> alert('Error al actualizar la contraseña.');
                     window.history.back(); </script>";

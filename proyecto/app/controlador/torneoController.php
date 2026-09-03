@@ -23,6 +23,7 @@ function crearTorneo($conexion) {
     $lugar = $_POST['lugar'];
     $participacion = $_POST['modo'];
     $contraseña = $_POST['pass'];
+    $maxInscripciones = $_POST['maxInscripciones'];
 
     $torneoModelo = new torneoModelo($conexion);
     // Validaciones
@@ -40,7 +41,7 @@ function crearTorneo($conexion) {
     
     $registroModelo = new registroModelo($conexion);
     $torneo = new Torneo(null,$idOrganizador,$nombre,$fecha,$formato,$disciplina,$lugar,
-                        $participacion,$contraseñaHash);
+                        $participacion,$contraseñaHash,$maxInscripciones);
 
     $resultado = $torneoModelo->crear($torneo);
     $registro=new Registro(null,"Se creó un nuevo torneo, id organizador: ",$idOrganizador,null);
