@@ -27,7 +27,7 @@
 
                 <div class="hero__actions">
                     <a href="register.html" class="link"><button class="btn btn--primary" type="button">Acceder</button></a>
-                    <a href="competencias.php" class="link"><button class="btn btn--primary" type="button">Explorar Competencias</button></a>
+                    <a href="competenciasPublicas.php" class="link"><button class="btn btn--primary" type="button">Explorar Competencias</button></a>
                 </div>
             </div>
 

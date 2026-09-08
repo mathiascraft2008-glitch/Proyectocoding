@@ -163,8 +163,17 @@
             </div>
         </div>
 
-        
-            <button type="submit" class="btn-next" >
+        <!-- maximo de equipos a crear, por defecto no aparece, sin antes activar el modo por equipos -->
+        <div class="form-group" id="max-equipos-group" style="display: none;">
+            <label for="max-equipos">Máximo de equipos</label>
+            <select name="max-equipos" id="max-equipos">
+                <option value="4">4 equipos</option>
+                <option value="8">8 equipos</option>
+                <option value="16">16 equipos</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-next" >
             <span>Siguiente</span>
             </button>
         
@@ -179,5 +188,15 @@
 <?php include 'footerAdmin.php'; ?>
 
 </body>
-
+<script>
+        modoSelect = document.getElementById('modo').addEventListener('change', function() {
+            const maxEquiposGroup = document.getElementById('max-equipos-group');
+            if (this.value === 'equipo') {
+                maxEquiposGroup.style.display = 'block';
+            } else {
+                maxEquiposGroup.style.display = 'none';
+            }
+        });
+        
+</script>
 </html>

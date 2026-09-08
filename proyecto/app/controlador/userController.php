@@ -4,6 +4,8 @@ require_once "../modelo/conexion.php";
 require_once "../modelo/Usuario.php";
 require_once "../modelo/Registro.php";
 require_once "../modelo/registroModelo.php";
+require_once "../modelo/2pModelo.php";
+require_once "../modelo/2p.php";
 $action = $_POST['action'];
 
 if ($action == 'register') {
@@ -33,6 +35,9 @@ if ($action == 'changePassword') {
 }
 if ($action == 'alta') {
     altaUser($conexion);
+}
+if($action== 'verificar2p'){
+    verificar($conexion);
 }
 
 function registerUser($conexion) {
@@ -138,65 +143,186 @@ function registerUserAdmin($conexion) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 function loginUser($conexion) {
+
     $email = $_POST['email'];
     $password = $_POST['password'];
-    
-    $usuarioModelo= new UsuarioModelo($conexion);
-    $registroModelo = new RegistroModelo($conexion);
+    $usuarioModelo = new UsuarioModelo($conexion);
+    $dobleFactorModelo = new DobleModelo($conexion);
 
     $usuario = $usuarioModelo->BuscarUsuarioPorEmail($email);
-    if($usuario==false){
-        echo "<script> alert('No se encontró un usuario activo con esos datos');
-                    window.history.back(); </script>";
+
+    if ($usuario == false) {
+        echo "<script>
+                alert('Email o contraseña incorrectos');
+                window.history.back();
+              </script>";
         exit;
     }
-    //mandar al mainAdministrador.html o mainUsuario.html segun el rol del usuario, para eso se puede usar un if
-    if($usuario->getRol() =='administrador'){
-        
-        if(password_verify($password, $usuario->getContrasena())){
-            //usar session_start() para iniciar la sesión y guardar los datos del usuario en variables de sesión
-            session_start();
 
-            $_SESSION['id'] = $usuario->getId();
-            $_SESSION['nombre'] = $usuario->getNombre();
-            $_SESSION['email'] = $usuario->getMail();
-            $_SESSION['rol'] = $usuario->getRol();
-            // Registrar la acción en la auditoría
-            
-            $registro=new Registro(null,"Se inició sesión como admin ",$usuario->getId(),null);
-            $registroModelo->registroAuditoria($registro);
-            header("Location: ../vista/mainAdministrador.php");
-            exit;
-        }else{
-            echo "<script> alert('Error al iniciar sesión.');
-                    window.history.back(); </script>";
-        exit;
-        
-        }
-        }
-
-    if(password_verify($password, $usuario->getContrasena())){
-        //usar session_start() para iniciar la sesión y guardar los datos del usuario en variables de sesión
-        session_start();
-
-        $_SESSION['id'] = $usuario->getId();
-        $_SESSION['nombre'] = $usuario->getNombre();
-        $_SESSION['email'] = $usuario->getMail();
-        $_SESSION['rol'] = $usuario->getRol();
-        // Registrar la acción en la auditoría
-        $registro=new Registro(null,"Se inició sesión ",$usuario->getId(),null);
-            $registroModelo->registroAuditoria($registro);
-        header("Location: ../vista/mainUsuario.php"); 
-        exit;
-    }else{
-        echo "<script> alert('Error al iniciar sesión.');
-                    window.history.back(); </script>";
+    if (!password_verify($password, $usuario->getContrasena())) {
+        echo "<script>
+                alert('Email o contraseña incorrectos');
+                window.history.back();
+              </script>";
         exit;
     }
+
+    //generar codigo
+    $codigo = random_int(100000, 999999);
+    $codigoHash = password_hash($codigo, PASSWORD_DEFAULT);
+
+    //expira en 5 minutos
+    //time es este momendo, y con date se guarda de una forma que se pueda pasar a la bdd
+    $expiracion = date('Y-m-d H:i:s', time()+300);
+
+    $dobleFactor = new DobleFactor(null,$usuario->getId(),$codigoHash,$expiracion,0);
+
+    //ver si hay un codigo ya para este user
+    $dobleFactorExistente =$dobleFactorModelo->buscarPorUsuario($usuario->getId());
+
+    if ($dobleFactorExistente) {
+        $dobleFactorModelo->reemplazarDobleFactor($dobleFactor);
+    } else {
+        $dobleFactorModelo->crearDobleFactor($dobleFactor);
+    }
+
+    //se gurada temporalmente el usuario que está esperando completar la verificación  en 2 pasos hasta que se ejecute la funcion verificacion()
+    session_start();
+
+    $_SESSION['usuario2p'] = $usuario->getId();
+    $_SESSION['codigoPrueba'] = $codigo;
+    //luego enviar $codigo al correo
     
+    header("Location: ../vista/verificacion2P.php");
+    exit;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function verificar($conexion) {
+    session_start();
+
+    $codigoIngresado = $_POST['codigo'];
+    //se obtiene la id del usuario que quiere loguearse para luego buscarlo por id y guardar sus datos
+    $idUsuario = $_SESSION['usuario2p'];
+
+    $dobleFactorModelo = new DobleModelo($conexion);
+
+    $dobleFactor =$dobleFactorModelo->buscarPorUsuario($idUsuario);
+
+    if ($dobleFactor == false) {
+        echo "<script>
+                alert('no hay una verificacion');
+                window.location.href='../vista/login.html';
+              </script>";
+              
+        exit;
+    }
+
+    // Comprobar expiración--------------------------------------------------------------------------------
+    $ahora = date('Y-m-d H:i:s');
+
+    if ($ahora > $dobleFactor->getExpiracion()) {
+
+        $dobleFactorModelo->eliminarDobleFactor($dobleFactor->getId());
+        unset($_SESSION['usuario2p']);
+        echo "<script>
+                alert('El código ha expirado.');
+                window.location.href='../vista/login.html';
+            </script>";
+            
+        exit;
+    }
+
+    // Comprobar intentos
+    if ($dobleFactor->getIntentos() >= 5) {
+        $dobleFactorModelo->eliminarDobleFactor($dobleFactor->getId());
+        //eliminar esa session
+        unset($_SESSION['usuario2p']);
+        echo "<script>
+                alert('Se superó el límite de intentos.');
+                window.location.href='../vista/login.html';
+              </script>";
+              
+        exit;
+    }
+
+    // Comprobar código
+    if (!password_verify($codigoIngresado, $dobleFactor->getCodigo())) {
+
+        $dobleFactorModelo->aumentarIntentos($dobleFactor->getId());
+        echo "<script>
+                alert('Código incorrecto.');
+                window.history.back();
+              </script>";
+        exit;
+    }
+
+    //verificacion correcta
+    $usuarioModelo = new UsuarioModelo($conexion);
+
+    $usuario = $usuarioModelo->obtenerUsuarioPorId($idUsuario);
+
+    // Crear sesión ahira si
+    $_SESSION['id'] = $usuario->getId();
+    $_SESSION['nombre'] = $usuario->getNombre();
+    $_SESSION['email'] = $usuario->getMail();
+    $_SESSION['rol'] = $usuario->getRol();
+
+    // el codigo ya no sirve
+    $dobleFactorModelo->eliminarDobleFactor($dobleFactor->getId());
+
+    // esta variable ya no sirve
+    unset($_SESSION['usuario2p']);
+    unset($_SESSION['codigoPrueba']);
+    $registroModelo = new RegistroModelo($conexion);
+    if ($usuario->getRol() == 'administrador'){
+        $registro=new Registro(null,"Inició sesión como administrador",$_SESSION['id'],null);
+        $registroModelo->registroAuditoria($registro);
+        header("Location: ../vista/mainAdministrador.php");
+        exit;
+    } else {
+        $registro=new Registro(null,"Inició sesión como usuario",$_SESSION['id'],null);
+        $registroModelo->registroAuditoria($registro);
+        header("Location: ../vista/mainUsuario.php");
+        exit;
+    }
     
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 function editUser($conexion) {

@@ -12,8 +12,9 @@ class Torneo {
     private string $participacion;
     private string $contrasena;
     private int $maxInscripciones;
+    private ?int $maxEquipos; // Puede ser null si la participación es individual
 
-    public function __construct(?int $id,int $idOrganizador,string $nombre,string $fecha,string $Formato,string $disciplina,string $lugar,string $participacion,string $contrasena,int $maxInscripciones){
+    public function __construct(?int $id,int $idOrganizador,string $nombre,string $fecha,string $Formato,string $disciplina,string $lugar,string $participacion,string $contrasena,int $maxInscripciones,?int $maxEquipos){
         $this->id = $id;
         $this->idOrganizador = $idOrganizador;
         $this->nombre = $nombre;
@@ -24,6 +25,7 @@ class Torneo {
         $this->participacion = $participacion;
         $this->contrasena = $contrasena;
         $this->maxInscripciones = $maxInscripciones;
+        $this->maxEquipos = $maxEquipos;
     }
     public function getId(): ?int {
         return $this->id;
@@ -63,6 +65,10 @@ class Torneo {
 
     public function getMaxInscripciones(): int {
         return $this->maxInscripciones;
+    }
+
+    public function getMaxEquipos(): ?int {
+        return $this->maxEquipos;
     }
 
     public function setNombre(string $nombre): void {

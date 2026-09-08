@@ -81,6 +81,15 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
                 Cerrar inscripciones
             </button>
 
+            <form action="../controlador/torneoController.php" method="post">
+                <input type="hidden" name="action" value="generarRonda">
+                <input type="hidden" name="idTorneo" value="<?php echo $idTorneo; ?>">
+                <button class="quick-actions__item" type="submit">
+                    <span class="quick-actions__icon"></span>
+                    GENERAR NUEVA RONDA
+                </button>
+            </form>
+
         </section>
 
         <!-- Herramientas del organizador -->
@@ -97,7 +106,7 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
                 <span class="tools__arrow">→</span>
             </a>
 
-            <a href="emparejamientos.html" class="tools__item">
+            <a href="TorneoEliminacionDirecta.php?id=<?php echo $idTorneo; ?>" class="tools__item">
                 <span class="tools__icon"></span>
                 <span class="tools__text">
                     <strong>Rondas / Emparejamientos</strong>

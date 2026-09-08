@@ -1,15 +1,19 @@
 <?php
 
-$rol="";
 //ver si la sesion ya esta abierta para que no salga un error por abrir 2 veces la sesion
-if (session_status() === PHP_SESSION_NONE) {
+if (session_status() === PHP_SESSION_NONE){
     session_start();
 }
-if ($_SESSION['rol'] == 'administrador') {
-        $rol="mainAdministrador.php";
-    }else{
-        $rol="mainUsuario.php";
-    }
+// Obtener el rol de la sesión, si existe para que no salga warning si no esta autenticado
+$rolSesion=$_SESSION['rol'] ?? null;
+
+if ($rolSesion == 'administrador'){
+    $rol ="mainAdministrador.php";
+}elseif ($rolSesion == 'usuario'){
+    $rol="mainUsuario.php";
+}else {
+    $rol = "mainPublico.php";
+}
 
 ?>
 <footer class="footer">

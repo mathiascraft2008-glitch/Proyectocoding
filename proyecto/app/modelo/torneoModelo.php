@@ -8,8 +8,8 @@ class torneoModelo{
     }
 
     function crear(Torneo $torneo){
-        $sql = "INSERT INTO torneo (IDORGANIZADOR, NOMBRE, FECHA, FORMATO, DISCIPLINA, LUGAR, PARTICIPACION, CONTRASENA, MAXINSCRIPCIONES)
-        VALUES (:idO, :nombre, :fecha, :formato, :disciplina, :lugar, :participacion, :contrasena, :maxInscripciones)";
+        $sql = "INSERT INTO torneo (IDORGANIZADOR, NOMBRE, FECHA, FORMATO, DISCIPLINA, LUGAR, PARTICIPACION, CONTRASENA, MAXINSCRIPCIONES, MAXEQUIPOS)
+        VALUES (:idO, :nombre, :fecha, :formato, :disciplina, :lugar, :participacion, :contrasena, :maxInscripciones, :maxEquipos)";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindValue(':idO', $torneo->getIdOrganizador());
         $stmt->bindValue(':nombre', $torneo->getNombre());
@@ -20,6 +20,7 @@ class torneoModelo{
         $stmt->bindValue(':participacion', $torneo->getParticipacion());
         $stmt->bindValue(':contrasena', $torneo->getContrasena());
         $stmt->bindValue(':maxInscripciones', $torneo->getMaxInscripciones());
+        $stmt->bindValue(':maxEquipos', $torneo->getMaxEquipos());
         return $stmt->execute();
     }
 
@@ -49,7 +50,8 @@ function obtenerTorneosCreados($idUsuario) {
             $dato['LUGAR'],
             $dato['PARTICIPACION'],
             $dato['CONTRASENA'],
-            $dato['MAXINSCRIPCIONES']
+            $dato['MAXINSCRIPCIONES'],
+            $dato['MAXEQUIPOS']
         );
     }
 
@@ -91,7 +93,8 @@ function obtenerTorneosDisponibles($idUsuario) {
             $dato['LUGAR'],
             $dato['PARTICIPACION'],
             $dato['CONTRASENA'],
-            $dato['MAXINSCRIPCIONES']
+            $dato['MAXINSCRIPCIONES'],
+            $dato['MAXEQUIPOS']
         );
     }
 
@@ -114,7 +117,8 @@ function obtenerTorneo($id){
         $datos['LUGAR'],
         $datos['PARTICIPACION'],
         $datos['CONTRASENA'],
-        $datos['MAXINSCRIPCIONES']
+        $datos['MAXINSCRIPCIONES'],
+        $datos['MAXEQUIPOS']
     );
 }
 
@@ -140,7 +144,8 @@ function obtenerTorneosParticipante($idUsuario) {
             $dato['LUGAR'],
             $dato['PARTICIPACION'],
             $dato['CONTRASENA'],
-            $dato['MAXINSCRIPCIONES']
+            $dato['MAXINSCRIPCIONES'],
+            $dato['MAXEQUIPOS']
         );
     }
 
@@ -157,5 +162,51 @@ function formatoActivo($formato) {
 
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+function obtenerTorneos(){
+    $sql = "SELECT * FROM torneo ORDER BY FECHA DESC";
+
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->execute();
+
+    $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $torneos = [];
+
+    foreach ($datos as $dato) {
+        $torneos[] = new Torneo(
+            $dato['ID'],
+            $dato['IDORGANIZADOR'],
+            $dato['NOMBRE'],
+            $dato['FECHA'],
+            $dato['FORMATO'],
+            $dato['DISCIPLINA'],
+            $dato['LUGAR'],
+            $dato['PARTICIPACION'],
+            $dato['CONTRASENA'],
+            $dato['MAXINSCRIPCIONES'],
+            $dato['MAXEQUIPOS']
+        );
+    }
+
+    return $torneos;
+}
+
+//saber si el torneo ya tiene una una primera ronda creada
+function rondaCreada($idTorneo){
+    $sql = "SELECT COUNT(*) AS cantidad FROM ronda WHERE IDTORNEO = :idTorneo";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bindValue(':idTorneo', $idTorneo);
+    $stmt->execute();
+    $datos = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($datos['cantidad'] > 0) {
+        return true;
+    } else {
+        return false;//la ronda no se creo todavia
+    }
+
+} 
+
 
 } 

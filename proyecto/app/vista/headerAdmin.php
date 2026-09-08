@@ -1,15 +1,20 @@
 <?php
 
-$rol="";
 //ver si la sesion ya esta abierta para que no salga un error por abrir 2 veces la sesion
-if (session_status() === PHP_SESSION_NONE) {
+if (session_status() === PHP_SESSION_NONE){
     session_start();
 }
-if ($_SESSION['rol'] == 'administrador') {
-        $rol="mainAdministrador.php";
-    }else{
-        $rol="mainUsuario.php";
-    }
+// Obtener el rol de la sesión, si existe para que no salga warning si no esta autenticado
+$rolSesion=$_SESSION['rol'] ?? null;
+
+if ($rolSesion == 'administrador'){
+    $rol ="mainAdministrador.php";
+}elseif ($rolSesion == 'usuario'){
+    $rol="mainUsuario.php";
+}else {
+    $rol = "mainPublico.php";
+}
+
 
 ?>
 <header class="header">
@@ -23,12 +28,22 @@ if ($_SESSION['rol'] == 'administrador') {
 
         <div class="header__nav">
             <a href="AcercaDeNosotros.php" class="header__link">Acerca de nosotros</a>
-            <a href="notificaciones.html" class="header__link">Notificaciones</a>
-            <a href="competencias.php" class="header__link">Competencias</a>
-            <a href="rankings.php" class="header__link">Rankings</a>
+            <?php if ($rolSesion==null) { ?>
+                <a href="competenciasPublicas.php" class="header__link">Competencias</a>
+            <?php }else{ ?>
+                <a href="competencias.php" class="header__link">Competencias</a>
+            <?php } ?>
 
-            <a href="perfil.php" class="avatar__link">
-                <img class="avatar" src="../../html/images/ui_user_profile_avatar_person_icon_208734.webp" alt="Perfil de usuario">
-            </a>
+            <?php if ($rolSesion==null) { ?>
+                <a href="login.html" class="avatar__link">
+                    <img class="avatar" src="../../html/images/ui_user_profile_avatar_person_icon_208734.webp" >
+                </a>
+            <?php } else { ?>
+                <a href="perfil.php" class="avatar__link">
+                    <img class="avatar" src="../../html/images/ui_user_profile_avatar_person_icon_208734.webp" >
+                </a>
+            <?php } ?>
+
+
         </div>
     </header>
