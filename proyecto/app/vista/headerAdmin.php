@@ -28,7 +28,7 @@ if ($rolSesion == 'administrador'){
 
         <div class="header__nav">
             <a href="AcercaDeNosotros.php" class="header__link">Acerca de nosotros</a>
-            <?php if ($rolSesion==null) { ?>
+            <?php if ($rolSesion==null || $rolSesion=="administrador") { ?>
                 <a href="competenciasPublicas.php" class="header__link">Competencias</a>
             <?php }else{ ?>
                 <a href="competencias.php" class="header__link">Competencias</a>

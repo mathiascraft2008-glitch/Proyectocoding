@@ -15,20 +15,17 @@ $torneoModelo = new torneoModelo($conexion);
 $torneo = $torneoModelo->obtenerTorneo($idTorneo);
 
 $nombres= [];
-if($torneo->getParticipacion() == 'solo'){
-    foreach ($competidores as $competidor) {
-        //res guarda $res=['NOMBRE' =>'nombre competidor'], y para acceder al nombre del competidor se hace $res['NOMBRE']
+
+foreach ($competidores as $competidor) {
+    if ($torneo->getParticipacion() == 'solo') {
         $res = $competidorModelo->obtenerNombreCompetidorSOLO($competidor->getId());
-        //guardar el nombre del competidor en un array con la id del competidor como clave por ejemplo $nombres[1] = "competidor 1"
-        $nombres[$competidor->getId()] = $res['NOMBRE'];
-    }
-}else{ 
-    foreach ($competidores as $competidor) {
-        //res guarda $res=['NOMBRE' =>'nombre equipo'], y para acceder al nombre del equipo se hace $res['NOMBRE']
+
+    } else {
+
         $res = $competidorModelo->obtenerNombreCompetidorEQUIPO($competidor->getId());
-        //guardar el nombre del equipo en un array con la id del competidor como clave, por ejemplo $nombres[1] = "equipo 1"
-        $nombres[$competidor->getId()] = $res['NOMBRE'];
     }
+//guardar en el array nombres con la clave como id del competidor, con su valor que sea el nombre de ese id
+    $nombres[$competidor->getId()] = $res['NOMBRE'];
 }
 //para saber si en esta ronda hay que prohibir editar los competidores
 $partidosModelo = new partidosModelo($conexion);
@@ -101,7 +98,7 @@ $ronda = $rondaModelo->obtenerRondaPorId($partido->getIdRonda());
                             <div class="match__competitor">
                                 <label>Competidor 2:</label>
                                 <?php if ($ronda->getNumero() == 1) { ?>
-                                    <select name="competidor1" required>
+                                    <select name="competidor2" required>
                                         <?php foreach ($competidores as $competidor) { ?>
                                             <option value="<?php echo $competidor->getId(); ?>">
                                                 <?php echo $nombres[$competidor->getId()]; ?>
@@ -139,6 +136,7 @@ $ronda = $rondaModelo->obtenerRondaPorId($partido->getIdRonda());
                                     </select>
                                 <?php } ?>
                             </div>
+                            <br>
 
                             <button type="submit" class="btn btn--primary">Guardar Emparejamiento</button>
                         </form>

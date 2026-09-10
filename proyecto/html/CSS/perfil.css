@@ -135,6 +135,12 @@ main {
     font-size: 15px;
 }
 
+
+.btn{
+background-color: #3f4448;
+border: none;
+width: 100%;
+}
 /* ==========================================
    MEDIA QUERY: TABLET (768px - 1023px)
 ========================================== */

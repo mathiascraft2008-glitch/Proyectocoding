@@ -21,7 +21,7 @@
     <!-- Imagen de arriba -->
     
     <div class="top-avatar">
-        <img class="" src="../../html/images/usuario.svg" alt="">
+        <img src="../../html/images/usuario.svg" alt="">
     </div>
 
     <!-- Formulario -->
@@ -72,10 +72,10 @@
         <label for="" class="text text-label">
                 Ingrese el ID del usuario que desea dar de baja
         </label>
-        <input type="number" name="idUsuario" required>
+        <input type="number" name="idUsuario" required class="altabaja">
         
 
-        <input type="submit" class="publish" value="Dar de baja">        
+        <input type="submit" class="publish" >        
 
     </form>
     <br>
@@ -90,10 +90,10 @@
         <label for="" class="text text-label">
                 Ingrese el ID del usuario que desea dar de alta
         </label>
-        <input type="number" name="idUsuario" required>
+        <input type="number" name="idUsuario" required class="altabaja">
         
 
-        <input type="submit" class="publish" value="Dar de alta">        
+        <input type="submit" class="publish" >        
 
     </form>
 

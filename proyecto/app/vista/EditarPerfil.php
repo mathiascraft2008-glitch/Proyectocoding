@@ -35,20 +35,17 @@
                     <input type="text" name="username" id="new-name" class="form-input">
                 </div>
 
-                <div class="form-group">
-                    <label for="profile-picture" class="form-label">Nueva foto de perfil</label>
-                    <input type="file" name="foto" id="profile-picture" class="form-input-file">
-                </div>
 
                 <button type="submit" class="btn-submit">Guardar Cambios</button>
             </form>
+            <br>
 
             <form action="../controlador/userController.php" method="post" class="seguridad-form">
                 <div class="form-group">
                     <label for="new-password" class="form-label">Nueva contraseña</label>
                     <input type="password" required name="new-password" id="new-password" class="form-input">
                 </div>
-
+<br>
                 <div class="form-group">
                     <label for="confirm-new-password" class="form-label">Confirmar nueva contraseña</label>
                     <input type="password" required name="confirm-new-password" id="confirm-new-password" class="form-input">

@@ -41,7 +41,7 @@ $inscripcionModelo=new inscripcionModelo($conexion);
 
             <!-- Información del grupo -->
             <section class="group-info">
-                <div class="group-image"></div>
+                
                 <div class="group-data">
                     <div class="form__item">
                         <label for="nombre-grupo">Nombre Del Grupo</label>

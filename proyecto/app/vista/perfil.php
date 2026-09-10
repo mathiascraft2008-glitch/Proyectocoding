@@ -61,20 +61,11 @@ $usuario = $usuarioModelo->obtenerUsuarioPorId($id);
                 <p class="settings__label">Editar perfil</p>
             </a>
 
-            <a href="notificaciones.html" class="settings__item">
-                <div class="settings__icon"></div>
-                <p class="settings__label">Notificaciones</p>
-            </a>
-
-            <a href="competencias.html" class="settings__item">
-                <div class="settings__icon"></div>
-                <p class="settings__label">Mis torneos</p>
-            </a>
             <!--mandar la peticion a el controlador ejecutando la funcion logoutUser -->
         <form action="../controlador/userController.php" method="post">
             <input type="hidden" name="action" value="logout">
 
-            <button type="submit" class="settings__item">
+            <button type="submit" class="settings__item btn">
             <div class="settings__icon"></div>
             <p class="settings__label">Cerrar sesión</p>
             </button>

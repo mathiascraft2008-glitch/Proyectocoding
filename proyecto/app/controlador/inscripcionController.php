@@ -36,11 +36,15 @@ if (!password_verify($password, $torneo->getContrasena())) {
 }
 $inscripcion = new Inscripcion(null,$idUsuario,$torneo->getId(),null);
 $resultado = $inscripcionModelo->inscribir($inscripcion);
+$inscripcionID=$conexion->lastInsertId();
 
 //NUEVO COMPETIDOR INDIVIDUAL---------------------------------------------------------------------
-$competidor=new Competidor(null,$torneo->getId(),'individual',$idUsuario,null);
-$competidorModelo = new CompetidorModelo($conexion);
-$competidorModelo->NewCompetidorSolo($competidor);
+if ($torneo->getParticipacion() == 'solo') {
+
+    $competidor = new Competidor(null,$torneo->getId(),'individual',$inscripcionID,null);
+
+    $competidorModelo->NewCompetidorSolo($competidor);
+}
 
 
 

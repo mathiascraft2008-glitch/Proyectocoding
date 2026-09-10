@@ -67,7 +67,7 @@ $cantTorneos = $reporteModelo->cantidadTorneosTotales();
 
                 <article class="tournament-row">
 
-                    <h2><?php echo $torneo->getNombre(); ?></h2>
+                    <h2>Nombre: <?php echo $torneo->getNombre(); ?></h2>
 
                     <p>Fecha: <?php echo $torneo->getFecha(); ?></p>
 
@@ -77,11 +77,12 @@ $cantTorneos = $reporteModelo->cantidadTorneosTotales();
 
                     <p>Modo: <?php echo $torneo->getParticipacion(); ?></p>
 
-                    <a href="PanelOrganizador.php?id=<?php echo $torneo->getId(); ?>">
+                    <a href="PanelOrganizador.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
                         Ver torneo
                     </a>
 
                 </article>
+                <br>
 
             <?php } ?>
 

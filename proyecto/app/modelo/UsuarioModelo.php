@@ -48,9 +48,45 @@ class UsuarioModelo {
             $datos['MAIL'],
             $datos['CONTRASEÑA'],
             $datos['ROL'],
-            $datos['ACTIVO']
+            $datos['ACTIVO'],
+            $datos['INTENTOSLOGIN'],
+            $datos['BLOQUEOHASTA']
         );
     }
+
+    //intentos de el login:
+    public function aumentarIntentosLogin($id) {
+        $sql = "UPDATE usuario SET INTENTOSLOGIN = INTENTOSLOGIN+1 WHERE ID = :id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        return $stmt->execute();
+    }
+    
+    public function bloquearUsuario($id, $bloqueoHasta) {
+        $sql = "UPDATE usuario SET BLOQUEOHASTA = :bloqueoHasta WHERE ID = :id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':bloqueoHasta', $bloqueoHasta);
+        $stmt->bindValue(':id', $id);
+        return $stmt->execute();
+    }
+    
+    //cuando escriba bien el login, se reinicia
+    public function reiniciarIntentosLogin($id) {
+        $sql = "UPDATE usuario SET INTENTOSLOGIN =0, BLOQUEOHASTA=NULL WHERE ID = :id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':id', $id);
+
+        return $stmt->execute();
+    }
+
+
+
+    
+
+
+
+
+
 
     function DeleteUsuario($id){
     
@@ -128,7 +164,9 @@ class UsuarioModelo {
             $datos['MAIL'],
             $datos['CONTRASEÑA'],
             $datos['ROL'],
-            $datos['ACTIVO']
+            $datos['ACTIVO'],
+            $datos['INTENTOSLOGIN'],
+            $datos['BLOQUEOHASTA']
         );
     }
 

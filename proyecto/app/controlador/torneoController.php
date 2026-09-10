@@ -22,6 +22,10 @@ if ($action == 'generarRonda') {
     generarRonda($conexion);
 }
 
+if ($action == 'generarRondaLiga') {
+    generarRondaLiga($conexion);
+}
+
 function crearTorneo($conexion) {
 
     session_start();
@@ -251,4 +255,9 @@ function generarRonda($conexion) {
 
     header("Location: ../vista/TorneoEliminacionDirecta.php?id=$idTorneo");
     exit;
+}
+
+
+function generarRondaLiga($conexion){
+    
 }

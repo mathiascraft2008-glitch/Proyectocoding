@@ -8,14 +8,18 @@ class Usuario {
     private string $contrasena;
     private string $rol;
     private bool $activo;
+    private ?int $intentosLogin;
+    private ?string $bloqueoHasta;
 
-    public function __construct(?int $id,string $nombre,string $mail,string $contrasena,string $rol,bool $activo) {
+    public function __construct(?int $id,string $nombre,string $mail,string $contrasena,string $rol,bool $activo,?int $intentosLogin,?string $bloqueoHasta) {
         $this->id = $id;
         $this->nombre = $nombre;
         $this->mail = $mail;
         $this->contrasena = $contrasena;
         $this->rol = $rol;
         $this->activo = $activo;
+        $this->intentosLogin = $intentosLogin;
+        $this->bloqueoHasta = $bloqueoHasta;
     }
 
     public function getId(): ?int {
@@ -40,6 +44,14 @@ class Usuario {
 
     public function getActivo(): bool {
         return $this->activo;
+    }
+
+    public function getIntentosLogin(): ?int {
+        return $this->intentosLogin;
+    }
+
+    public function getBloqueoHasta(): ?string {
+        return $this->bloqueoHasta;
     }
 
     public function setNombre(string $nombre): void {

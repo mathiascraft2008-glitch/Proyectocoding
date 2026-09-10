@@ -52,19 +52,20 @@ $torneosParticipo = $torneoModelo->obtenerTorneosParticipante($id);
 
         <!-- Torneos en los que participo -->
         <section class="participate">
-            <h2 class="section-title">Torneos en los que participo</h2>
+            <h2 class="section-title">Torneos en los que participo:</h2>
 
                 <?php foreach ($torneosParticipo as $torneo) { ?>
 
                     <div class="tournament-row">
                         <h3>
-                            <?php echo $torneo->getNombre(); ?>
+                            Nombre: <?php echo $torneo->getNombre(); ?>
                         </h3>
 
                         <p>
                             Fecha: <?php echo $torneo->getFecha(); ?>
                         </p>
                     </div>
+                    <br>
 
                 <?php } ?>
         </section>
@@ -78,7 +79,7 @@ $torneosParticipo = $torneoModelo->obtenerTorneosParticipante($id);
                 
                 <article class="tournament-row">
 
-                    <h2><?php echo $torneo->getNombre(); ?></h2>
+                    <h2>Nombre: <?php echo $torneo->getNombre(); ?></h2>
 
                     <p>Fecha: <?php echo $torneo->getFecha(); ?></p>
 
@@ -88,11 +89,12 @@ $torneosParticipo = $torneoModelo->obtenerTorneosParticipante($id);
 
                     <p>Modo: <?php echo $torneo->getParticipacion(); ?></p>
 
-                    <a href="PanelOrganizador.php?id=<?php echo $torneo->getId(); ?>">
+                    <a href="PanelOrganizador.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
                         Ver torneo
                     </a>
 
                 </article>
+                <br>
 
             <?php } ?>
 

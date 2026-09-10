@@ -34,32 +34,23 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
         <!-- Tarjeta del torneo -->
         <section class="tournament-card">
 
-            <!-- Imagen del torneo -->
-            <div class="tournament__image">
-                <span class="tournament__badge">En curso</span>
-                <div class="image__placeholder"></div>
-            </div>
+        
 
             <!-- Información -->
             <div class="tournament__info">
 
-                <h2 class="tournament__name">Nombre Torneo - Fútbol 5</h2>
+                <h2 class="tournament__name">Nombre Torneo - <?php echo $torneo->getNombre() ?></h2>
 
-                <p class="tournament__format">Torneo Suizo Individual</p>
+                <p class="tournament__format">Torneo <?php echo $torneo->getFormato() ?></p>
 
                 <div class="tournament__detail">
-                    <img src="../images/reloj.svg" class="detail__icon" alt="">
-                    <p>Fecha inicio / fecha final</p>
+                    <img src="../../html/images/reloj.svg" class="detail__icon" alt="">
+                    <p>Fecha inicio /<?php echo $torneo->getFecha() ?></p>
                 </div>
 
                 <div class="tournament__detail">
-                    <img src="../images/usuarios.svg" class="detail__icon" alt="">
-                    <p>7 / 10</p>
-                </div>
-
-                <div class="tournament__detail">
-                    <img src="../images/usuarios.svg" class="detail__icon" alt="">
-                    <p>10 equipos</p>
+                    <img src="../../html/images/usuarios.svg" class="detail__icon" alt="">
+                    <p>Máximo inscripciones - <?php echo $torneo->getMaxInscripciones() ?></p>
                 </div>
 
             </div>
@@ -80,15 +71,26 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
                 <span class="quick-actions__icon"></span>
                 Cerrar inscripciones
             </button>
-
+            <?php if($torneo->getFormato()=='eliminacion'){ ?>
+                <form action="../controlador/torneoController.php" method="post">
+                    <input type="hidden" name="action" value="generarRonda">
+                    <input type="hidden" name="idTorneo" value="<?php echo $idTorneo; ?>">
+                    <button class="quick-actions__item" type="submit">
+                        <span class="quick-actions__icon"></span>
+                        GENERAR NUEVA RONDA
+                    </button>
+                </form>
+            <?php }elseif ($torneo->getFormato()=='liga'){ ?>
             <form action="../controlador/torneoController.php" method="post">
-                <input type="hidden" name="action" value="generarRonda">
-                <input type="hidden" name="idTorneo" value="<?php echo $idTorneo; ?>">
-                <button class="quick-actions__item" type="submit">
-                    <span class="quick-actions__icon"></span>
-                    GENERAR NUEVA RONDA
-                </button>
-            </form>
+                    <input type="hidden" name="action" value="generarRondaLiga">
+                    <input type="hidden" name="idTorneo" value="<?php echo $idTorneo; ?>">
+                    <button class="quick-actions__item" type="submit">
+                        <span class="quick-actions__icon"></span>
+                        GENERAR NUEVA RONDA
+                    </button>
+                </form>
+            <?php }else{ ?>
+            <?php } ?>
 
         </section>
 
@@ -106,6 +108,7 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
                 <span class="tools__arrow">→</span>
             </a>
 
+            <?php if($torneo->getFormato()=='eliminacion'){ ?>
             <a href="TorneoEliminacionDirecta.php?id=<?php echo $idTorneo; ?>" class="tools__item">
                 <span class="tools__icon"></span>
                 <span class="tools__text">
@@ -114,6 +117,17 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
                 </span>
                 <span class="tools__arrow">→</span>
             </a>
+            <?php }elseif ($torneo->getFormato()=='liga'){ ?>
+            <a href="TorneoModuloLiga.php?id=<?php echo $idTorneo; ?>" class="tools__item">
+                <span class="tools__icon"></span>
+                <span class="tools__text">
+                    <strong>Rondas / Emparejamientos</strong>
+                    <span>Publicar rondas y editar emparejamientos</span>
+                </span>
+                <span class="tools__arrow">→</span>
+            </a>
+            <?php }else{ ?>
+            <?php } ?>
 
             <a href="crearGrupo.php?id=<?php echo $idTorneo; ?>" class="tools__item">
                 <span class="tools__icon"></span>

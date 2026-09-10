@@ -46,6 +46,26 @@ class CompetidorModelo {
         return $competidores;
     }
 
+
+
+//cantidad de competidores para saber si se puede crear las jornadas con todos los enfrentamientos
+
+function CantidadCompetidores($idTorneo) {
+        $sql = "SELECT COUNT(*) as cantidad FROM competidor WHERE IDTORNEO = :idTorneo";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':idTorneo', $idTorneo);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+        
+    }
+
+
+
+
+
+
+
     //obtener nombres de competidores tanto de equipo como de solo
     function obtenerNombreCompetidorEQUIPO($idCompetidor){
         $sql="SELECT NOMBRE FROM equipo JOIN competidor ON equipo.ID = competidor.IDEQUIPO WHERE competidor.ID=:idCompetidor";

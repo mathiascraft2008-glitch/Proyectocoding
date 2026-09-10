@@ -20,20 +20,16 @@ $ultimaRonda = $rondaModelo->obtenerUltimaRonda($idTorneo);
 
 $competidores = $competidorModelo->obtenerCompetidoresPorTorneo($idTorneo);
 $nombres= [];
-if($torneo->getParticipacion() == 'solo'){
-    foreach ($competidores as $competidor) {
-        //res guarda $res=['NOMBRE' ->'nombre competidor'], y para acceder al nombre del competidor se hace $res['NOMBRE']
+foreach ($competidores as $competidor) {
+    if ($torneo->getParticipacion() == 'solo') {
         $res = $competidorModelo->obtenerNombreCompetidorSOLO($competidor->getId());
-        //guardar el nombre del competidor en un array con la id del competidor como clave por ejemplo $nombres[1] = "Competidor 1"
-        $nombres[$competidor->getId()] = $res['NOMBRE'];
-    }
-}else{ 
-    foreach ($competidores as $competidor) {
-        //res guarda $res=['NOMBRE' ->'nombre equipo'], y para acceder al nombre del equipo se hace $res['NOMBRE']
+
+    } else {
+
         $res = $competidorModelo->obtenerNombreCompetidorEQUIPO($competidor->getId());
-        //guardar el nombre del equipo en un array con la id del competidor como clave, por ejemplo $nombres[1] = "Equipo 1"
-        $nombres[$competidor->getId()] = $res['NOMBRE'];
     }
+//guardar en el array nombres con la clave como id del competidor, con su valor que sea el nombre de ese id
+    $nombres[$competidor->getId()] = $res['NOMBRE'];
 }
 ?>
 <!DOCTYPE html>
@@ -56,7 +52,7 @@ if($torneo->getParticipacion() == 'solo'){
 
     <!-- Main -->
     <main class="main-content">
-        <a href="PanelOrganizador.php?id=<?php echo $idTorneo; ?>">Volver</a>
+        <a href="PanelOrganizador.php?id=<?php echo $idTorneo; ?>" class="btn btn--volver" >Volver</a>
         <!-- Encabezado del torneo -->
         <section class="tournament-header">
             <h1 class="title"><?php echo $torneo->getNombre(); ?></h1>
@@ -90,7 +86,7 @@ if($torneo->getParticipacion() == 'solo'){
                                 </div>
                                 <div class="match-card__row">
                                     <span>Competidor 2</span>
-                                    <?php if ($partido->getCompetidor1() !== null){
+                                    <?php if ($partido->getCompetidor2() !== null){
                                             echo $nombres[$partido->getCompetidor2()];
                                             echo ", id:" . $partido->getCompetidor2();
                                         } else {
@@ -106,9 +102,13 @@ if($torneo->getParticipacion() == 'solo'){
                                             echo "Pendiente"; } ?>
                                 
                             </div>
-                            <?php if ($ronda->getId() == $ultimaRonda->getId()) { ?>
-                                <a href="emparejamientos.php?partido=<?php echo $partido->getId() ?>&torneo=<?php echo $idTorneo ?>">Editar</a>
-                            <?php } ?>
+                            <br>
+                            <div class="match-card__row">
+                                <?php if ($ronda->getId() == $ultimaRonda->getId()) { ?>
+                                <a href="emparejamientos.php?partido=<?php echo $partido->getId() ?>&torneo=<?php echo $idTorneo ?>" class="btn">Editar</a>
+                                <?php } ?>
+                            </div>
+                            
                             
                         </div>
 

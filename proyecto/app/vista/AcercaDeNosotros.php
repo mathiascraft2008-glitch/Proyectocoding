@@ -23,7 +23,7 @@
         <section class="hero">
             <p class="hero__logo"><span class="hero__logo--GG">GG</span>champ</p>
             <p class="hero__tagline">Compite <span class="highlight">supérate</span> gana</p>
-            <p class="hero__subtitle">una plataforma de torneos donde puedes alcanzar la gloria</p>
+            <p class="hero__subtitle">Una plataforma modular para organizar, gestionar y seguir tus torneos.</p>
         </section>
 
         <!-- Banner destacado -->
@@ -38,37 +38,40 @@
             <div class="feature">
                 <div class="feature__heading">
                     <span class="feature__number">01</span>
-                    <span class="feature__title">título</span>
+                    <span class="feature__title">Una plataforma, múltiples competencias</span>
                 </div>
                 <p class="feature__text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in neque a nulla
-                    venenatis sodales. Nunc pretium mi efficitur, hendrerit
+                    GGchamp permite gestionar torneos de diferentes disciplinas y formatos
+                    desde una misma plataforma. Fútbol, ajedrez, tenis, videojuegos y
+                    muchas otras competencias pueden organizarse sin depender de
+                    herramientas diferentes para cada caso.
                 </p>
-                <div class="feature__image">*IMG*</div> 
             </div>
 
             <div class="feature feature--reverse">
                 <div class="feature__heading">
                     <span class="feature__number">02</span>
-                    <span class="feature__title">título</span>
+                    <span class="feature__title">La competencia se genera automáticamente</span>
                 </div>
                 <p class="feature__text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in neque a nulla
-                    venenatis sodales. Nunc pretium mi efficitur, hendrerit
+                    Según el formato seleccionado, GGchamp permite generar la estructura
+                    de competencia correspondiente. Las rondas, enfrentamientos, llaves
+                    y emparejamientos se organizan de acuerdo con las reglas del torneo,
+                    reduciendo el trabajo manual del organizador.
                 </p>
-                <div class="feature__image">*IMG*</div>
             </div>
 
             <div class="feature">
                 <div class="feature__heading">
                     <span class="feature__number">03</span>
-                    <span class="feature__title">título</span>
+                    <span class="feature__title">Toda la información en un solo lugar</span>
                 </div>
                 <p class="feature__text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in neque a nulla
-                    venenatis sodales. Nunc pretium mi efficitur, hendrerit
+                    Participantes y organizadores pueden consultar la información de la
+                    competencia de forma ordenada. Calendarios, resultados, posiciones,
+                    rondas y datos del torneo se mantienen centralizados, facilitando el
+                    seguimiento de cada competencia.
                 </p>
-                <div class="feature__image">*IMG*</div>
             </div>
 
         </section>

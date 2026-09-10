@@ -13,7 +13,7 @@ $cantTornL=$repo->cantidadTorneosLiga();
 $cantTornE=$repo->cantidadTorneosEliminacion();
 //$cantTornPorDisciplina=$repo->cantidadTorneosPorDisciplina();
 
-$cantIns=$repo->cantidadInscripciones();
+$cantIns=$repo->cantidadInscripciones();    
 
 ?>
 
@@ -26,7 +26,7 @@ $cantIns=$repo->cantidadInscripciones();
 <link rel="stylesheet" href="../../html/CSS/reportes.css">
 <link rel="stylesheet" href="../../html/fonts/fonts.css">
     <link rel="stylesheet" href="../../html/CSS/headerYfooter.css">
-<title>Reportes de errores - GGchamp</title>
+<title>Reportes de generales - GGchamp</title>
 
 </head>
 
@@ -39,7 +39,7 @@ $cantIns=$repo->cantidadInscripciones();
 <main class="main-content">
 
     <h1 class="page-title">
-        Reportes de errores
+        Reportes Generales
     </h1>
 
     <div class="reports-container">
@@ -48,7 +48,7 @@ $cantIns=$repo->cantidadInscripciones();
         <article class="report-card">
             <div class="report-card__header">
                 <h2 class="report-card__username">
-                    Cantidad de Usuarios Registrados
+                    Cantidad de Usuarios Registrados:
                 </h2>
                 <p class="report-card__id">
                     <?php echo $cantUser['total']; ?>
@@ -56,8 +56,88 @@ $cantIns=$repo->cantidadInscripciones();
             </div>
         </article>
 
-        
+        <article class="report-card">
+            <div class="report-card__header">
+                <h2 class="report-card__username">
+                    Cantidad de Usuarios Activos:
+                </h2>
+                <p class="report-card__id">
+                    <?php echo $cantUserA['total']; ?>
+                </p>
+            </div>
+        </article>
+
+        <article class="report-card">
+            <div class="report-card__header">
+                <h2 class="report-card__username">
+                    Cantidad de Usuarios en Baja:
+                </h2>
+                <p class="report-card__id">
+                    <?php echo $cantUserB['total']; ?>
+                </p>
+            </div>
+        </article>
+
+        <article class="report-card">
+            <div class="report-card__header">
+                <h2 class="report-card__username">
+                    Cantidad de Torneos Totales:
+                </h2>
+                <p class="report-card__id">
+                    <?php echo $cantTorn['total']; ?>
+                </p>
+            </div>
+        </article>
+
+        <article class="report-card">
+            <div class="report-card__header">
+                <h2 class="report-card__username">
+                    Cantidad de Torneos Suizo:
+                </h2>
+                <p class="report-card__id">
+                    <?php echo $cantTornS['total']; ?>
+                </p>
+            </div>
+        </article>
+
+        <article class="report-card">
+            <div class="report-card__header">
+                <h2 class="report-card__username">
+                    Cantidad de Torneos Liga:
+                </h2>
+                <p class="report-card__id">
+                    <?php echo $cantTornL['total']; ?>
+                </p>
+            </div>
+        </article>
+
+        <article class="report-card">
+            <div class="report-card__header">
+                <h2 class="report-card__username">
+                    Cantidad de Torneos Eliminación Directa:
+                </h2>
+                <p class="report-card__id">
+                    <?php echo $cantTornE['total']; ?>
+                </p>
+            </div>
+        </article>
+
+        <article class="report-card">
+            <div class="report-card__header">
+                <h2 class="report-card__username">
+                    Cantidad de Inscripciones:
+                </h2>
+                <p class="report-card__id">
+                    <?php echo $cantIns['total']; ?>
+                </p>
+            </div>
+        </article>
+
+
+
     </div>
+
+
 
 </main>
 

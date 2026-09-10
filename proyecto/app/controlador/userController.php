@@ -65,7 +65,7 @@ function registerUser($conexion) {
 
 
     $usuarioModelo = new UsuarioModelo($conexion);
-    $usuario=new Usuario(null,$name,$email,$passwordHash,'usuario',true);
+    $usuario=new Usuario(null,$name,$email,$passwordHash,'usuario',true,null,null);
 
     $resultado = $usuarioModelo->registrarUsuario($usuario);
 
@@ -172,13 +172,40 @@ function loginUser($conexion) {
         exit;
     }
 
+    $ahora = date('Y-m-d H:i:s');
+
+    if ($ahora<$usuario->getBloqueoHasta()) {
+        echo "<script>
+                alert('La cuenta está bloqueada temporalmente.');
+                window.history.back();
+            </script>";
+        exit;
+    }
+
+    //comprobar que hay un bloqueo y que ya quedó en el pasado para poder reiniciar los intentos
+    if($usuario->getBloqueoHasta() != null && $ahora > $usuario->getBloqueoHasta()){
+        $usuarioModelo->reiniciarIntentosLogin($usuario->getId());
+    }
+
+
     if (!password_verify($password, $usuario->getContrasena())) {
+        //aumentar intentos para bloquear por muchos intentos
+        $usuarioModelo->aumentarIntentosLogin($usuario->getId());
+        //comprobar si ya alcanzó los intentos máximos
+        if ($usuario->getIntentosLogin()==3) {
+            $bloqueoHasta = date('Y-m-d H:i:s', time() + 15);
+            $usuarioModelo->bloquearUsuario($usuario->getId(),$bloqueoHasta);
+        }
         echo "<script>
                 alert('Email o contraseña incorrectos');
                 window.history.back();
               </script>";
+              //sumar intento
         exit;
     }
+
+    //CONTRASEÑA CORRECTA---------------------------------------------------------------------------
+    $usuarioModelo->reiniciarIntentosLogin($usuario->getId());
 
     //generar codigo
     $codigo = random_int(100000, 999999);

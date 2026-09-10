@@ -8,6 +8,7 @@ require_once "../modelo/inscripcionModelo.php";
 require_once "../modelo/registroModelo.php";
 require_once "../modelo/Competidor.php";
 require_once "../modelo/competidorModelo.php";
+require_once "../modelo/torneoModelo.php";
 $action = $_POST['action'];
 
 if ($action == 'crearGrupo') {
@@ -29,17 +30,21 @@ function crear($conexion){
     $idTorneo= $_POST['idTorneo'];
     $equipoModelo=new equipoModelo($conexion);
     $equipo=new Equipo(null,$name,$idTorneo);
-
+    $torneoModelo = new torneoModelo($conexion);
+    $torneo = $torneoModelo->obtenerTorneo($idTorneo);
     $resultado=$equipoModelo->crearEquipo($equipo);
-    //NUEVO COMPETIDOR EQUIPO---------------------------------------------------------------------
-    $idEquipo=$equipoModelo->obtenerEquipoPorIdTorneoYnombre($idTorneo,$name);
-    
-    //OBTENER ID EQUIPO CON NOMBRE E ID TORNEO
-    $competidor=new Competidor(null,$idTorneo,'equipo',NULL,$idEquipo->getId());
-    $competidorModelo = new CompetidorModelo($conexion);
-    $competidorModelo->NewCompetidorEquipo($competidor);
     
     if ($resultado) {
+    // Solo crear COMPETIDOR si el torneo es por equipos-------------------------------------
+        if ($torneo->getParticipacion() == 'equipo') {
+
+            $idEquipo = $equipoModelo->obtenerEquipoPorIdTorneoYnombre($idTorneo,$name);
+            $competidor = new Competidor(null,$idTorneo,'equipo',null,$idEquipo->getId());
+            
+            $competidorModelo = new CompetidorModelo($conexion);
+            $competidorModelo->NewCompetidorEquipo($competidor);
+        }
+
         header("Location: ../vista/PanelOrganizador.php?id=$idTorneo"); exit;
     } else {
         echo "<script> alert('Error al crear el Equipo.');

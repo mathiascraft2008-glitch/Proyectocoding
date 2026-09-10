@@ -53,7 +53,7 @@ $formatos = $formatoModelo->obtenerFormatos();
         <label for="" class="text text-label">
                 Seleccione el módulo a deshabilitar
         </label>
-        <select name="moduloName" id="" required>
+        <select name="moduloName" id="" required class="altabaja">
             <option value="suizo">Suizo</option>
             <option value="liga">Liga</option>
             <option value="eliminacion">Eliminación</option>
@@ -75,7 +75,7 @@ $formatos = $formatoModelo->obtenerFormatos();
         <label for="" class="text text-label">
                 Seleccione el módulo a habilitar
         </label>
-        <select name="moduloName" id="" required>
+        <select name="moduloName" id="" required class="altabaja">
             <option value="suizo">Suizo</option>
             <option value="liga">Liga</option>
             <option value="eliminacion">Eliminación</option>

@@ -190,7 +190,7 @@
 </body>
 <script>
         modoSelect = document.getElementById('modo').addEventListener('change', function() {
-            const maxEquiposGroup = document.getElementById('max-equipos-group');
+            maxEquiposGroup = document.getElementById('max-equipos-group');
             if (this.value === 'equipo') {
                 maxEquiposGroup.style.display = 'block';
             } else {
