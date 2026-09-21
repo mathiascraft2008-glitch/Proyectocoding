@@ -52,7 +52,9 @@ foreach ($competidores as $competidor) {
 
     <!-- Main -->
     <main class="main-content">
-        <a href="PanelOrganizador.php?id=<?php echo $idTorneo; ?>" class="btn btn--volver" >Volver</a>
+        <?php if ($_SESSION['id']==$torneo->getIdOrganizador()) { ?>
+            <a href="PanelOrganizador.php?id=<?php echo $idTorneo; ?>" class="btn btn--volver" >Volver</a>
+        <?php } ?>
         <!-- Encabezado del torneo -->
         <section class="tournament-header">
             <h1 class="title"><?php echo $torneo->getNombre(); ?></h1>
@@ -66,7 +68,8 @@ foreach ($competidores as $competidor) {
                 <h2 class="section-title">
                     RONDA <?php echo $ronda->getNumero(); ?>
                 </h2>
-
+                <p>fecha de inicio:<?php echo $ronda->getFechaInicio() ?></p>
+                <br>
                 <?php $partidos = $partidosModelo->obtenerPartidosPorRonda($ronda->getId());?>
                 <div class="matches-grid">
 
@@ -104,7 +107,7 @@ foreach ($competidores as $competidor) {
                             </div>
                             <br>
                             <div class="match-card__row">
-                                <?php if ($ronda->getId() == $ultimaRonda->getId()) { ?>
+                                <?php if ($ronda->getId() == $ultimaRonda->getId() && $_SESSION['id']==$torneo->getIdOrganizador()) { ?>
                                 <a href="emparejamientos.php?partido=<?php echo $partido->getId() ?>&torneo=<?php echo $idTorneo ?>" class="btn">Editar</a>
                                 <?php } ?>
                             </div>
@@ -139,9 +142,6 @@ foreach ($competidores as $competidor) {
             </div>
 
         </section>
-
-        <!-- Ver ranking -->
-        <a href="rankings.html" class="link"><button class="btn btn--ranking" type="button">Ver ranking</button></a>
 
     </main>
 

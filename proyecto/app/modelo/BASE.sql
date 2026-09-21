@@ -1,4 +1,3 @@
-DROP DATABASE ggchamp;
 CREATE DATABASE ggchamp;
 USE ggchamp;
 
@@ -17,6 +16,10 @@ CREATE TABLE usuario (
   ROL ENUM('usuario', 'administrador') NOT NULL,
   
   ACTIVO BOOLEAN NOT NULL DEFAULT TRUE,
+  
+  INTENTOSLOGIN INT NULL DEFAULT 0,
+  
+  BLOQUEOHASTA DATETIME NULL,
 
   PRIMARY KEY (ID)
 
@@ -41,13 +44,13 @@ CREATE TABLE torneo (
   FORMATO VARCHAR(12) NOT NULL,
   
   DISCIPLINA ENUM('futbol','basquetbol','tenis','tenis_mesa','voleibol','ajedrez','damas','uno',
-  'fifa','valorant','league_of_legends','counter_strike','rocket_league') NOT NULL,
+  'fifa','valorant','league_of_legends','counter_strike','rocket_league','cartas') NOT NULL,
   
   LUGAR VARCHAR (40) NOT NULL,
   
   PARTICIPACION ENUM('solo', 'equipo') NOT NULL,
   
-  CONTRASENA VARCHAR(255) NOT NULL,	
+  CONTRASENA VARCHAR(255) NOT NULL,		
   
   MAXINSCRIPCIONES INT NOT NULL,
   
@@ -108,6 +111,7 @@ CREATE TABLE competidor (
 
   IDEQUIPO INT NULL,
 
+  PUNTOS INT NOT NULL default 0,
   FOREIGN KEY (IDTORNEO) REFERENCES torneo (ID) ON DELETE CASCADE,
 
   FOREIGN KEY (IDINSCRIPCION) REFERENCES inscripcion (ID) ON DELETE CASCADE,
@@ -121,10 +125,12 @@ CREATE TABLE ronda (
 
   ID INT NOT NULL AUTO_INCREMENT,
 
-  NUMERO INT NOT NULL,
+  NUMERO INT NOT NULL,	
 
   IDTORNEO INT NOT NULL,
-
+  
+  FECHAINICIO DATETIME NULL,
+  
   PRIMARY KEY (ID),
 
   UNIQUE (NUMERO, IDTORNEO),
@@ -146,7 +152,9 @@ CREATE TABLE partido (
 
   IDCOMPETIDOR_2 INT NULL,
 
-  IDGANADOR INT NULL,	
+  IDGANADOR INT NULL,
+  
+  EMPATE BOOLEAN NULL,
     
   PRIMARY KEY (ID),
 
@@ -193,3 +201,14 @@ INSERT INTO formato (NOMBRE, ACTIVO) VALUES
 ('suizo', TRUE),
 ('liga', TRUE),
 ('eliminacion', TRUE);
+
+CREATE TABLE configuracion (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    NOMBRE VARCHAR(50) NOT NULL,
+    VALOR INT NOT NULL	
+);
+
+INSERT INTO configuracion (NOMBRE, VALOR) VALUES
+('MaxIntentos', 3),
+('BloqueoHasta', 15),
+('Expiracion2fa', 300);

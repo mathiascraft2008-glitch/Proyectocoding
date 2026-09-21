@@ -79,6 +79,28 @@ class UsuarioModelo {
         return $stmt->execute();
     }
 
+    
+    function obtenerConfiguracion($nombre) {
+        $sql = "SELECT VALOR FROM configuracion WHERE NOMBRE = :nombre";
+
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':nombre', $nombre);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
+    function actualizarConfiguracion($nombre, $valor) {
+
+    $sql = "UPDATE configuracion SET VALOR = :valor WHERE NOMBRE = :nombre";
+
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bindValue(':valor', $valor);
+    $stmt->bindValue(':nombre', $nombre);
+
+    return $stmt->execute();
+}
 
 
     

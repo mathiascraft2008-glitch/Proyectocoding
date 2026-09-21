@@ -30,10 +30,6 @@
             <div class="step-number">1</div>
             <span class="step-text">Información</span>
         </div>
-        <div class="step-item">
-            <div class="step-number">2</div>
-            <span class="step-text">Revisión</span>
-        </div>
 
     </section>
 
@@ -90,10 +86,11 @@
             <label for="maxInscripciones">Máximo de inscripciones</label>
             <div class="select-wrapper">
                 <select name="maxInscripciones" required>
-                    <option value="4">4 Participantes (Semifinales)</option>
-                    <option value="8" selected>8 Participantes (Cuartos de final)</option>
-                    <option value="16">16 Participantes (Octavos de final)</option>
-                    <option value="32">32 Participantes (Dieciseisavos)</option>
+                    <option value="4">4 Participantes </option>
+                    <option value="6">6 Participantes </option>
+                    <option value="8" selected>8 Participantes </option>
+                    <option value="16">16 Participantes </option>
+                    <option value="32">32 Participantes </option>
                 </select>
             </div>
         </div>
@@ -168,6 +165,7 @@
             <label for="max-equipos">Máximo de equipos</label>
             <select name="max-equipos" id="max-equipos">
                 <option value="4">4 equipos</option>
+                <option value="6">6 equipos</option>
                 <option value="8">8 equipos</option>
                 <option value="16">16 equipos</option>
             </select>

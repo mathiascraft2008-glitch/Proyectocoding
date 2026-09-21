@@ -19,7 +19,8 @@ class RondaModelo {
             $rondas[] = new Ronda(
                 $dato['ID'],
                 $dato['NUMERO'],
-                $dato['IDTORNEO']
+                $dato['IDTORNEO'],
+                $dato['FECHAINICIO']
             );
         }
 
@@ -27,10 +28,11 @@ class RondaModelo {
     }
 
     function crearRonda(Ronda $ronda) {
-        $sql = "INSERT INTO ronda (NUMERO, IDTORNEO) VALUES (:numero, :idTorneo)";
+        $sql = "INSERT INTO ronda (NUMERO, IDTORNEO, FECHAINICIO) VALUES (:numero, :idTorneo, :fechaInicio)";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindValue(':numero', $ronda->getNumero());
         $stmt->bindValue(':idTorneo', $ronda->getIdTorneo());
+        $stmt->bindValue(':fechaInicio', $ronda->getFechaInicio());
         return $stmt->execute();
     }
 
@@ -44,6 +46,21 @@ class RondaModelo {
 
     }
 
+
+    //obtener cantidad de partidos pendientes de la ronda anterior para el sisteam suizo------
+    function rondaSuizaTerminada($idRonda) {
+
+    $sql = "SELECT COUNT(*) AS partidosPendientes FROM partido WHERE IDRONDA = :idRonda
+            AND IDGANADOR IS NULL
+            AND EMPATE IS NULL";
+
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bindValue(':idRonda', $idRonda);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
     function obtenerUltimaRonda($idTorneo){
         $sql="SELECT * FROM ronda WHERE IDTORNEO = :idTorneo ORDER BY NUMERO DESC LIMIT 1;";
         $stmt = $this->conexion->prepare($sql);
@@ -53,7 +70,8 @@ class RondaModelo {
         return new Ronda(
             $dato['ID'],
             $dato['NUMERO'],
-            $dato['IDTORNEO']
+            $dato['IDTORNEO'],
+            $dato['FECHAINICIO']
         );
 
     }
@@ -68,8 +86,25 @@ class RondaModelo {
     return new Ronda(
         $dato['ID'],
         $dato['NUMERO'],
-        $dato['IDTORNEO']
+        $dato['IDTORNEO'],
+        $dato['FECHAINICIO']
     );
+}
+
+function cantidadRondas($idTorneo){
+    $sql = "SELECT COUNT(*) as cantidad FROM ronda WHERE IDTORNEO = :idTorneo";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':idTorneo', $idTorneo);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function actualizarFecha($fecha,$idRonda){
+    $sql = "UPDATE ronda SET FECHAINICIO=:fecha WHERE ID=:id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':fecha', $fecha);
+        $stmt->bindValue(':id', $idRonda);
+        $stmt->execute();
 }
 }
 ?>

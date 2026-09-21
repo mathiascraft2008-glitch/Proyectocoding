@@ -16,6 +16,7 @@ $password = $_POST['password'];
 $torneoModelo = new torneoModelo($conexion);
 $inscripcionModelo = new inscripcionModelo($conexion);
 $torneo = $torneoModelo->obtenerTorneo($idTorneo);
+$competidorModelo = new competidorModelo($conexion);
 
 $action = $_POST['action'];
 if ($action == 'eliminarInscripcion') {

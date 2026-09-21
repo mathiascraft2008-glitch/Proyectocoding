@@ -46,7 +46,7 @@
 
                 <button class="support-card" type="button">
 
-                    <img class="support-card__icono" src="../images/FAQ.png" alt="">
+                    <img class="support-card__icono" src="../../html/images/FAQ.png" alt="">
                     
                     <span class="text">
                         Preguntas frecuentes
@@ -57,28 +57,13 @@
             </a>
 
 
-            <!-- Reportar bug -->
-            <a href="#02" class="support-link">
-
-                <button class="support-card" type="button">
-
-                    <img class="support-card__icono" src="../images/bug.png" alt="">
-
-                    <span class="text">
-                        Reportar bug
-                    </span>
-
-                </button>
-
-            </a>
-
 
             <!-- Contacto -->
             <a href="#03" class="support-link">
 
                 <button class="support-card" type="button">
 
-                    <img class="support-card__icono" src="../images/contacto.png" alt="">
+                    <img class="support-card__icono" src="../../html/images/contacto.png" alt="">
 
                     <span class="text">
                         Contáctanos
@@ -96,7 +81,7 @@
 
             <div id="01" class="section-header">
                 
-                <img class="square-icon" src="../images/FAQ.png" alt="">
+                <img class="square-icon" src="../../html/images/FAQ.png" alt="">
 
                 <h2 class="section-title">
                     Preguntas frecuentes
@@ -178,45 +163,13 @@
         </section>
 
 
-        <!-- Sección Reportar Bug -->
-        <section id="02" class="bug-section">
-
-            <div class="section-header">
-
-                <img class="square-icon" src="../images/bug.png" alt="">
-
-                <h2 class="section-title">
-                    Reportar bug
-                </h2>
-
-            </div>
-
-
-            <form class="bug-form">
-
-                <input 
-                    type="text" 
-                    placeholder="¿En qué página ocurrió?"
-                    class="form-input"
-                >
-
-
-                <textarea 
-                    placeholder="Describa el problema"
-                    class="form-textarea"
-                ></textarea>
-
-            </form>
-
-        </section>
-
 
         <!-- Sección Contacto -->
         <section id="03" class="contact-section">
 
             <div class="section-header">
                 
-                <img class="square-icon" src="../images/contacto.png" alt="">
+                <img class="square-icon" src="../../html/images/contacto.png" alt="">
 
                 <h2 class="section-title">
                     Contacto
@@ -226,16 +179,10 @@
 
 
             <p class="contact-text">
-                Mándanos un mail si necesitas contactarte con nosotros
-            </p>
+                Mándanos un mail si necesitas contactarte con nosotros </p>
 
 
-            <a 
-                href="mailto:Undefined@gmail.com" 
-                class="contact-email"
-            >
-                Undefined@gmail.com
-            </a>
+            <a href="" class="contact-email"> Undefined@gmail.com </a>
 
         </section>
 

@@ -1,4 +1,5 @@
 <?php
+require_once "../modelo/Competidor.php";
 class CompetidorModelo {
 
     private $conexion;
@@ -39,7 +40,8 @@ class CompetidorModelo {
                 $dato['IDTORNEO'],
                 $dato['TIPO'],
                 $dato['IDINSCRIPCION'],
-                $dato['IDEQUIPO']
+                $dato['IDEQUIPO'],
+                $dato['PUNTOS']
             );
         }
 
@@ -58,7 +60,7 @@ function CantidadCompetidores($idTorneo) {
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
         
-    }
+    }   
 
 
 
@@ -83,4 +85,39 @@ function CantidadCompetidores($idTorneo) {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+
+
+
+
+    //sumar puntos en liga
+    function sumarPuntos($idCompetidor,$punto){
+        $sql="UPDATE competidor SET PUNTOS=PUNTOS+:puntos WHERE ID=:idCompetidor";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':idCompetidor', $idCompetidor);
+        $stmt->bindValue(':puntos', $punto);
+        $stmt->execute();
+
+    }
+
+
+    function ranking($idTorneo){
+    $sql="SELECT * FROM competidor where IDTORNEO=:idTorneo  ORDER BY PUNTOS DESC";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':idTorneo', $idTorneo);
+        $stmt->execute();
+        $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $competidores = [];
+
+        foreach ($datos as $dato) {
+            $competidores[] = new Competidor(
+                $dato['ID'],
+                $dato['IDTORNEO'],
+                $dato['TIPO'],
+                $dato['IDINSCRIPCION'],
+                $dato['IDEQUIPO'],
+                $dato['PUNTOS']
+            );
+        }
+        return $competidores;
+}
 }

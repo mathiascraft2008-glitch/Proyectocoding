@@ -64,6 +64,22 @@ $torneosParticipo = $torneoModelo->obtenerTorneosParticipante($id);
                         <p>
                             Fecha: <?php echo $torneo->getFecha(); ?>
                         </p>
+
+
+                        <?php if($torneo->getFormato()=='suizo'){ ?>
+                            <a href="TorneoSistemaSuizo.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
+                                Ver torneo
+                            </a>
+                        <?php }elseif($torneo->getFormato()=='liga'){ ?>
+                            <a href="TorneoModuloLiga.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
+                                Ver torneo
+                            </a>
+                        <?php }else{ ?>
+                            <a href="TorneoEliminacionDirecta.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
+                                Ver torneo
+                            </a>
+                        <?php } ?>
+                        
                     </div>
                     <br>
 

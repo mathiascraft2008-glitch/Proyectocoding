@@ -52,7 +52,7 @@
             <section class="admin-card">
                 <h2 class="admin-card__title">Configuración</h2>
                 <ul class="admin-card__list">
-                    <li><a href="configuracionGeneral.html" class="admin-card__link">Configuración general</a></li>
+                    <li><a href="configuracionGeneral.php" class="admin-card__link">Configuración general</a></li>
                     <li><a href="modulos.php" class="admin-card__link">Habilitar / deshabilitar módulos</a></li>
                 </ul>
             </section>

@@ -118,7 +118,8 @@ border-radius: 50%;
 
 .btn {
     border: none;
-    border-radius: 6px;
+    border-radius: 2px;
+    padding: 5px;
     background-color: #e2e800;
     color: #121212;
     font-family: "Roboto", sans-serif;

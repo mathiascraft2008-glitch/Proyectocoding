@@ -9,6 +9,8 @@ require_once "../modelo/Ronda.php";
 require_once "../modelo/rondaModelo.php";
 require_once "../modelo/Partidos.php";
 require_once "../modelo/partidosModelo.php";
+require_once "../modelo/competidorModelo.php";
+require_once "../modelo/Competidor.php";
 $action = $_POST['action'];
 
 if ($action == 'formularioTorneo') {
@@ -22,9 +24,25 @@ if ($action == 'generarRonda') {
     generarRonda($conexion);
 }
 
-if ($action == 'generarRondaLiga') {
-    generarRondaLiga($conexion);
+if ($action == 'generarLiga') {
+    generarLiga($conexion);
 }
+
+if ($action == 'actualizarEmparejamientoLiga'){
+    actualizarEmparejamientoLiga($conexion);
+}
+
+if ($action == 'generarSuizo') {
+    generarSuizo($conexion);
+}
+
+if ($action == 'actualizarEmparejamientoSuizo'){
+    actualizarEmparejamientoSuizo($conexion);
+}
+
+
+
+
 
 function crearTorneo($conexion) {
 
@@ -184,7 +202,7 @@ function generarRonda($conexion) {
     $torneoModelo = new torneoModelo($conexion);
     $rondaModelo = new rondaModelo($conexion);
     $partidosModelo = new partidosModelo($conexion);
-
+    $fechaInicio = $_POST['fechaInicio'];
     $torneo = $torneoModelo->obtenerTorneo($idTorneo);
 
     // ver si ya existe una ronda 
@@ -192,7 +210,7 @@ function generarRonda($conexion) {
 
         //primera ronda
 
-        $nuevaRonda = new Ronda(null,1,$idTorneo);
+        $nuevaRonda = new Ronda(null,1,$idTorneo,$fechaInicio);
         $rondaModelo->crearRonda($nuevaRonda);
         $idRonda = $conexion->lastInsertId();
         // Obtener cantidad máxima del torneo
@@ -240,7 +258,7 @@ function generarRonda($conexion) {
         }
 
         $numeroNuevaRonda = $ultimaRonda->getNumero() + 1;
-        $nuevaRonda = new Ronda(null,$numeroNuevaRonda,$idTorneo);
+        $nuevaRonda = new Ronda(null,$numeroNuevaRonda,$idTorneo,$fechaInicio);
         $rondaModelo->crearRonda($nuevaRonda);
         $idRonda = $conexion->lastInsertId();
 
@@ -258,6 +276,298 @@ function generarRonda($conexion) {
 }
 
 
-function generarRondaLiga($conexion){
+
+
+
+
+
+
+
+
+
+function generarLiga($conexion){
     
+    $idTorneo = $_POST['idTorneo'];
+
+    $torneoModelo = new torneoModelo($conexion);
+    $rondaModelo = new rondaModelo($conexion);
+    $partidosModelo = new partidosModelo($conexion);
+
+    $torneo = $torneoModelo->obtenerTorneo($idTorneo);
+
+    //ver cuantos participantes o equipos maximos eligió para saber cuantas jornadas hacer
+    if ($torneo->getParticipacion() == 'solo') {
+        $maximo = $torneo->getMaxInscripciones();
+    } else {
+        $maximo = $torneo->getMaxEquipos();
+    }
+
+    $competidorModelo = new CompetidorModelo($conexion);
+    $cantCompetidores = $competidorModelo->CantidadCompetidores($idTorneo);
+
+    //se necesita el maximo de competidores para crear los partidos
+    if ($cantCompetidores['cantidad'] != $maximo) {
+        echo "<script>
+                alert('No se puede generar la liga porque todavía no se alcanzó el máximo de competidores');
+                window.history.back();
+            </script>";
+        exit;
+    }
+
+    //crear jornadas
+    for ($i = 1; $i <= ($maximo-1); $i++) {
+        $nuevaRonda = new Ronda(null,$i,$idTorneo,null);
+        $rondaModelo->crearRonda($nuevaRonda);
+        $idRonda = $conexion->lastInsertId();
+
+    }
+
+    $competidores = $competidorModelo->obtenerCompetidoresPorTorneo($idTorneo);
+
+    $rondas=$rondaModelo->obtenerRondasPorTorneo($idTorneo);
+    //ahora, generar los partidos de cada jornada,
+    //  en cada jornada hay emparejamientos nuevos hasta que ya no se puedan hacer más
+
+    $mitad = $maximo / 2;
+
+    foreach ($rondas as $ronda) {
+        // Crear los partidos de esta jornada
+        for ($i = 0; $i < $mitad; $i++) {
+            $competidor1 = $competidores[$i];
+            $competidor2 = $competidores[$maximo-1-$i];
+            $partidosModelo->crearPartido($i+1,$ronda->getId(),$competidor1->getId(),$competidor2->getId());
+        }
+
+        // Preparar el orden de los competidores para la siguiente jornada
+        $nuevosCompetidores = [];
+
+        $nuevosCompetidores[0] = $competidores[0];
+        $nuevosCompetidores[1] = $competidores[$maximo - 1];
+
+        for ($i = 2; $i < $maximo; $i++){
+            $nuevosCompetidores[$i] = $competidores[$i - 1];
+        }
+
+        $competidores = $nuevosCompetidores;
+    }
+
+
+
+
+
+    header("Location: ../vista/TorneoModuloLiga.php?id=$idTorneo");
+    exit;
+
+    }
+
+
+
+    function actualizarEmparejamientoLiga($conexion){
+
+        $idPartido = $_POST['idPartido'];
+        $idTorneo = $_POST['idTorneo'];
+        $ganador = $_POST['ganador'];
+
+        $partidosModelo = new partidosModelo($conexion);
+        $competidorModelo = new CompetidorModelo($conexion);
+
+        //obtyener partido
+        $partido = $partidosModelo->obtenerPartidoPorId($idPartido);
+
+        $competidor1 = $partido->getCompetidor1();
+        $competidor2 = $partido->getCompetidor2();
+
+        if ($ganador == "empate") {
+
+            //si es empete ambos reciben un punto
+            $competidorModelo->sumarPuntos($competidor1, 1);
+            $competidorModelo->sumarPuntos($competidor2, 1);
+
+            $partidosModelo->actualizarResultadoLiga($idPartido,null,1);
+
+        } else {
+            // El ganador recibe 3 puntos
+            $competidorModelo->sumarPuntos($ganador, 3);
+
+            $partidosModelo->actualizarResultadoLiga($idPartido,$ganador,0);
+        }
+
+        header("Location: ../vista/TorneoModuloLiga.php?id=$idTorneo");
+        exit;
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function generarSuizo($conexion) {
+    $idTorneo = $_POST['idTorneo'];
+    $fechaInicio = $_POST['fechaInicio'];
+    $torneoModelo = new torneoModelo($conexion);
+    $rondaModelo = new rondaModelo($conexion);
+    $partidosModelo = new partidosModelo($conexion);
+    $competidorModelo = new CompetidorModelo($conexion);
+    $torneo = $torneoModelo->obtenerTorneo($idTorneo);
+    
+
+    //cantidad maxima de competidores
+    if ($torneo->getParticipacion() == 'solo') {
+        $maximo = $torneo->getMaxInscripciones();
+    } else {
+        $maximo = $torneo->getMaxEquipos();
+    }
+    
+
+    //ver si están todos los competidores
+    $cantidad = $competidorModelo->CantidadCompetidores($idTorneo);
+    if ($cantidad['cantidad'] != $maximo) {
+        echo "<script>
+                alert('Todavía no se alcanzó el máximo de competidores.');
+                window.history.back();
+              </script>";
+        exit;
+    }
+
+    //maximo de rondas es logaritmo en base 2 de el maximo de competidores------------------------------------------------------
+    $maxRondas= log($maximo, 2);
+
+    //si ya existe una ronda:--------------------------------------
+    if ($torneoModelo->rondaCreada($idTorneo) == false) {
+
+        //primera ronda
+        $nuevaRonda = new Ronda(null, 1, $idTorneo,$fechaInicio);
+        $rondaModelo->crearRonda($nuevaRonda);
+        $idRonda = $conexion->lastInsertId();
+
+        //obtener competidores
+        $competidores =$competidorModelo->obtenerCompetidoresPorTorneo($idTorneo);
+
+        //crear partidos
+        $numeroPartido = 1;
+        for ($i = 0; $i < count($competidores); $i += 2) {
+
+            $competidor1 = $competidores[$i];
+            $competidor2 = $competidores[$i + 1];
+            $partidosModelo->crearPartido($numeroPartido,$idRonda,$competidor1->getId(),$competidor2->getId());
+            $numeroPartido++;
+        }
+
+
+
+//si ya se jugó la primera ronda:-----------------------------------------------------------------
+    } else {
+        $cantRondas=$rondaModelo->cantidadRondas($idTorneo);
+        if($maxRondas==$cantRondas['cantidad']){
+            echo "<script>
+                    alert('Se alanzó el límite de rondas máximas a generar.');
+                    window.history.back();
+                  </script>";
+            exit;
+        }
+        //si ya se jugó la primera ronda:---------------------------
+        $ultimaRonda = $rondaModelo->obtenerUltimaRonda($idTorneo);
+
+        $pendientes=$rondaModelo->rondaSuizaTerminada($ultimaRonda->getId());
+
+        if ($pendientes['partidosPendientes'] > 0) {
+            echo "<script>
+                    alert('Todavía hay partidos pendientes de la ronda anterior.');
+                    window.history.back();
+                  </script>";
+            exit;
+        }
+
+        //obtener competidores ordenados por los puntos de mayor a menor
+        $competidores = $competidorModelo->ranking($idTorneo);
+
+        $numeroNuevaRonda = $ultimaRonda->getNumero() + 1;
+        $nuevaRonda=new Ronda(null, $numeroNuevaRonda, $idTorneo,$fechaInicio);
+        $rondaModelo->crearRonda($nuevaRonda);
+        $idRonda = $conexion->lastInsertId();
+
+        
+        //crear partidos
+        $numeroPartido = 1;
+        for ($i = 0; $i < count($competidores); $i += 2) {
+            $competidor1 = $competidores[$i];
+            $competidor2 = $competidores[$i + 1];
+            $id1 = $competidor1->getId();
+            $id2 = $competidor2->getId();
+
+            //ver si ya se enfrentaron
+            $dato=$partidosModelo->yaSeEnfrentaron($id1, $id2);
+            if ($dato['cantidad'] > 0) {
+                //cambiar el rival por el siguiente
+                
+                    $competidor2 = $competidores[$i + 2];
+                    $id2 = $competidor2->getId();
+                    //intercambiar competidores
+                    $temporal = $competidores[$i + 1];
+                    $competidores[$i + 1] = $competidores[$i + 2];
+                    $competidores[$i + 2] = $temporal;
+                
+            }
+            $partidosModelo->crearPartido($numeroPartido,$idRonda,$competidor1->getId(),$competidor2->getId());
+            $numeroPartido++;
+        }
+    }
+
+    header("Location: ../vista/TorneoSistemaSuizo.php?id=$idTorneo");
+    exit;
 }
+
+
+
+
+
+
+
+
+
+    function actualizarEmparejamientoSuizo($conexion){
+
+        $idPartido = $_POST['idPartido'];
+        $idTorneo = $_POST['idTorneo'];
+        $ganador = $_POST['ganador'];
+
+        $partidosModelo = new partidosModelo($conexion);
+        $competidorModelo = new CompetidorModelo($conexion);
+
+        //obtyener partido
+        $partido = $partidosModelo->obtenerPartidoPorId($idPartido);
+
+        $competidor1 = $partido->getCompetidor1();
+        $competidor2 = $partido->getCompetidor2();
+
+        if ($ganador == "empate") {
+
+            //si es empete ambos reciben un punto
+            $competidorModelo->sumarPuntos($competidor1, 1);
+            $competidorModelo->sumarPuntos($competidor2, 1);
+
+            $partidosModelo->actualizarResultadoLiga($idPartido,null,1);
+
+        } else {
+            // El ganador recibe 3 puntos
+            $competidorModelo->sumarPuntos($ganador, 3);
+
+            $partidosModelo->actualizarResultadoLiga($idPartido,$ganador,0);
+        }
+
+        header("Location: ../vista/TorneoSistemaSuizo.php?id=$idTorneo");
+        exit;
+    }

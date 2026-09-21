@@ -5,13 +5,15 @@ class Competidor {
     private string $tipo;
     private ?int $idInscripcion;
     private ?int $idEquipo;
+    private int $puntos;
 
-    public function __construct(?int $id,int $idTorneo,string $tipo,?int $idInscripcion,?int $idEquipo){
+    public function __construct(?int $id,int $idTorneo,string $tipo,?int $idInscripcion,?int $idEquipo, int $puntos=0){
         $this->id = $id;
         $this->idTorneo = $idTorneo;
         $this->idInscripcion = $idInscripcion;
         $this->idEquipo = $idEquipo;
         $this->tipo = $tipo;
+        $this->puntos = $puntos;
     }
 
     public function getTipo(): string {
@@ -28,6 +30,10 @@ class Competidor {
     }
     public function getIdInscripcion(): ?int {
         return $this->idInscripcion;
+    }
+
+    public function getPuntos(): int {
+        return $this->puntos;
     }
     
 }

@@ -118,7 +118,8 @@ border-radius: 50%;
 
 .btn {
     border: none;
-    border-radius: 6px;
+    border-radius: 2px;
+    padding: 5px;
     background-color: #e2e800;
     color: #121212;
     font-family: "Roboto", sans-serif;
@@ -174,14 +175,18 @@ border-radius: 50%;
    PARTIDOS
 ========================================== */
 
-.matches {
-    margin-bottom: 25px;
-}
 
 .matches-list {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.match-card{
+    border: 1px solid rgb(83, 82, 82);
+    padding: 10px;
+    box-shadow:  0 0 10px 0 black;
+    background-color: #343434;
 }
 
 .match-row {
@@ -223,6 +228,23 @@ border-radius: 50%;
     margin-top: 2px;
 }
 
+
+
+.match-card__label {
+    font-size: 18px;
+    color: #989fae;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+.match-pendiente {
+    color: #9ca3af;
+    
+}
+.ganadorr{
+    color: rgb(74, 210, 74);
+}
 /* ==========================================
    MEDIA QUERY: TABLET (768px - 1023px)
 ========================================== */

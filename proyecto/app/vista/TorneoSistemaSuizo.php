@@ -1,4 +1,5 @@
 <?php
+
 require_once "../modelo/conexion.php";
 require_once "../modelo/Competidor.php";
 require_once "../modelo/torneoModelo.php";
@@ -7,6 +8,7 @@ require_once "../modelo/partidosModelo.php";
 require_once "../modelo/competidorModelo.php";
 
 $idTorneo = $_GET['id'];
+
 $torneoModelo = new torneoModelo($conexion);
 $rondaModelo = new rondaModelo($conexion);
 $partidosModelo = new partidosModelo($conexion);
@@ -16,8 +18,8 @@ $competidorModelo = new CompetidorModelo($conexion);
 $torneo = $torneoModelo->obtenerTorneo($idTorneo);
 $rondas = $rondaModelo->obtenerRondasPorTorneo($idTorneo);
 $ultimaRonda = $rondaModelo->obtenerUltimaRonda($idTorneo);
-$competidores = $competidorModelo->obtenerCompetidoresPorTorneo($idTorneo);
 
+$competidores = $competidorModelo->obtenerCompetidoresPorTorneo($idTorneo);
 $nombres= [];
 foreach ($competidores as $competidor) {
     if ($torneo->getParticipacion() == 'solo') {
@@ -30,6 +32,7 @@ foreach ($competidores as $competidor) {
 //guardar en el array nombres con la clave como id del competidor, con su valor que sea el nombre de ese id
     $nombres[$competidor->getId()] = $res['NOMBRE'];
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -41,10 +44,10 @@ foreach ($competidores as $competidor) {
     <link rel="stylesheet" href="../../html/fonts/fonts.css">
     <link rel="stylesheet" href="../../html/images">
     <link rel="stylesheet" href="../../html/CSS/headerYfooter.css">
-    <title>Torneo - Módulo de liga - GGchamp</title>
+    <title>Torneo - Sistema suizo - GGchamp</title>
 </head>
 
-<body>
+<body>  
 
     <!-- HEADER -->
     <?php include 'headerAdmin.php'; ?>
@@ -54,10 +57,11 @@ foreach ($competidores as $competidor) {
         <?php if ($_SESSION['id']==$torneo->getIdOrganizador()) { ?>
             <a href="PanelOrganizador.php?id=<?php echo $idTorneo; ?>" class="btn btn--volver" >Volver</a>
         <?php } ?>
+
         <!-- Encabezado del torneo -->
         <section class="tournament-header">
-            <h1 class="title">Torneo</h1>
-            <p class="subtitle">Módulo de liga</p>
+            <h1 class="title"><?php echo $torneo->getNombre(); ?></h1>
+            <p class="subtitle">Sistema Suizo</p>
         </section>
 
         <section class="tournament-header">
@@ -67,25 +71,11 @@ foreach ($competidores as $competidor) {
             <p class="subtitle">Empate:  1 puntos</p>
         </section>
 
-        <!-- Partidos de la jornada -->
-        <?php foreach ($rondas as $ronda){ ?>
+    <?php foreach ($rondas as $ronda){ ?>
 
     <section class="matches">
 
-        <h2 class="section-title">PARTIDOS - JORNADA <?php echo $ronda->getNumero(); ?></h2>
-        <?php if ($_SESSION['id']==$torneo->getIdOrganizador()) { ?>
-            <p>ingrese una fecha de inicio de la ronda</p>
-            <form action="../controlador/rondaController.php" method="post" >
-                <input type="hidden" name="action" value="fechaLiga">
-                <input type="hidden" name="idRonda" value="<?php echo $ronda->getId() ?>">
-                <input type="datetime-local" name="fecha" required>
-                <button type="submit">
-                    ENVIAR
-                </button>
-            </form>
-        <?php } ?>
-        
-        <br><br>
+        <h2 class="section-title">PARTIDOS - RONDA <?php echo $ronda->getNumero(); ?></h2>
         <p>fecha de inicio:<?php echo $ronda->getFechaInicio() ?></p>
         <br>
         <div class="matches-list">
@@ -159,19 +149,16 @@ foreach ($competidores as $competidor) {
             <?php } ?>
 
         </div>
-        <br>
+<br>
 <br>
 <hr>
 <br>
 <br>
-
-
     </section>
 
 <?php } ?>
-
-
-
+<br>
+<br>
         <!-- Ver ranking -->
         <a href="rankings.php?id=<?php echo $idTorneo ?>" class="link"><button class="btn btn--ranking" type="button">Ver ranking</button></a>
 

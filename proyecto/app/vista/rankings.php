@@ -1,3 +1,27 @@
+<?php
+require_once "../modelo/conexion.php";
+require_once "../modelo/Competidor.php";
+require_once "../modelo/torneoModelo.php";
+require_once "../modelo/rondaModelo.php";
+require_once "../modelo/partidosModelo.php";
+require_once "../modelo/competidorModelo.php";
+
+$idTorneo = $_GET['id'];
+$torneoModelo = new torneoModelo($conexion);
+$rondaModelo = new rondaModelo($conexion);
+$partidosModelo = new partidosModelo($conexion);
+$competidorModelo = new CompetidorModelo($conexion);
+
+
+$torneo = $torneoModelo->obtenerTorneo($idTorneo);
+$rondas = $rondaModelo->obtenerRondasPorTorneo($idTorneo);
+
+$competidores = $competidorModelo->obtenerCompetidoresPorTorneo($idTorneo);
+
+$rankings=$competidorModelo->ranking($idTorneo);
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -23,15 +47,8 @@
 
         <!-- Nombre del torneo -->
         <div class="tournament">
-            <p class="tournament__name">Nombre torneo</p>
+            <p class="tournament__name"><?php echo $torneo->getNombre(); ?></p>
         </div>
-
-        <!-- Selector de participantes o equipos -->
-        <div class="ranking-selector">
-            <button class="ranking-selector__item active" type="button">Participantes</button>
-            <button class="ranking-selector__item" type="button">Equipos</button>
-        </div>
-
         <!-- Ranking -->
         <section class="ranking">
 
@@ -64,55 +81,26 @@
                 <div class="table__row table__row--header">
                     <span class="table__position">#</span>
                     <span class="table__name">Participante</span>
-                    <span class="table__stat">W</span>
-                    <span class="table__stat">L</span>
+                    
                     <span class="table__points">PTS</span>
                 </div>
+                <?php foreach($rankings as $ranking){ ?>
+                    <?php
+                        if ($torneo->getParticipacion() == 'solo') {
+                            $res = $competidorModelo->obtenerNombreCompetidorSOLO($ranking->getId());
+                        } else {
+                            $res = $competidorModelo->obtenerNombreCompetidorEQUIPO($ranking->getId());
+                        }
+                    ?>
+                    <div class="table__row">
+                    <span class="table__position"><?php echo $ranking->getId(); ?></span>
 
-                <!-- Participante 1 -->
-                <div class="table__row">
-                    <span class="table__position">1</span>
-                    <span class="table__name">Nombre</span>
-                    <span class="table__stat wins">8</span>
-                    <span class="table__stat">1</span>
-                    <span class="table__points">2000</span>
-                </div>
+                    <span class="table  __name"><?php echo $res['NOMBRE']; ?></span>
+                    <span class="table__points"><?php echo $ranking->getPuntos(); ?></span>
+                    </div>
 
-                <!-- Participante 2 -->
-                <div class="table__row">
-                    <span class="table__position">2</span>
-                    <span class="table__name">Nombre</span>
-                    <span class="table__stat wins">8</span>
-                    <span class="table__stat">2</span>
-                    <span class="table__points">1900</span>
-                </div>
-
-                <!-- Participante 3 -->
-                <div class="table__row">
-                    <span class="table__position">3</span>
-                    <span class="table__name">Nombre</span>
-                    <span class="table__stat wins">7</span>
-                    <span class="table__stat">4</span>
-                    <span class="table__points">1700</span>
-                </div>
-
-                <!-- Participante 4 -->
-                <div class="table__row">
-                    <span class="table__position">4</span>
-                    <span class="table__name">Nombre</span>
-                    <span class="table__stat wins">5</span>
-                    <span class="table__stat">5</span>
-                    <span class="table__points">1600</span>
-                </div>
-
-                <!-- Participante 5 -->
-                <div class="table__row">
-                    <span class="table__position">5</span>
-                    <span class="table__name">Nombre</span>
-                    <span class="table__stat wins">5</span>
-                    <span class="table__stat">6</span>
-                    <span class="table__points">1550</span>
-                </div>
+                <?php } ?>                         
+                
 
             </div>
 

@@ -39,6 +39,17 @@ if ($action == 'alta') {
 if($action== 'verificar2p'){
     verificar($conexion);
 }
+if ($action == 'intentosMaximos') {
+    actualizarIntentosMaximos($conexion);
+}
+
+if ($action == 'tiempoBloqueo') {
+    actualizarTiempoBloqueo($conexion);
+}
+
+if ($action == 'tiempoExpiracion') {
+    actualizarTiempoExpiracion($conexion);
+}
 
 function registerUser($conexion) {
 
@@ -108,7 +119,11 @@ function validatePassword($password) {
 }
 
 function registerUserAdmin($conexion) {
-
+    session_start();
+    if ($_SESSION['rol'] !== 'administrador') {
+        echo "No cuenta con privilegios de administrador.";
+        return;
+    }
     $name = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -162,6 +177,11 @@ function loginUser($conexion) {
     $usuarioModelo = new UsuarioModelo($conexion);
     $dobleFactorModelo = new DobleModelo($conexion);
 
+
+    $maxIntentos = $usuarioModelo->obtenerConfiguracion('MaxIntentos');
+    $tiempoBloqueo = $usuarioModelo->obtenerConfiguracion('BloqueoHasta');
+    $expiracion2FA = $usuarioModelo->obtenerConfiguracion('Expiracion2fa');
+
     $usuario = $usuarioModelo->BuscarUsuarioPorEmail($email);
 
     if ($usuario == false) {
@@ -192,8 +212,8 @@ function loginUser($conexion) {
         //aumentar intentos para bloquear por muchos intentos
         $usuarioModelo->aumentarIntentosLogin($usuario->getId());
         //comprobar si ya alcanzó los intentos máximos
-        if ($usuario->getIntentosLogin()==3) {
-            $bloqueoHasta = date('Y-m-d H:i:s', time() + 15);
+        if ($usuario->getIntentosLogin()>=$maxIntentos['VALOR']) {
+            $bloqueoHasta = date('Y-m-d H:i:s', time() + $tiempoBloqueo['VALOR']);
             $usuarioModelo->bloquearUsuario($usuario->getId(),$bloqueoHasta);
         }
         echo "<script>
@@ -213,7 +233,7 @@ function loginUser($conexion) {
 
     //expira en 5 minutos
     //time es este momendo, y con date se guarda de una forma que se pueda pasar a la bdd
-    $expiracion = date('Y-m-d H:i:s', time()+300);
+    $expiracion = date('Y-m-d H:i:s', time()+$expiracion2FA['VALOR']);
 
     $dobleFactor = new DobleFactor(null,$usuario->getId(),$codigoHash,$expiracion,0);
 
@@ -221,6 +241,8 @@ function loginUser($conexion) {
     $dobleFactorExistente =$dobleFactorModelo->buscarPorUsuario($usuario->getId());
 
     if ($dobleFactorExistente) {
+        //si el usuario vuelve al login teniendo el doble factor
+        //  anterior activo se reemplaza para no tener acumulaciones
         $dobleFactorModelo->reemplazarDobleFactor($dobleFactor);
     } else {
         $dobleFactorModelo->crearDobleFactor($dobleFactor);
@@ -260,6 +282,8 @@ function verificar($conexion) {
 
     $dobleFactor =$dobleFactorModelo->buscarPorUsuario($idUsuario);
 
+    $usuarioModelo = new UsuarioModelo($conexion);
+    $maxIntentos = $usuarioModelo->obtenerConfiguracion('MaxIntentos');
     if ($dobleFactor == false) {
         echo "<script>
                 alert('no hay una verificacion');
@@ -285,7 +309,7 @@ function verificar($conexion) {
     }
 
     // Comprobar intentos
-    if ($dobleFactor->getIntentos() >= 5) {
+    if ($dobleFactor->getIntentos() >= $maxIntentos['VALOR']) {
         $dobleFactorModelo->eliminarDobleFactor($dobleFactor->getId());
         //eliminar esa session
         unset($_SESSION['usuario2p']);
@@ -355,7 +379,7 @@ function verificar($conexion) {
 function editUser($conexion) {
     session_start();
     if ($_SESSION['rol'] !== 'administrador') {
-        echo "no sos admin";
+        echo "No tenés permisos de administrador.";
         return;
     }
     $id = $_POST['id'];
@@ -397,7 +421,7 @@ function deleteUser($conexion) {
     
     session_start();
     if ($_SESSION['rol'] !== 'administrador') {
-        echo "no sos admin";
+        echo "No tenés permisos de administrador.";
         return;
     }
     $id = $_POST['idUsuario'];
@@ -541,4 +565,40 @@ function editPassword($conexion) {
                     window.history.back(); </script>";
         exit;
     }
+}
+
+
+function actualizarIntentosMaximos($conexion) {
+
+    $valor = $_POST['valor'];
+
+    $usuarioModelo = new UsuarioModelo($conexion);
+
+    $usuarioModelo->actualizarConfiguracion('MaxIntentos',$valor);
+    header("Location: ../vista/configuracionGeneral.php");
+    exit;
+}
+
+
+function actualizarTiempoBloqueo($conexion) {
+
+    $valor = $_POST['valor'];
+
+    $usuarioModelo = new UsuarioModelo($conexion);
+
+    $usuarioModelo->actualizarConfiguracion('BloqueoHasta',$valor);
+    header("Location: ../vista/configuracionGeneral.php");
+    exit;
+}
+
+
+function actualizarTiempoExpiracion($conexion) {
+
+    $valor = $_POST['valor'];
+
+    $usuarioModelo = new UsuarioModelo($conexion);
+
+    $usuarioModelo->actualizarConfiguracion('Expiracion2fa',$valor);
+    header("Location: ../vista/configuracionGeneral.php");
+    exit;
 }

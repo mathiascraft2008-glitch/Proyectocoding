@@ -23,7 +23,7 @@ class torneoModelo{
         $stmt->bindValue(':maxEquipos', $torneo->getMaxEquipos());
         return $stmt->execute();
     }
-
+    
 
   
 
@@ -123,7 +123,7 @@ function obtenerTorneo($id){
 }
 
 function obtenerTorneosParticipante($idUsuario) {
-    $sql = "SELECT * FROM torneo
+    $sql = "SELECT torneo.* FROM torneo
             JOIN inscripcion ON inscripcion.IDTORNEO = torneo.ID WHERE inscripcion.IDPARTICIPANTE = :id";
     $stmt = $this->conexion->prepare($sql);
     $stmt->bindParam(':id', $idUsuario);
@@ -203,7 +203,8 @@ function rondaCreada($idTorneo){
     if ($datos['cantidad'] > 0) {
         return true;
     } else {
-        return false;//la ronda no se creo todavia
+        //si la ronda no se creo todavia es false
+        return false;
     }
 
 } 

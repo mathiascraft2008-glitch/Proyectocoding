@@ -52,6 +52,12 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
                     <img src="../../html/images/usuarios.svg" class="detail__icon" alt="">
                     <p>Máximo inscripciones - <?php echo $torneo->getMaxInscripciones() ?></p>
                 </div>
+                <?php if($torneo->getParticipacion()=='equipo'){ ?>
+                <div class="tournament__detail">
+                    <img src="../../html/images/usuarios.svg" class="detail__icon" alt="">
+                    <p>Máximo Equipos - <?php echo $torneo->getMaxEquipos() ?></p>
+                </div>
+                <?php } ?>
 
             </div>
 
@@ -75,6 +81,10 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
                 <form action="../controlador/torneoController.php" method="post">
                     <input type="hidden" name="action" value="generarRonda">
                     <input type="hidden" name="idTorneo" value="<?php echo $idTorneo; ?>">
+                    <label for="fechaInicio">Fecha y hora de inicio de la ronda:</label>
+
+                    <input type="datetime-local" name="fechaInicio" id="fechaInicio" required>
+                    
                     <button class="quick-actions__item" type="submit">
                         <span class="quick-actions__icon"></span>
                         GENERAR NUEVA RONDA
@@ -82,14 +92,26 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
                 </form>
             <?php }elseif ($torneo->getFormato()=='liga'){ ?>
             <form action="../controlador/torneoController.php" method="post">
-                    <input type="hidden" name="action" value="generarRondaLiga">
+                    <input type="hidden" name="action" value="generarLiga">
                     <input type="hidden" name="idTorneo" value="<?php echo $idTorneo; ?>">
                     <button class="quick-actions__item" type="submit">
                         <span class="quick-actions__icon"></span>
-                        GENERAR NUEVA RONDA
+                        GENERAR NUEVA LIGA
                     </button>
                 </form>
-            <?php }else{ ?>
+            <?php }elseif($torneo->getFormato()=='suizo'){ ?>
+            <form action="../controlador/torneoController.php" method="post">
+                    <input type="hidden" name="action" value="generarSuizo">
+                    <input type="hidden" name="idTorneo" value="<?php echo $idTorneo; ?>">
+                    <label for="fechaInicio">Fecha y hora de inicio de la ronda:</label>
+
+                    <input type="datetime-local" name="fechaInicio" id="fechaInicio" required>
+                    
+                    <button class="quick-actions__item" type="submit">
+                        <span class="quick-actions__icon"></span>
+                        GENERAR NUEVA RONDA DEL TORNEO SUIZO
+                    </button>
+                </form>
             <?php } ?>
 
         </section>
@@ -126,7 +148,15 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
                 </span>
                 <span class="tools__arrow">→</span>
             </a>
-            <?php }else{ ?>
+            <?php }elseif ($torneo->getFormato()=='suizo'){ ?>
+            <a href="TorneoSistemaSuizo.php?id=<?php echo $idTorneo; ?>" class="tools__item">
+                <span class="tools__icon"></span>
+                <span class="tools__text">
+                    <strong>Rondas / Emparejamientos</strong>
+                    <span>Publicar rondas y editar emparejamientos</span>
+                </span>
+                <span class="tools__arrow">→</span>
+            </a>
             <?php } ?>
 
             <a href="crearGrupo.php?id=<?php echo $idTorneo; ?>" class="tools__item">

@@ -22,7 +22,8 @@ class PartidosModelo {
                 $dato['IDRONDA'],
                 $dato['IDCOMPETIDOR_1'],
                 $dato['IDCOMPETIDOR_2'],
-                $dato['IDGANADOR']
+                $dato['IDGANADOR'],
+                $dato['EMPATE']
             );
         }
 
@@ -55,7 +56,8 @@ class PartidosModelo {
                 $dato['IDRONDA'],
                 $dato['IDCOMPETIDOR_1'],
                 $dato['IDCOMPETIDOR_2'],
-                $dato['IDGANADOR']
+                $dato['IDGANADOR'],
+                $dato['EMPATE']
             );
         } else {
             return null;
@@ -74,7 +76,7 @@ class PartidosModelo {
     return $datos['cantidad'];
 }
 
-//para cada vez que edite un enfrentamiento en emparejamientos.php
+//para cada vez que edite un enfrentamiento en emparejamientos.php para eliminacion directa
 function actualizarEmparejamiento($idPartido, $competidor1, $competidor2, $ganador) {
     $sql = "UPDATE partido SET IDCOMPETIDOR_1 = :competidor1, IDCOMPETIDOR_2 = :competidor2, IDGANADOR = :ganador WHERE ID = :idPartido";
 
@@ -85,6 +87,20 @@ function actualizarEmparejamiento($idPartido, $competidor1, $competidor2, $ganad
     $stmt->bindValue(':idPartido', $idPartido);
     return $stmt->execute();
 }
+
+//para cada vez que edite un enfrentamiento en emparejamientos.php para liga
+function actualizarResultadoLiga($idPartido, $ganador, $empate) {
+    $sql = "UPDATE partido SET IDGANADOR = :ganador, EMPATE = :empate WHERE ID = :idPartido";
+
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bindValue(':ganador', $ganador);
+    $stmt->bindValue(':empate', $empate);
+    $stmt->bindValue(':idPartido', $idPartido);
+    return $stmt->execute();
+}
+
+
+
 
 //ver la cantidad de partidos, sin ser este, que tienen al mismo competidor que estas eligiendp
 function competidorEstaEnOtraPartido($idRonda, $idPartido, $idCompetidor) {
@@ -110,6 +126,21 @@ function obtenerGanadoresPorRonda($idRonda) {
 }
 
 
+
+//ver si dos competidores ya se enfrentaron en alguna ronda anterior del torneo (para el sistema suizo)
+function yaSeEnfrentaron($idCompetidor1, $idCompetidor2) {
+    $sql = "SELECT COUNT(*) AS cantidad FROM partido
+            where (IDCOMPETIDOR_1 = :c1 AND IDCOMPETIDOR_2 = :c2)
+            OR (IDCOMPETIDOR_1 = :c2 AND IDCOMPETIDOR_2 = :c1)";
+
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bindValue(':c1', $idCompetidor1);
+    $stmt->bindValue(':c2', $idCompetidor2);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+
+    
+}
 
 }
 ?>
