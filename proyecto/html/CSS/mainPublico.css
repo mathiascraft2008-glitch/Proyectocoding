@@ -28,10 +28,14 @@ body {
 }
 
 .section-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #d9d7d7;
+    margin-bottom: 12px;
+    margin-top: 25px;
+    background-color: #3f4448;
+    padding: 10px;
+    
 }
 
 .highlight {
@@ -64,6 +68,10 @@ body {
     padding: 0 20px;
     margin-top: 10px;
 }
+.btn--primary {
+    padding: 6px;
+}
+
 
 /* ==========================================
    HERO
@@ -115,6 +123,28 @@ body {
 
 .featured {
     margin-bottom: 40px;
+}
+
+.tournament-row {
+    background-color: #3f4448;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-direction: column;
+    width: 400px;
+    margin: auto;
+}
+
+
+.btn-ver{
+    display: flex;
+    padding: 10px;
+    align-items:center;
+    justify-content: center;
+
 }
 
 .tournament-card {

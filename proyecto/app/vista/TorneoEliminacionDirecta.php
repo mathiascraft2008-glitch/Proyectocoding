@@ -52,7 +52,7 @@ foreach ($competidores as $competidor) {
 
     <!-- Main -->
     <main class="main-content">
-        <?php if ($_SESSION['id']==$torneo->getIdOrganizador()) { ?>
+        <?php if (isset($_SESSION['id']) && $_SESSION['id']==$torneo->getIdOrganizador()) { ?>
             <a href="PanelOrganizador.php?id=<?php echo $idTorneo; ?>" class="btn btn--volver" >Volver</a>
         <?php } ?>
         <!-- Encabezado del torneo -->
@@ -107,7 +107,7 @@ foreach ($competidores as $competidor) {
                             </div>
                             <br>
                             <div class="match-card__row">
-                                <?php if ($ronda->getId() == $ultimaRonda->getId() && $_SESSION['id']==$torneo->getIdOrganizador()) { ?>
+                                <?php if ($ronda->getId() == $ultimaRonda->getId() && isset($_SESSION['id']) && $_SESSION['id']==$torneo->getIdOrganizador()) { ?>
                                 <a href="emparejamientos.php?partido=<?php echo $partido->getId() ?>&torneo=<?php echo $idTorneo ?>" class="btn">Editar</a>
                                 <?php } ?>
                             </div>

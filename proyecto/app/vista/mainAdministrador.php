@@ -61,7 +61,7 @@ $cantTorneos = $reporteModelo->cantidadTorneosTotales();
 
         <!-- Mis torneos (organizador) -->
         <section class="organize">
-            <h2 class="section-title">Mis torneos (organizador)</h2>
+            <h2 class="section-title">Mis torneos</h2>
 
             <?php foreach ($torneosCreados as $torneo) { ?>
 

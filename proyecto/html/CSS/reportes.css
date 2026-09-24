@@ -9,7 +9,7 @@ background-color: #2b2e30;
 color: #ffffff;
 font-family: "Roboto";
 min-height: 100vh;
-display: flex;
+display: flex; 
 flex-direction: column;
 overflow-x: hidden;
 }
@@ -122,7 +122,7 @@ margin-bottom: 4px;
 }
 
 .report-card__id {
-font-size: 900px;
+font-size: 40px;
 color: white;
 
 }
@@ -293,7 +293,7 @@ PC
 }
 
 .report-card__id {
-    font-size: 15px;
+    font-size: 40px;
 }
 
 .report-card__body {

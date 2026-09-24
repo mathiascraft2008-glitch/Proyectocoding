@@ -6,6 +6,9 @@ require_once "../modelo/Registro.php";
 require_once "../modelo/registroModelo.php";
 require_once "../modelo/2pModelo.php";
 require_once "../modelo/2p.php";
+
+require_once "../modelo/enviarCorreo.php";
+
 $action = $_POST['action'];
 
 if ($action == 'register') {
@@ -252,10 +255,19 @@ function loginUser($conexion) {
     session_start();
 
     $_SESSION['usuario2p'] = $usuario->getId();
-    $_SESSION['codigoPrueba'] = $codigo;
-    //luego enviar $codigo al correo
     
-    header("Location: ../vista/verificacion2P.php");
+    //enviar $codigo por correo
+
+    $enviado = enviarCorreo($usuario->getMail(),'Código de verificación GGchamp','Tu código de verificación es: ' . $codigo);
+
+    if (!$enviado) {
+        echo "<script>
+                alert('No se pudo enviar el código de verificacion');
+                window.history.back();
+            </script>";
+        exit;
+    }
+    header("Location: ../vista/Verificacion2P.php");
     exit;
 }
 
@@ -348,7 +360,7 @@ function verificar($conexion) {
 
     // esta variable ya no sirve
     unset($_SESSION['usuario2p']);
-    unset($_SESSION['codigoPrueba']);
+
     $registroModelo = new RegistroModelo($conexion);
     if ($usuario->getRol() == 'administrador'){
         $registro=new Registro(null,"Inició sesión como administrador",$_SESSION['id'],null);

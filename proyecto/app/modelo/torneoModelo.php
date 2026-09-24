@@ -210,6 +210,36 @@ function rondaCreada($idTorneo){
 } 
 
 
+function obtenerTorneosPublico(){
+    $sql = "SELECT * FROM torneo ORDER BY FECHA DESC limit 5";
+
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->execute();
+
+    $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $torneos = [];
+
+    foreach ($datos as $dato) {
+        $torneos[] = new Torneo(
+            $dato['ID'],
+            $dato['IDORGANIZADOR'],
+            $dato['NOMBRE'],
+            $dato['FECHA'],
+            $dato['FORMATO'],
+            $dato['DISCIPLINA'],
+            $dato['LUGAR'],
+            $dato['PARTICIPACION'],
+            $dato['CONTRASENA'],
+            $dato['MAXINSCRIPCIONES'],
+            $dato['MAXEQUIPOS']
+        );
+    }
+
+    return $torneos;
+}
+
+
 
 
 

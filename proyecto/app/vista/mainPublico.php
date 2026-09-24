@@ -1,6 +1,19 @@
-<!DOCTYPE html>
-<html lang="es">
 
+<?php
+
+require_once "../modelo/conexion.php";
+require_once "../modelo/torneoModelo.php";
+require_once "../modelo/inscripcionModelo.php";
+require_once "../modelo/reporteModelo.php";
+
+$torneoModelo = new torneoModelo($conexion);
+
+$torneos = $torneoModelo->obtenerTorneosPublico();
+
+
+
+?><!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,37 +51,40 @@
         </section>
 
         <!-- Torneos destacados -->
-        <section class="featured">
+        <!-- Torneos en los que participo -->
+        <section class="participate">
+            <h2 class="section-title">Próximos torneos</h2>
+<br>
+                <?php foreach ($torneos as $torneo) { ?>
 
-            <h2 class="section-title">Torneos destacados</h2>
+                    <div class="tournament-row">
+                        <h3>
+                            Nombre: <?php echo $torneo->getNombre(); ?>
+                        </h3>
 
-            <div class="tournament-card">
+                        <p>
+                            Fecha: <?php echo $torneo->getFecha(); ?>
+                        </p>
 
-                <div class="tournament__image">
-                    <div class="image__placeholder"></div>
-                </div>
 
-                <div class="tournament__info">
-
-                    <h3 class="tournament__name">Nombre Torneo - Fútbol 5</h3>
-                    <p class="tournament__format">Torneo Suizo Individual</p>
-
-                    <div class="tournament__detail">
-                        <img src="../../html/images/reloj.svg" class="detail__icon" alt="">
-                        <p>Fecha inicio / fecha final</p>
+                        <?php if($torneo->getFormato()=='suizo'){ ?>
+                            <a href="TorneoSistemaSuizo.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
+                                Ver torneo
+                            </a>
+                        <?php }elseif($torneo->getFormato()=='liga'){ ?>
+                            <a href="TorneoModuloLiga.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
+                                Ver torneo
+                            </a>
+                        <?php }else{ ?>
+                            <a href="TorneoEliminacionDirecta.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
+                                Ver torneo
+                            </a>
+                        <?php } ?>
+                        
                     </div>
-
-                    <div class="tournament__detail">
-                        <img src="../../html/images/usuarios.svg" class="detail__icon" alt="">
-                        <p>10 equipos</p>
-                    </div>
-
-                    <a href="register.html" class="link"><button class="btn btn--primary btn--small" type="button">Ver</button></a>
-
-                </div>
-
-            </div>
-
+                    <br>
+<br>
+                <?php } ?>
         </section>
 
         <!-- Qué es GGchamp -->

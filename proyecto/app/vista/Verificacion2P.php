@@ -11,8 +11,6 @@
     <?php
 session_start();
 ?>
-
-<p>Código de prueba: <?php echo $_SESSION['codigoPrueba']; ?></p>
     <main>
         <div class="main">
             <div class="image">
