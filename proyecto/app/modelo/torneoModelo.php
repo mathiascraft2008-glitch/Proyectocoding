@@ -29,7 +29,11 @@ class torneoModelo{
 
 function obtenerTorneosCreados($idUsuario) {
 
-    $sql = "SELECT * FROM torneo WHERE IDORGANIZADOR = :id ORDER BY FECHA DESC";
+    $sql = "SELECT * FROM torneo WHERE IDORGANIZADOR = :id AND ID NOT IN (
+            SELECT IDTORNEO
+            FROM torneoOculto
+            WHERE IDUSUARIO = :id
+        ) ORDER BY FECHA DESC";
 
     $stmt = $this->conexion->prepare($sql);
     $stmt->bindParam(':id', $idUsuario);
@@ -124,7 +128,12 @@ function obtenerTorneo($id){
 
 function obtenerTorneosParticipante($idUsuario) {
     $sql = "SELECT torneo.* FROM torneo
-            JOIN inscripcion ON inscripcion.IDTORNEO = torneo.ID WHERE inscripcion.IDPARTICIPANTE = :id";
+            JOIN inscripcion ON inscripcion.IDTORNEO = torneo.ID WHERE inscripcion.IDPARTICIPANTE = :id
+            AND torneo.ID NOT IN (
+            SELECT IDTORNEO
+            FROM torneoOculto
+            WHERE IDUSUARIO = :id
+            )";
     $stmt = $this->conexion->prepare($sql);
     $stmt->bindParam(':id', $idUsuario);
     $stmt->execute();
@@ -237,6 +246,18 @@ function obtenerTorneosPublico(){
     }
 
     return $torneos;
+}
+
+
+function ocultar($idU, $idT){
+    $sql = "INSERT INTO torneoOculto (IDUSUARIO, IDTORNEO)
+        VALUES (:idU, :idT)";
+        $stmt = $this->conexion->prepare($sql);
+
+        $stmt->bindValue(':idU', $idU);
+        $stmt->bindValue(':idT', $idT);
+
+        return $stmt->execute();
 }
 
 

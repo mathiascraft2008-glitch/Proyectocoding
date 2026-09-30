@@ -21,9 +21,7 @@ if ($rolSesion == 'administrador'){
         <button class="menu">☰</button>
 
         <a href="<?php echo $rol ?>" class="link-logo">
-            <p class="logotipo">
-                <span class="logotipo--GG">GG</span>champ
-            </p>
+            <p class="logotipo"><span class="logotipo--GG">GG</span>champ</p>
         </a>
 
         <div class="header__nav">

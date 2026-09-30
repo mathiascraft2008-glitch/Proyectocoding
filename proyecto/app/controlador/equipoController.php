@@ -9,6 +9,7 @@ require_once "../modelo/registroModelo.php";
 require_once "../modelo/Competidor.php";
 require_once "../modelo/competidorModelo.php";
 require_once "../modelo/torneoModelo.php";
+require_once "../modelo/rondaModelo.php";
 $action = $_POST['action'];
 
 if ($action == 'crearGrupo') {
@@ -31,7 +32,15 @@ function crear($conexion){
     $equipoModelo=new equipoModelo($conexion);
     $equipo=new Equipo(null,$name,$idTorneo);
     $torneoModelo = new torneoModelo($conexion);
+    $competidorModelo = new CompetidorModelo($conexion);
     $torneo = $torneoModelo->obtenerTorneo($idTorneo);
+    $cant=$competidorModelo->CantidadCompetidores($idTorneo);
+    if($torneo->getMaxEquipos()==$cant['cantidad']){
+        echo "<script> alert('Se alcanzó la cantidad máxima de equipos en el torneo.');
+                    window.history.back(); </script>";
+        exit;
+    }
+
     $resultado=$equipoModelo->crearEquipo($equipo);
     
     if ($resultado) {
@@ -40,8 +49,7 @@ function crear($conexion){
 
             $idEquipo = $equipoModelo->obtenerEquipoPorIdTorneoYnombre($idTorneo,$name);
             $competidor = new Competidor(null,$idTorneo,'equipo',null,$idEquipo->getId());
-            
-            $competidorModelo = new CompetidorModelo($conexion);
+
             $competidorModelo->NewCompetidorEquipo($competidor);
         }
 
@@ -92,6 +100,15 @@ function eliminarEquipo($conexion){
     $idE=$_POST['idE'];
     $idTorneo=$_POST['idT'];
     $equipoModelo=new equipoModelo($conexion);
+    $rondaModelo=new rondaModelo($conexion);
+    $cantidadRondas = $rondaModelo->cantidadRondas($idTorneo);
+    if ($cantidadRondas > 0) {
+        echo "<script>
+                alert('No se puede eliminar el equipo porque el torneo ya comenzó.');
+                window.history.back();
+              </script>";
+        exit;
+    }
     $resultado=$equipoModelo->eliminarEquipo($idE);
     if ($resultado) {
         header("Location: ../vista/PanelOrganizador.php?id=$idTorneo"); exit;

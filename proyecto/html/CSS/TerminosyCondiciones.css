@@ -1,0 +1,242 @@
+body{
+    margin: 0;
+    background-color: #262A2B;
+    font-family: "Roboto";
+}
+
+/* ==========================================
+    MAIN
+========================================== */
+
+.title{
+    margin-top: 8vh;
+    text-align: center;
+    font-family: "Orbitron";
+    font-weight: 400;
+    padding-top: 10px;
+    color: #FFF;
+}
+.subtitle{
+    text-align: center;
+    font-family: "Orbitron";
+    font-weight: 400;
+    padding-top: 10px;
+    color: #D6D6D6;
+
+    font-size: 1.25em;
+}
+.text{
+    text-align: left;
+    line-height: 1.4em;
+    word-break: pretty;
+    white-space: pre-wrap;
+    font-family: "Roboto";
+    font-weight: 400;
+    color: #D6D6D6;
+    padding: 0;
+    margin: 10px 20px;
+}
+
+.text-subtitle{
+    font-size: 1.25em;
+    color: #FFF;
+    font-family: "Orbitron";
+    font-weight: 400;
+    position: relative;
+    left: 3vw;
+    margin: 0;
+}
+.link{
+    font-family: "Roboto";
+    font-weight: 400;
+    text-decoration: none;
+    color: #E2E800;
+}
+.background_form{
+    overflow-x: hidden;
+    margin-top: 10vh;
+    background-color: #444;
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    border-radius: 15px;
+    Align-items: left;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+
+
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .main-content {
+        max-width: 700px;
+        padding: 30px 20px;
+    }
+
+    .hero {
+        padding: 40px 30px;
+    }
+
+    .hero__logo {
+        font-size: 42px;
+    }
+
+    .hero__tagline {
+        font-size: 17px;
+    }
+
+    .hero__subtitle {
+        font-size: 14px;
+    }
+
+    .highlight-banner {
+        padding: 18px 20px;
+    }
+
+    .highlight-banner__text {
+        font-size: 17px;
+    }
+
+    .feature {
+        flex-direction: row;
+        align-items: center;
+        padding: 25px;
+        gap: 25px;
+    }
+
+    .feature--reverse {
+        flex-direction: row-reverse;
+    }
+
+    .feature__heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        flex-shrink: 0;
+        width: 90px;
+    }
+
+    .feature--reverse .feature__heading {
+        align-items: flex-end;
+        justify-content: flex-start;
+    }
+
+    .feature__number {
+        font-size: 30px;
+    }
+
+    .feature__text {
+        flex: 1;
+        font-size: 14px;
+    }
+
+    .feature--reverse .feature__text {
+        text-align: left;
+    }
+
+    .feature__image {
+        width: 120px;
+        height: 90px;
+        align-self: center;
+    }
+
+    .feature--reverse .feature__image {
+        align-self: center;
+    }
+}
+
+/* ==========================================
+   MEDIA QUERY: DESKTOP (1024px o superior)
+========================================== */
+
+@media screen and (min-width: 1024px) {
+
+    .main-content {
+        max-width: 900px;
+        padding: 40px 20px;
+    }
+
+    .hero {
+        padding: 50px 40px;
+        margin-bottom: 40px;
+    }
+
+    .hero__logo {
+        font-size: 52px;
+    }
+
+    .hero__tagline {
+        font-size: 20px;
+    }
+
+    .hero__subtitle {
+        font-size: 16px;
+    }
+
+    .highlight-banner {
+        padding: 22px 25px;
+        margin-bottom: 45px;
+    }
+
+    .highlight-banner__text {
+        font-size: 20px;
+    }
+
+    .features {
+        gap: 25px;
+    }
+
+    .feature {
+        flex-direction: row;
+        align-items: center;
+        padding: 30px 40px;
+        gap: 35px;
+    }
+
+    .feature--reverse {
+        flex-direction: row-reverse;
+    }
+
+    .feature__heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        flex-shrink: 0;
+        width: 110px;
+    }
+
+    .feature--reverse .feature__heading {
+        align-items: flex-end;
+    }
+
+    .feature__number {
+        font-size: 36px;
+    }
+
+    .feature__title {
+        font-size: 16px;
+    }
+
+    .feature__text {
+        flex: 1;
+        font-size: 15px;
+    }
+
+    .feature--reverse .feature__text {
+        text-align: left;
+    }
+
+    .feature__image {
+        width: 150px;
+        height: 110px;
+        align-self: center;
+        font-size: 13px;
+    }
+
+    .feature--reverse .feature__image {
+        align-self: center;
+    }
+
+}

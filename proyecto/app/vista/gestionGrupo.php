@@ -32,6 +32,15 @@ $equipos=$equipoModelo->obtenerEquipos($idTorneo);
 
     <!-- Main -->
     <main>
+        <fieldset style="padding: 5px">
+            <legend><h2>AVISO</h2></legend>
+            <p>Una vez empezada una ronda ya no se podrá eliminar un equipo</p>
+        </fieldset>
+        
+        
+        
+        
+        <br>
         <?php foreach ($equipos as $equipo) { ?>
             
             <article class="user-item">

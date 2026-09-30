@@ -99,10 +99,7 @@
                 <div class="faqs__content">
 
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip.
+                        Pulsa el torneo de tu preferencia, al estar en la pagina del torneo te pedirá una contraseña, al ingresar la contraseña correctamente seras ya un participante del torneo.
                     </p>
 
                 </div>
@@ -136,7 +133,7 @@
                 <div class="faqs__content">
 
                     <p>
-                        adawdawdawdawdawd.
+                        siendo el organizador de un torneo, debes ir al panel organizador del torneo tocar el botón "crear equipo" para crear el equipo y luego el botón "modificar equipo" para poder agregar o quitar integrantes.
                     </p>
 
                 </div>

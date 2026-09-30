@@ -40,6 +40,9 @@ if ($action == 'actualizarEmparejamientoSuizo'){
     actualizarEmparejamientoSuizo($conexion);
 }
 
+if ($action == 'ocultar'){
+    ocultar($conexion);
+}
 
 
 
@@ -570,4 +573,23 @@ function generarSuizo($conexion) {
 
         header("Location: ../vista/TorneoSistemaSuizo.php?id=$idTorneo");
         exit;
+    }
+
+
+    function ocultar($conexion){
+        $idTorneo=$_POST['idTorneo'];
+        $idUser=$_POST['idUser'];
+        $torneoModelo = new torneoModelo($conexion);
+        $torneoModelo->ocultar($idUser,$idTorneo);
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        if ($_SESSION['rol'] == 'administrador') {
+                $rol="mainAdministrador.php";
+            }else{
+                $rol="mainUsuario.php";
+            }
+        header("Location: ../vista/$rol"); 
+        exit;
+
     }

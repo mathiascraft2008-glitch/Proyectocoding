@@ -26,7 +26,7 @@ $usuario = $usuarioModelo->obtenerUsuarioPorId($id);
     <!-- Main -->
     <main>
         <section class="profile">
-            <div class="profile__avatar">IMG</div>
+            <img class="avatar" src="../../html/images/ui_user_profile_avatar_person_icon_208734.webp" >
             <div class="profile__info">
                 <h2 class="profile__name"><?php echo $usuario->getNombre(); ?></h2>
                 <p class="profile__mail"><?php echo $usuario->getMail(); ?></p>

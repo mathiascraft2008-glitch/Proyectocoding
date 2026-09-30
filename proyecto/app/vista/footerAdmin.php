@@ -19,8 +19,8 @@ if ($rolSesion == 'administrador'){
 <footer class="footer">
         <a href="<?php echo $rol ?>" class="link"><p class="logotipo"><span class="logotipo--GG">GG</span>champ</p></a>
         <div class="footer__links">
-            <a href="Terminos&Condiciones.php" class="link-footer">Términos</a>
-            <a href="Terminos&Condiciones.php" class="link-footer">Privacidad</a>
+            <a href="Terms.php" class="link-footer">Términos</a>
+            <a href="Politica.php" class="link-footer">Privacidad</a>
             <a href="AcercaDeNosotros.php" class="link-footer">Acerca de</a>
             <a href="soporte.php" class="link-footer">Contacto</a>
         </div>

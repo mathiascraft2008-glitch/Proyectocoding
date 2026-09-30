@@ -66,13 +66,10 @@ class inscripcionModelo {
     //inscripciones para mostrar en cada equipo para agregar
     function obtenerParticipantes($idTorneo){
         //no pongo select * porque si no hay problemas con que id agarra la vista.
-        $sql = "SELECT usuario.ID, usuario.NOMBRE, usuario.MAIL,usuario.CONTRASEÑA, usuario.ROL, usuario.ACTIVO
+        $sql = "SELECT usuario.ID, usuario.NOMBRE, usuario.MAIL,usuario.CONTRASEÑA, usuario.ROL, usuario.ACTIVO, usuario.INTENTOSLOGIN, usuario.BLOQUEOHASTA
                 FROM usuario JOIN inscripcion ON usuario.ID = inscripcion.IDPARTICIPANTE
-                WHERE inscripcion.IDTORNEO = :idTorneo 
-                AND usuario.ID IN 
-                (SELECT IDPARTICIPANTE
-                FROM inscripcion
-                WHERE IDEQUIPO IS NULL);";
+                WHERE inscripcion.IDTORNEO = :idTorneo
+                AND inscripcion.IDEQUIPO IS NULL";
 
         $stmt = $this->conexion->prepare($sql);
 
@@ -88,7 +85,9 @@ class inscripcionModelo {
                 $dato['MAIL'],
                 $dato['CONTRASEÑA'],
                 $dato['ROL'],
-                $dato['ACTIVO']
+                $dato['ACTIVO'],
+                $dato['INTENTOSLOGIN'],
+                $dato['BLOQUEOHASTA']
             );
         }
         return $usuarios;
@@ -97,13 +96,10 @@ class inscripcionModelo {
 //obtener los participantes que estan en el equipo seleccionado
     function obtenerParticipantesDeUnEquipo($idTorneo,$idEquipo){
         //no pongo select * porque si no hay problemas con que id agarra la vista.
-        $sql="SELECT usuario.ID, usuario.NOMBRE, usuario.MAIL,usuario.CONTRASEÑA, usuario.ROL, usuario.ACTIVO 
+        $sql="SELECT usuario.ID, usuario.NOMBRE, usuario.MAIL,usuario.CONTRASEÑA, usuario.ROL, usuario.ACTIVO, usuario.INTENTOSLOGIN, usuario.BLOQUEOHASTA
                 FROM usuario JOIN inscripcion ON inscripcion.IDPARTICIPANTE=usuario.ID 
-                WHERE inscripcion.IDTORNEO = :idTorneo 
-                AND usuario.ID IN 
-                (SELECT IDPARTICIPANTE
-                FROM inscripcion
-                WHERE IDEQUIPO = :idEquipo);";
+                WHERE inscripcion.IDTORNEO = :idTorneo
+                AND inscripcion.IDEQUIPO = :idEquipo";
 
         $stmt = $this->conexion->prepare($sql);
 
@@ -120,7 +116,9 @@ class inscripcionModelo {
                 $dato['MAIL'],
                 $dato['CONTRASEÑA'],
                 $dato['ROL'],
-                $dato['ACTIVO']
+                $dato['ACTIVO'],
+                $dato['INTENTOSLOGIN'],
+                $dato['BLOQUEOHASTA']
             );
         }
         return $usuarios;
@@ -135,4 +133,15 @@ class inscripcionModelo {
         return $stmt->execute();
 
     }
+
+    public function cantidadInscripciones($idTorneo){
+    $sql = "SELECT COUNT(*) AS cantidad FROM inscripcion
+            WHERE IDTORNEO = :idTorneo";
+
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bindValue(':idTorneo', $idTorneo);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 }

@@ -176,8 +176,8 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
                 </span>
                 <span class="tools__arrow">→</span>
             </a>
-
-            <a href="rankings.php" class="tools__item">
+            
+            <a href="rankings.php?id=<?php echo $idTorneo ?>" class="tools__item">
                 <span class="tools__icon"></span>
                 <span class="tools__text">
                     <strong>Tabla de posiciones</strong>

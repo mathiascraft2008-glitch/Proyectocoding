@@ -80,6 +80,14 @@ $torneosParticipo = $torneoModelo->obtenerTorneosParticipante($id);
                             </a>
                         <?php } ?>
                         
+                        <form action="../controlador/torneoController.php" method="POST">
+                        <input type="hidden" name="action" value="ocultar">
+                        <input type="hidden" name="idTorneo" value="<?php echo $torneo->getId(); ?>">
+                        <input type="hidden" name="idUser" value="<?php echo $id; ?>">
+                        <button type="submit" class="btn btn-ver">
+                            Ocultar torneo
+                        </button>
+                    </form>
                     </div>
                     <br>
 
@@ -108,6 +116,17 @@ $torneosParticipo = $torneoModelo->obtenerTorneosParticipante($id);
                     <a href="PanelOrganizador.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
                         Ver torneo
                     </a>
+
+                    <form action="../controlador/torneoController.php" method="POST"
+                    onsubmit="return confirm('¿Seguro que quieres ocultar este torneo? Una vez ocultado, no aparecerá nuevamente en tu menú.');">
+                        
+                        <input type="hidden" name="action" value="ocultar">
+                        <input type="hidden" name="idTorneo" value="<?php echo $torneo->getId(); ?>">
+                        <input type="hidden" name="idUser" value="<?php echo $id; ?>">
+                        <button type="submit" class="btn btn-ver">
+                            Ocultar torneo
+                        </button>
+                    </form>
 
                 </article>
                 <br>

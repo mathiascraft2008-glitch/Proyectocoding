@@ -51,7 +51,7 @@ foreach ($competidores as $competidor) {
 
     <!-- Main -->
     <main class="main-content">
-        <?php if ($_SESSION['id']==$torneo->getIdOrganizador()) { ?>
+        <?php if (isset($_SESSION['id']) && $_SESSION['id']==$torneo->getIdOrganizador()) { ?>
             <a href="PanelOrganizador.php?id=<?php echo $idTorneo; ?>" class="btn btn--volver" >Volver</a>
         <?php } ?>
         <!-- Encabezado del torneo -->

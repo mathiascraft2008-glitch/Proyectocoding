@@ -60,7 +60,26 @@ function registerUser($conexion) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $passwordConfirm = $_POST['confirm-password'];
+    $usuarioModelo = new UsuarioModelo($conexion);
+    $email = filter_input(
+        INPUT_POST,
+        'email',
+        FILTER_VALIDATE_EMAIL
+    );
 
+    if (!$email) {
+        echo "<script>
+                alert('El correo electrónico no es válido.');
+                window.history.back();
+            </script>";
+        exit;
+    }
+    $res=$usuarioModelo->BuscarUsuarioPorEmail($email);
+    if($res){
+        echo "<script> alert('Este mail ya está en uso.');
+            window.history.back(); </script>";
+        exit;
+    }
     if (!validatePassword($password)) {
         echo "<script> alert('La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un símbolo.');
                     window.history.back(); </script>";
@@ -78,7 +97,6 @@ function registerUser($conexion) {
     
 
 
-    $usuarioModelo = new UsuarioModelo($conexion);
     $usuario=new Usuario(null,$name,$email,$passwordHash,'usuario',true,null,null);
 
     $resultado = $usuarioModelo->registrarUsuario($usuario);
@@ -128,10 +146,17 @@ function registerUserAdmin($conexion) {
         return;
     }
     $name = $_POST['username'];
-    $email = $_POST['email'];
     $password = $_POST['password'];
     $passwordConfirm = $_POST['confirm-password'];
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 
+    if (!$email) {
+        echo "<script>
+                alert('El correo electrónico no es válido.');
+                window.history.back();
+            </script>";
+        exit;
+    }
     if (!validatePassword($password)) {
         echo "<script> alert('La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un símbolo.');
                     window.history.back(); </script>";
@@ -175,11 +200,18 @@ function registerUserAdmin($conexion) {
 
 function loginUser($conexion) {
 
-    $email = $_POST['email'];
     $password = $_POST['password'];
     $usuarioModelo = new UsuarioModelo($conexion);
     $dobleFactorModelo = new DobleModelo($conexion);
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 
+    if (!$email) {
+        echo "<script>
+                alert('El correo electrónico no es válido.');
+                window.history.back();
+            </script>";
+        exit;
+    }
 
     $maxIntentos = $usuarioModelo->obtenerConfiguracion('MaxIntentos');
     $tiempoBloqueo = $usuarioModelo->obtenerConfiguracion('BloqueoHasta');
@@ -407,6 +439,13 @@ function editUser($conexion) {
     }
 
     if ($email != '') {
+        
+        $res=$usuarioModelo->BuscarUsuarioPorEmail($email);
+        if($res){
+            echo "<script> alert('Este mail ya está en uso.');
+                    window.history.back(); </script>";
+        exit;
+        }
         $usuario->setMail($email);
     }
     if ($password != '') {
@@ -514,6 +553,22 @@ function editProfile($conexion) {
     }
 
     if ($email != '') {
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+
+        if (!$email) {
+            echo "<script>
+                    alert('El correo electrónico no es válido.');
+                    window.history.back();
+                </script>";
+            exit;
+        }
+        
+        $res=$usuarioModelo->BuscarUsuarioPorEmail($email);
+        if($res){
+            echo "<script> alert('Este mail ya está en uso.');
+                    window.history.back(); </script>";
+        exit;
+        }
         $usuario->setMail($email);
     }
     

@@ -36,17 +36,6 @@ $torneos = $torneoModelo->obtenerTorneos();
 
         <h1 class="title">Competencias</h1>
 
-        <div class="search-container">
-            <input
-                class="search-input"
-                type="text"
-                placeholder="Buscar competencias" >
-
-            <button class="filter-toggle-btn">
-                <span class="icon-square"></span>
-                Filtros
-            </button>
-        </div>
 
     </div>
 

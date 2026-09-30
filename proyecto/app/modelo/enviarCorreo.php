@@ -12,15 +12,15 @@ function enviarCorreo($destinatario, $asunto, $mensaje){
         $mail->SMTPAuth = true;
 
         //cuenta para que phpmailer se autentique con esa
-        $mail->Username = 'proyectoprueba310@gmail.com';
-        $mail->Password = 'msgq pono nkmy uokl';
+        $mail->Username = 'torneoggchamp@gmail.com';
+        $mail->Password = 'kfzi wbaj weje rsnd';
 
         //conexion segura 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
         //este mail manda el correo
-        $mail->setFrom('proyectoprueba310@gmail.com', 'GGchamp');
+        $mail->setFrom('torneoggchamp@gmail.com', 'GGchamp');
 
         $mail->addAddress($destinatario);
 

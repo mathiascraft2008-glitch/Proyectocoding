@@ -35,6 +35,16 @@ if (!password_verify($password, $torneo->getContrasena())) {
                     window.history.back(); </script>";
         exit;
 }
+
+$cantidadInscripciones = $inscripcionModelo->cantidadInscripciones($idTorneo);
+if ($cantidadInscripciones['cantidad'] >=$torneo->getMaxInscripciones()) {
+    echo "<script>
+            alert('Este torneo ya alcanzó el máximo de inscripciones.');
+            window.history.back();
+          </script>";
+    exit;
+}
+
 $inscripcion = new Inscripcion(null,$idUsuario,$torneo->getId(),null);
 $resultado = $inscripcionModelo->inscribir($inscripcion);
 $inscripcionID=$conexion->lastInsertId();
@@ -46,6 +56,9 @@ if ($torneo->getParticipacion() == 'solo') {
 
     $competidorModelo->NewCompetidorSolo($competidor);
 }
+
+
+
 
 
 
@@ -64,7 +77,7 @@ function eliminarInscripcion($conexion) {
 
     $resultado = $inscripcionModelo->eliminarInscripcion($idInscripcion);
     if ($resultado) {
-        header("Location: solicitudes.php?id=$idTorneo");
+        header("Location: ../vista/solicitudes.php?id=$idTorneo");
         exit;
     } else {
         echo "<script> alert('Error al eliminar la inscripción.');
