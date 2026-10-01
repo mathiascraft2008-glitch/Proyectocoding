@@ -259,7 +259,7 @@ function loginUser($conexion) {
         exit;
     }
 
-    //CONTRASEÑA CORRECTA---------------------------------------------------------------------------
+    //CONTRASENA CORRECTA---------------------------------------------------------------------------
     $usuarioModelo->reiniciarIntentosLogin($usuario->getId());
 
     //generar codigo

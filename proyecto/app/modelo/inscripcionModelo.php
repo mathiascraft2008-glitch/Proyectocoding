@@ -1,6 +1,6 @@
 <?php
-require_once "../modelo/Inscripcion.php";
-require_once "../modelo/Usuario.php";
+require_once "Inscripcion.php";
+require_once "Usuario.php";
 class inscripcionModelo {
     
     private $conexion;
@@ -66,7 +66,7 @@ class inscripcionModelo {
     //inscripciones para mostrar en cada equipo para agregar
     function obtenerParticipantes($idTorneo){
         //no pongo select * porque si no hay problemas con que id agarra la vista.
-        $sql = "SELECT usuario.ID, usuario.NOMBRE, usuario.MAIL,usuario.CONTRASEÑA, usuario.ROL, usuario.ACTIVO, usuario.INTENTOSLOGIN, usuario.BLOQUEOHASTA
+        $sql = "SELECT usuario.ID, usuario.NOMBRE, usuario.MAIL,usuario.CONTRASENA, usuario.ROL, usuario.ACTIVO, usuario.INTENTOSLOGIN, usuario.BLOQUEOHASTA
                 FROM usuario JOIN inscripcion ON usuario.ID = inscripcion.IDPARTICIPANTE
                 WHERE inscripcion.IDTORNEO = :idTorneo
                 AND inscripcion.IDEQUIPO IS NULL";
@@ -83,7 +83,7 @@ class inscripcionModelo {
                 $dato['ID'],
                 $dato['NOMBRE'],
                 $dato['MAIL'],
-                $dato['CONTRASEÑA'],
+                $dato['CONTRASENA'],
                 $dato['ROL'],
                 $dato['ACTIVO'],
                 $dato['INTENTOSLOGIN'],
@@ -96,7 +96,7 @@ class inscripcionModelo {
 //obtener los participantes que estan en el equipo seleccionado
     function obtenerParticipantesDeUnEquipo($idTorneo,$idEquipo){
         //no pongo select * porque si no hay problemas con que id agarra la vista.
-        $sql="SELECT usuario.ID, usuario.NOMBRE, usuario.MAIL,usuario.CONTRASEÑA, usuario.ROL, usuario.ACTIVO, usuario.INTENTOSLOGIN, usuario.BLOQUEOHASTA
+        $sql="SELECT usuario.ID, usuario.NOMBRE, usuario.MAIL,usuario.CONTRASENA, usuario.ROL, usuario.ACTIVO, usuario.INTENTOSLOGIN, usuario.BLOQUEOHASTA
                 FROM usuario JOIN inscripcion ON inscripcion.IDPARTICIPANTE=usuario.ID 
                 WHERE inscripcion.IDTORNEO = :idTorneo
                 AND inscripcion.IDEQUIPO = :idEquipo";
@@ -114,7 +114,7 @@ class inscripcionModelo {
                 $dato['ID'],
                 $dato['NOMBRE'],
                 $dato['MAIL'],
-                $dato['CONTRASEÑA'],
+                $dato['CONTRASENA'],
                 $dato['ROL'],
                 $dato['ACTIVO'],
                 $dato['INTENTOSLOGIN'],

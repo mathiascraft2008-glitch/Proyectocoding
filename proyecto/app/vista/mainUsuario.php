@@ -20,16 +20,16 @@ $torneosParticipo = $torneoModelo->obtenerTorneosParticipante($id);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../html/CSS/mainUsuario.css">
-    <link rel="stylesheet" href="../../html/fonts/fonts.css">
-    <link rel="stylesheet" href="../../html/CSS/headerYfooter.css">
+    <link rel="stylesheet" href="/CSS/mainUsuario.css">
+    <link rel="stylesheet" href="/fonts/fonts.css">
+    <link rel="stylesheet" href="/CSS/headerYfooter.css">
     <title>Inicio - GGchamp</title>
 </head>
 
 <body>  
 
    
-    <?php include 'headerAdmin.php'; ?>
+    <?php include '../../headerAdmin.php'; ?>
 
     <!--main -->
     <main class="main-content">
@@ -44,7 +44,7 @@ $torneosParticipo = $torneoModelo->obtenerTorneosParticipante($id);
         <a href="competencias.php" class="link">
             <section class="explore-banner">
                 <div class="explore-banner__icon">
-                    <img src="../../html/images/lupa.png" alt="">
+                    <img src="/images/lupa.png" alt="">
                 </div>
                 <p class="explore-banner__text">Explorar torneos</p>
             </section>
@@ -140,7 +140,7 @@ $torneosParticipo = $torneoModelo->obtenerTorneosParticipante($id);
     </main>
 
     <!-- Footer -->
-    <?php include 'footerAdmin.php'; ?>
+    <?php include '../../footerAdmin.php'; ?>
 
 </body>
 

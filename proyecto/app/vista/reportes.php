@@ -1,7 +1,11 @@
 <?php 
+
+session_start();
+
 require_once "../modelo/conexion.php";
 require_once "../modelo/reporteModelo.php";
 require_once "../modelo/inscripcionModelo.php";
+
 $repo=new reporteModelo($conexion);
 $cantUser=$repo->cantidadUsuariosTotales();
 $cantUserA=$repo->cantidadUsuariosActivos();
@@ -23,9 +27,9 @@ $cantIns=$repo->cantidadInscripciones();
 
 <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="../../html/CSS/reportes.css">
-<link rel="stylesheet" href="../../html/fonts/fonts.css">
-    <link rel="stylesheet" href="../../html/CSS/headerYfooter.css">
+<link rel="stylesheet" href="/CSS/reportes.css">
+<link rel="stylesheet" href="/fonts/fonts.css">
+    <link rel="stylesheet" href="/CSS/headerYfooter.css">
 <title>Reportes de generales - GGchamp</title>
 
 </head>
@@ -33,7 +37,7 @@ $cantIns=$repo->cantidadInscripciones();
 <body>
 
     <!-- HEADER -->
-<?php include 'headerAdmin.php'; ?>
+<?php include '../../headerAdmin.php'; ?>
 
 <!-- MAIN -->
 <main class="main-content">
@@ -142,7 +146,7 @@ $cantIns=$repo->cantidadInscripciones();
 </main>
 
 <!-- FOOTER -->
-    <?php include 'footerAdmin.php'; ?>
+    <?php include '../../footerAdmin.php'; ?>
 
 </body>
 

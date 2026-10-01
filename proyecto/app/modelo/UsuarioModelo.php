@@ -1,5 +1,5 @@
 <?php
-require_once "../modelo/Usuario.php";
+require_once "Usuario.php";
 class UsuarioModelo {
     private $conexion;
 
@@ -8,7 +8,7 @@ class UsuarioModelo {
     }
 
     public function registrarUsuario(Usuario $usuario) {
-        $sql = "INSERT INTO usuario (NOMBRE, MAIL, CONTRASEÑA, ROL)
+        $sql = "INSERT INTO usuario (NOMBRE, MAIL, CONTRASENA, ROL)
         VALUES (:nombre, :mail, :pass, 'usuario')";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindValue(':nombre', $usuario->getNombre());
@@ -20,7 +20,7 @@ class UsuarioModelo {
     }
 
     public function registrarUsuarioAdmin(Usuario $usuario) {
-        $sql = "INSERT INTO usuario (NOMBRE, MAIL, CONTRASEÑA, ROL)
+        $sql = "INSERT INTO usuario (NOMBRE, MAIL, CONTRASENA, ROL)
         VALUES (:nombre, :mail, :pass, 'administrador')";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindValue(':nombre', $usuario->getNombre());
@@ -46,7 +46,7 @@ class UsuarioModelo {
             $datos['ID'],
             $datos['NOMBRE'],
             $datos['MAIL'],
-            $datos['CONTRASEÑA'],
+            $datos['CONTRASENA'],
             $datos['ROL'],
             $datos['ACTIVO'],
             $datos['INTENTOSLOGIN'],
@@ -130,7 +130,7 @@ class UsuarioModelo {
 
 
     function editarUsuario(Usuario $usuario) {
-    $sql = "UPDATE usuario SET NOMBRE = :nombre,MAIL = :mail,CONTRASEÑA = :password
+    $sql = "UPDATE usuario SET NOMBRE = :nombre,MAIL = :mail,CONTRASENA = :password
             WHERE ID = :id";
 
     $stmt = $this->conexion->prepare($sql);
@@ -161,7 +161,7 @@ class UsuarioModelo {
 
     function editarPassword(Usuario $usuario) {
 
-    $sql = "UPDATE usuario SET CONTRASEÑA = :password WHERE ID = :id";
+    $sql = "UPDATE usuario SET CONTRASENA = :password WHERE ID = :id";
     
     $stmt = $this->conexion->prepare($sql);
 
@@ -184,7 +184,7 @@ class UsuarioModelo {
             $datos['ID'],
             $datos['NOMBRE'],
             $datos['MAIL'],
-            $datos['CONTRASEÑA'],
+            $datos['CONTRASENA'],
             $datos['ROL'],
             $datos['ACTIVO'],
             $datos['INTENTOSLOGIN'],

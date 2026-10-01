@@ -2,6 +2,7 @@
 
 session_start();
 
+
 require_once "../modelo/conexion.php";
 require_once "../modelo/torneoModelo.php";
 
@@ -16,16 +17,16 @@ $torneos = $torneoModelo->obtenerTorneos();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../../html/CSS/competencias.css">
-<link rel="stylesheet" href="../../html/CSS/headerYfooter.css">
-<link rel="stylesheet" href="../../html/fonts/fonts.css">
+<link rel="stylesheet" href="/CSS/competencias.css">
+<link rel="stylesheet" href="/CSS/headerYfooter.css">
+<link rel="stylesheet" href="/fonts/fonts.css">
     <title>Competencias - GGchamp</title>
     </head>
 
 <body>
 
 <!-- HEADER -->
-<?php include 'headerAdmin.php'; ?>
+<?php include '../../headerAdmin.php'; ?>
 
 
 <!-- MAIN -->
@@ -79,14 +80,14 @@ $torneos = $torneoModelo->obtenerTorneos();
                             <div class="card__details">
 
                                 <div class="detail-row">
-                                    <img src="../../html/images/reloj.svg" class="iconn" alt="">
+                                    <img src="/images/reloj.svg" class="iconn" alt="">
                                     <span>
                                         <?php echo $torneo->getFecha(); ?>
                                     </span>
                                 </div>
 
                                 <div class="detail-row">
-                                    <img src="../../html/images/usuarios.svg" class="iconn" alt="">
+                                    <img src="/images/usuarios.svg" class="iconn" alt="">
                                     <span>
                                         <?php echo $torneo->getDisciplina(); ?>
                                     </span>
@@ -118,7 +119,7 @@ $torneos = $torneoModelo->obtenerTorneos();
 
 
 <!-- FOOTER -->
-<?php include 'footerAdmin.php'; ?>
+<?php include '../../footerAdmin.php'; ?>
 
 </body>
 

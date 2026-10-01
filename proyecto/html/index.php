@@ -1,31 +1,36 @@
-
 <?php
-
-require_once "../modelo/conexion.php";
-require_once "../modelo/torneoModelo.php";
-require_once "../modelo/inscripcionModelo.php";
-require_once "../modelo/reporteModelo.php";
+session_start();
+require_once "app/modelo/conexion.php";
+require_once "app/modelo/torneoModelo.php";
+require_once "app/modelo/inscripcionModelo.php";
+require_once "app/modelo/reporteModelo.php";
 
 $torneoModelo = new torneoModelo($conexion);
 
 $torneos = $torneoModelo->obtenerTorneosPublico();
 
+?>
 
+<!DOCTYPE html>
 
-?><!DOCTYPE html>
-<html lang="es">
+<html lang="es"> 
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../html/CSS/mainPublico.css">
-    <link rel="stylesheet" href="../../html/CSS/headerYfooter.css">
-    <link rel="stylesheet" href="../../html/fonts/fonts.css">
+
+    <link rel="stylesheet" href="/CSS/mainPublico.css">
+    <link rel="stylesheet" href="/CSS/headerYfooter.css">
+    <link rel="stylesheet" href="/fonts/fonts.css">
+
     <title>GGchamp - Viví la competencia</title>
+
 </head>
 
 <body>
 
-    <!-- HEADER -->
     <?php include 'headerAdmin.php'; ?>
 
     <!-- Main -->
@@ -39,8 +44,8 @@ $torneos = $torneoModelo->obtenerTorneosPublico();
                 <p class="hero__subtitle">Regístrate para disfrutar de participar y crear tus propios torneos</p>
 
                 <div class="hero__actions">
-                    <a href="register.html" class="link"><button class="btn btn--primary" type="button">Acceder</button></a>
-                    <a href="competenciasPublicas.php" class="link"><button class="btn btn--primary" type="button">Explorar Competencias</button></a>
+                    <a href="/app/vista/register.html" class="link"><button class="btn btn--primary" type="button">Acceder</button></a>
+                    <a href="/app/vista/competenciasPublicas.php" class="link"><button class="btn btn--primary" type="button">Explorar Competencias</button></a>
                 </div>
             </div>
 
@@ -68,15 +73,15 @@ $torneos = $torneoModelo->obtenerTorneosPublico();
 
 
                         <?php if($torneo->getFormato()=='suizo'){ ?>
-                            <a href="TorneoSistemaSuizo.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
+                            <a href="/app/vista/TorneoSistemaSuizo.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
                                 Ver torneo
                             </a>
                         <?php }elseif($torneo->getFormato()=='liga'){ ?>
-                            <a href="TorneoModuloLiga.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
+                            <a href="/app/vista/TorneoModuloLiga.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
                                 Ver torneo
                             </a>
                         <?php }else{ ?>
-                            <a href="TorneoEliminacionDirecta.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
+                            <a href="/app/vista/TorneoEliminacionDirecta.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
                                 Ver torneo
                             </a>
                         <?php } ?>

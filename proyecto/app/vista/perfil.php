@@ -13,20 +13,20 @@ $usuario = $usuarioModelo->obtenerUsuarioPorId($id);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../html/CSS/perfil.css">
-    <link rel="stylesheet" href="../../html/fonts/fonts.css">
-    <link rel="stylesheet" href="../../html/CSS/headerYfooter.css">
+    <link rel="stylesheet" href="/CSS/perfil.css">
+    <link rel="stylesheet" href="/fonts/fonts.css">
+    <link rel="stylesheet" href="/CSS/headerYfooter.css">
     <title>Perfil - GGchamp</title>
 </head>
 <body> 
     
     <!-- HEADER -->
-    <?php include 'headerAdmin.php'; ?>
+    <?php include '../../headerAdmin.php'; ?>
 
     <!-- Main -->
     <main>
         <section class="profile">
-            <img class="avatar" src="../../html/images/ui_user_profile_avatar_person_icon_208734.webp" >
+            <img class="avatar" src="/images/ui_user_profile_avatar_person_icon_208734.webp" >
             <div class="profile__info">
                 <h2 class="profile__name"><?php echo $usuario->getNombre(); ?></h2>
                 <p class="profile__mail"><?php echo $usuario->getMail(); ?></p>

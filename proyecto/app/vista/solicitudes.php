@@ -1,7 +1,10 @@
 <?php
 
+session_start();
+
 require_once "../modelo/conexion.php";
 require_once "../modelo/inscripcionModelo.php";
+    
 
 $inscripciones = new inscripcionModelo($conexion);
 $idTorneo = $_GET['id'];
@@ -15,15 +18,15 @@ $listar = $inscripciones->obtenerInscripciones($idTorneo);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GGchamp - Solicitudes</title>
-    <link rel="stylesheet" href="../../html/CSS/solicitudes.css">
-    <link rel="stylesheet" href="../../html/CSS/headerYfooter.css">
-    <link rel="stylesheet" href="../../html/fonts/fonts.css">
+    <link rel="stylesheet" href="/CSS/solicitudes.css">
+    <link rel="stylesheet" href="/CSS/headerYfooter.css">
+    <link rel="stylesheet" href="/fonts/fonts.css">
 
 </head>
 <body>
 
     <!-- HEADER -->
-    <?php include 'headerAdmin.php'; ?>
+    <?php include '../../headerAdmin.php'; ?>
 
     <!-- Main -->
     <main class="main-content">

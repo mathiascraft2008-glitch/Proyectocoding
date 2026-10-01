@@ -1,9 +1,9 @@
 <?php
 
-$host = "127.0.0.1";
+$host = "db";
 $dbname = "GGCHAMP";
 $user = "root";
-$password = "57401742";
+$password = "root";
 
 try {
 

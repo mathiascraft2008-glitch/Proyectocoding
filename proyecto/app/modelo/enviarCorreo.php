@@ -3,7 +3,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once '../../vendor/autoload.php';
 
 function enviarCorreo($destinatario, $asunto, $mensaje){
     $mail = new PHPMailer(true);

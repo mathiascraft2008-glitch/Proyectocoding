@@ -1,5 +1,5 @@
 <?php
-require_once "../modelo/Equipo.php";
+require_once "Equipo.php";
 class equipoModelo {
     
     private $conexion;

@@ -1,20 +1,22 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../html/CSS/login.css">
-    <link rel="stylesheet" href="../../html/fonts/fonts.css">
+    <link rel="stylesheet" href="/CSS/login.css">
+    <link rel="stylesheet" href="/fonts/fonts.css">
     <title>verificar</title>
 </head>
 <body>
-    <?php
-session_start();
-?>
+
     <main>
         <div class="main">
             <div class="image">
-                <img src="../../html/images/usuario.svg" alt="">
+                <img src="/images/usuario.svg" alt="">
             </div>
             <div class="background_form">
                 <h1 class="title">Verificación</h1>

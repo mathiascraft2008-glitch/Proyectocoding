@@ -1,5 +1,5 @@
 <?php
-require_once "../modelo/Formato.php";
+require_once "Formato.php";
 class formatoModelo{
     private $conexion;
 

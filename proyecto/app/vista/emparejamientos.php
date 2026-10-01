@@ -1,4 +1,8 @@
 <?php
+
+session_start();
+
+
 require_once "../modelo/conexion.php";
 require_once "../modelo/torneoModelo.php";
 require_once "../modelo/Partidos.php";
@@ -6,6 +10,7 @@ require_once "../modelo/Competidor.php";
 require_once "../modelo/competidorModelo.php";
 require_once "../modelo/rondaModelo.php";
 require_once "../modelo/partidosModelo.php";
+
 $idPartido = $_GET['partido'];
 $idTorneo = $_GET['torneo'];
 
@@ -40,16 +45,16 @@ $ronda = $rondaModelo->obtenerRondaPorId($partido->getIdRonda());
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../html/CSS/emparejamientos.css">
-    <link rel="stylesheet" href="../../html/fonts/fonts.css">
-    <link rel="stylesheet" href="../../html/CSS/headerYfooter.css">
+    <link rel="stylesheet" href="/CSS/emparejamientos.css">
+    <link rel="stylesheet" href="/fonts/fonts.css">
+    <link rel="stylesheet" href="/CSS/headerYfooter.css">
     <title>Emparejamientos</title>
 </head>
 
 <body>  
 
 
-    <?php include 'headerAdmin.php'; ?>
+    <?php include '../../headerAdmin.php'; ?>
 
 
     <main>

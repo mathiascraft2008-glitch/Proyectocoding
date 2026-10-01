@@ -1,17 +1,21 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../html/CSS/PanelAdministrador.css">
-    <link rel="stylesheet" href="../../html/CSS/headerYfooter.css">
-    <link rel="stylesheet" href="../../html/fonts/fonts.css">
+    <link rel="stylesheet" href="/CSS/PanelAdministrador.css">
+    <link rel="stylesheet" href="/CSS/headerYfooter.css">
+    <link rel="stylesheet" href="/fonts/fonts.css">
     <title>Panel Administrador - GGchamp</title>
 </head>
 <body>  
 
     <!-- HEADER -->
-    <?php include 'headerAdmin.php'; ?>
+    <?php include '../../headerAdmin.php'; ?>
     
     <!-- MAIN CONTENT -->
     <main class="main-content">

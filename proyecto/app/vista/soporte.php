@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -10,9 +14,9 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <link rel="stylesheet" href="../../html/CSS/soporte.css">
-    <link rel="stylesheet" href="../../html/CSS/headerYfooter.css">
-    <link rel="stylesheet" href="../../html/fonts/fonts.css">
+    <link rel="stylesheet" href="/CSS/soporte.css">
+    <link rel="stylesheet" href="/CSS/headerYfooter.css">
+    <link rel="stylesheet" href="/fonts/fonts.css">
 
     <title>GGchamp - Soporte</title>
 
@@ -22,7 +26,7 @@
 <body>
 
     <!-- HEADER -->
-    <?php include 'headerAdmin.php'; ?>
+    <?php include '../../headerAdmin.php'; ?>
 
 
     <!-- Main -->
@@ -46,7 +50,7 @@
 
                 <button class="support-card" type="button">
 
-                    <img class="support-card__icono" src="../../html/images/FAQ.png" alt="">
+                    <img class="support-card__icono" src="/images/FAQ.png" alt="">
                     
                     <span class="text">
                         Preguntas frecuentes
@@ -63,7 +67,7 @@
 
                 <button class="support-card" type="button">
 
-                    <img class="support-card__icono" src="../../html/images/contacto.png" alt="">
+                    <img class="support-card__icono" src="/images/contacto.png" alt="">
 
                     <span class="text">
                         Contáctanos
@@ -81,7 +85,7 @@
 
             <div id="01" class="section-header">
                 
-                <img class="square-icon" src="../../html/images/FAQ.png" alt="">
+                <img class="square-icon" src="/images/FAQ.png" alt="">
 
                 <h2 class="section-title">
                     Preguntas frecuentes
@@ -166,7 +170,7 @@
 
             <div class="section-header">
                 
-                <img class="square-icon" src="../../html/images/contacto.png" alt="">
+                <img class="square-icon" src="/images/contacto.png" alt="">
 
                 <h2 class="section-title">
                     Contacto

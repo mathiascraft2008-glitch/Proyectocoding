@@ -1,5 +1,5 @@
 <?php
-require_once "../modelo/Competidor.php";
+require_once "Competidor.php";
 class CompetidorModelo {
 
     private $conexion;
