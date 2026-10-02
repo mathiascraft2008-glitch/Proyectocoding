@@ -4,10 +4,6 @@ require_once "../modelo/conexion.php";
 require_once "../modelo/Usuario.php";
 require_once "../modelo/Registro.php";
 require_once "../modelo/registroModelo.php";
-require_once "../modelo/2pModelo.php";
-require_once "../modelo/2p.php";
-
-require_once "../modelo/enviarCorreo.php";
 
 $action = $_POST['action'];
 
@@ -39,19 +35,13 @@ if ($action == 'changePassword') {
 if ($action == 'alta') {
     altaUser($conexion);
 }
-if($action== 'verificar2p'){
-    verificar($conexion);
-}
+
 if ($action == 'intentosMaximos') {
     actualizarIntentosMaximos($conexion);
 }
 
 if ($action == 'tiempoBloqueo') {
     actualizarTiempoBloqueo($conexion);
-}
-
-if ($action == 'tiempoExpiracion') {
-    actualizarTiempoExpiracion($conexion);
 }
 
 function registerUser($conexion) {
@@ -202,7 +192,6 @@ function loginUser($conexion) {
 
     $password = $_POST['password'];
     $usuarioModelo = new UsuarioModelo($conexion);
-    $dobleFactorModelo = new DobleModelo($conexion);
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 
     if (!$email) {
@@ -215,7 +204,7 @@ function loginUser($conexion) {
 
     $maxIntentos = $usuarioModelo->obtenerConfiguracion('MaxIntentos');
     $tiempoBloqueo = $usuarioModelo->obtenerConfiguracion('BloqueoHasta');
-    $expiracion2FA = $usuarioModelo->obtenerConfiguracion('Expiracion2fa');
+    
 
     $usuario = $usuarioModelo->BuscarUsuarioPorEmail($email);
 
@@ -262,136 +251,13 @@ function loginUser($conexion) {
     //CONTRASENA CORRECTA---------------------------------------------------------------------------
     $usuarioModelo->reiniciarIntentosLogin($usuario->getId());
 
-    //generar codigo
-    $codigo = random_int(100000, 999999);
-    $codigoHash = password_hash($codigo, PASSWORD_DEFAULT);
-
-    //expira en 5 minutos
-    //time es este momendo, y con date se guarda de una forma que se pueda pasar a la bdd
-    $expiracion = date('Y-m-d H:i:s', time()+$expiracion2FA['VALOR']);
-
-    $dobleFactor = new DobleFactor(null,$usuario->getId(),$codigoHash,$expiracion,0);
-
-    //ver si hay un codigo ya para este user
-    $dobleFactorExistente =$dobleFactorModelo->buscarPorUsuario($usuario->getId());
-
-    if ($dobleFactorExistente) {
-        //si el usuario vuelve al login teniendo el doble factor
-        //  anterior activo se reemplaza para no tener acumulaciones
-        $dobleFactorModelo->reemplazarDobleFactor($dobleFactor);
-    } else {
-        $dobleFactorModelo->crearDobleFactor($dobleFactor);
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
     }
-
-    //se gurada temporalmente el usuario que está esperando completar la verificación  en 2 pasos hasta que se ejecute la funcion verificacion()
-    session_start();
-
-    $_SESSION['usuario2p'] = $usuario->getId();
-    
-    //enviar $codigo por correo
-
-    $enviado = enviarCorreo($usuario->getMail(),'Código de verificación GGchamp','Tu código de verificación es: ' . $codigo);
-
-    if (!$enviado) {
-        echo "<script>
-                alert('No se pudo enviar el código de verificacion');
-                window.history.back();
-            </script>";
-        exit;
-    }
-    header("Location: ../vista/Verificacion2P.php");
-    exit;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-function verificar($conexion) {
-    session_start();
-
-    $codigoIngresado = $_POST['codigo'];
-    //se obtiene la id del usuario que quiere loguearse para luego buscarlo por id y guardar sus datos
-    $idUsuario = $_SESSION['usuario2p'];
-
-    $dobleFactorModelo = new DobleModelo($conexion);
-
-    $dobleFactor =$dobleFactorModelo->buscarPorUsuario($idUsuario);
-
-    $usuarioModelo = new UsuarioModelo($conexion);
-    $maxIntentos = $usuarioModelo->obtenerConfiguracion('MaxIntentos');
-    if ($dobleFactor == false) {
-        echo "<script>
-                alert('no hay una verificacion');
-                window.location.href='../vista/login.html';
-              </script>";
-              
-        exit;
-    }
-
-    // Comprobar expiración--------------------------------------------------------------------------------
-    $ahora = date('Y-m-d H:i:s');
-
-    if ($ahora > $dobleFactor->getExpiracion()) {
-
-        $dobleFactorModelo->eliminarDobleFactor($dobleFactor->getId());
-        unset($_SESSION['usuario2p']);
-        echo "<script>
-                alert('El código ha expirado.');
-                window.location.href='../vista/login.html';
-            </script>";
-            
-        exit;
-    }
-
-    // Comprobar intentos
-    if ($dobleFactor->getIntentos() >= $maxIntentos['VALOR']) {
-        $dobleFactorModelo->eliminarDobleFactor($dobleFactor->getId());
-        //eliminar esa session
-        unset($_SESSION['usuario2p']);
-        echo "<script>
-                alert('Se superó el límite de intentos.');
-                window.location.href='../vista/login.html';
-              </script>";
-              
-        exit;
-    }
-
-    // Comprobar código
-    if (!password_verify($codigoIngresado, $dobleFactor->getCodigo())) {
-
-        $dobleFactorModelo->aumentarIntentos($dobleFactor->getId());
-        echo "<script>
-                alert('Código incorrecto.');
-                window.history.back();
-              </script>";
-        exit;
-    }
-
-    //verificacion correcta
-    $usuarioModelo = new UsuarioModelo($conexion);
-
-    $usuario = $usuarioModelo->obtenerUsuarioPorId($idUsuario);
-
-    // Crear sesión ahira si
     $_SESSION['id'] = $usuario->getId();
     $_SESSION['nombre'] = $usuario->getNombre();
     $_SESSION['email'] = $usuario->getMail();
     $_SESSION['rol'] = $usuario->getRol();
-
-    // el codigo ya no sirve
-    $dobleFactorModelo->eliminarDobleFactor($dobleFactor->getId());
-
-    // esta variable ya no sirve
-    unset($_SESSION['usuario2p']);
 
     $registroModelo = new RegistroModelo($conexion);
     if ($usuario->getRol() == 'administrador'){
@@ -659,13 +525,3 @@ function actualizarTiempoBloqueo($conexion) {
 }
 
 
-function actualizarTiempoExpiracion($conexion) {
-
-    $valor = $_POST['valor'];
-
-    $usuarioModelo = new UsuarioModelo($conexion);
-
-    $usuarioModelo->actualizarConfiguracion('Expiracion2fa',$valor);
-    header("Location: ../vista/configuracionGeneral.php");
-    exit;
-}

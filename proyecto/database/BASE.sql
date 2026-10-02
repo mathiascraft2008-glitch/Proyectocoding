@@ -182,20 +182,6 @@ CREATE TABLE registro (
   FOREIGN KEY (IDUSUARIO) REFERENCES usuario (ID)
 );
 
-CREATE TABLE dobleFactor(
-    
-    ID INT AUTO_INCREMENT PRIMARY KEY,
-    
-    IDUSUARIO INT NOT NULL UNIQUE,
-    
-    CODIGO VARCHAR(255) NOT NULL,
-    
-    EXPIRACION DATETIME NOT NULL,
-    
-    INTENTOS INT DEFAULT 0,
-    
-    FOREIGN KEY (IDUSUARIO) REFERENCES usuario(ID)
-);
 
 INSERT INTO formato (NOMBRE, ACTIVO) VALUES
 ('suizo', TRUE),
@@ -210,8 +196,7 @@ CREATE TABLE configuracion (
 
 INSERT INTO configuracion (NOMBRE, VALOR) VALUES
 ('MaxIntentos', 3),
-('BloqueoHasta', 15),
-('Expiracion2fa', 300);
+('BloqueoHasta', 15);
 
 CREATE TABLE torneoOculto (
     ID INT NOT NULL AUTO_INCREMENT,
