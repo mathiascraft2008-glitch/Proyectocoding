@@ -17,6 +17,13 @@ $competidorModelo = new CompetidorModelo($conexion);
 $torneo = $torneoModelo->obtenerTorneo($idTorneo);
 $rondas = $rondaModelo->obtenerRondasPorTorneo($idTorneo);
 $ultimaRonda = $rondaModelo->obtenerUltimaRonda($idTorneo);
+if ($ultimaRonda == null) {
+    echo "<script>
+            alert('Todavía no se ha generado ninguna ronda para este torneo.');
+            window.history.back();
+        </script>";
+    exit;
+}
 $competidores = $competidorModelo->obtenerCompetidoresPorTorneo($idTorneo);
 
 $nombres= [];

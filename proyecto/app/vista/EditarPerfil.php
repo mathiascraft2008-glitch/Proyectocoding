@@ -36,7 +36,7 @@ session_start();
 
                 <div class="form-group">
                     <label for="new-name" class="form-label">Nuevo nombre</label>
-                    <input type="text" name="username" id="new-name" class="form-input">
+                    <input type="text" name="username" maxlength="20" id="new-name" class="form-input">
                 </div>
 
 

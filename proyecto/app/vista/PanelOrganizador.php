@@ -69,15 +69,6 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
 
             <h2 class="section-title">Acciones rápidas</h2>
 
-            <button class="quick-actions__item" type="button">
-                <span class="quick-actions__icon"></span>
-                Finalizar torneo
-            </button>
-
-            <button class="quick-actions__item" type="button">
-                <span class="quick-actions__icon"></span>
-                Cerrar inscripciones
-            </button>
             <?php if($torneo->getFormato()=='eliminacion'){ ?>
                 <form action="../controlador/torneoController.php" method="post">
                     <input type="hidden" name="action" value="generarRonda">
@@ -114,6 +105,14 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
                     </button>
                 </form>
             <?php } ?>
+<br>
+            <a href="reporteTorneo.php?id=<?php echo $idTorneo; ?>" class="tools__item">
+                <span class="tools__icon"></span>
+                <span class="tools__text">
+                    <strong>Ver reportes del torneo</strong>
+                </span>
+                <span class="tools__arrow">→</span>
+            </a>
 
         </section>
 

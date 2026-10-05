@@ -260,6 +260,15 @@ function ocultar($idU, $idT){
         return $stmt->execute();
 }
 
+function obtenerCantidadTorneo($idOrganizador){
+    $sql = "SELECT COUNT(*) as cantidad FROM torneo where IDORGANIZADOR=:id";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bindValue(':id', $idOrganizador);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 
 
 

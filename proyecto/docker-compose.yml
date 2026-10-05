@@ -17,6 +17,7 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
       - ./database/BASE.sql:/docker-entrypoint-initdb.d/BASE.sql
+      - ./database/DatosPrueba.sql:/docker-entrypoint-initdb.d/DatosPrueba.sql
 
 volumes:
   mysql-data:

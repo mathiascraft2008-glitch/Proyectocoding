@@ -1,11 +1,18 @@
 <?php
 session_start();
 require_once "../modelo/UsuarioModelo.php";
+require_once "../modelo/inscripcionModelo.php";
+require_once "../modelo/torneoModelo.php";
 require_once "../modelo/conexion.php";
 $id = $_SESSION['id'];
 $usuarioModelo = new UsuarioModelo($conexion);
+$torneoModelo = new torneoModelo($conexion);
+$inscripcionModelo = new inscripcionModelo($conexion);
 
 $usuario = $usuarioModelo->obtenerUsuarioPorId($id);
+$cantTorneos = $torneoModelo->obtenerCantidadTorneo($id);
+$cantInscripciones = $inscripcionModelo->cantidadInscripcionesPerfil($id);
+$cantEquipos = $inscripcionModelo->cantEquiposParticipan($id);
 ?>
 
 <!DOCTYPE html>
@@ -37,17 +44,17 @@ $usuario = $usuarioModelo->obtenerUsuarioPorId($id);
         <!-- Estadísticas rápidas -->
         <section class="stats">
             <div class="stats__item">
-                <h3 class="stats__value">3</h3>
-                <p class="stats__label">Torneos</p>
+                <h3 class="stats__value"><?php echo $cantTorneos['cantidad'] ?></h3>
+                <p class="stats__label">Torneos creados</p>
             </div>
 
             <div class="stats__item">
-                <h3 class="stats__value">1</h3>
-                <p class="stats__label">Victorias</p>
+                <h3 class="stats__value"><?php echo $cantInscripciones['cantidad'] ?></h3>
+                <p class="stats__label">Inscripciones</p>
             </div>
 
             <div class="stats__item">
-                <h3 class="stats__value">3</h3>
+                <h3 class="stats__value"><?php echo $cantEquipos['cantidad'] ?></h3>
                 <p class="stats__label">Equipos</p>
             </div>
         </section>

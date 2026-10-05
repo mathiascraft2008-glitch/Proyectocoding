@@ -14,7 +14,7 @@ if ($rolSesion == 'administrador'){
 
 ?>
 <header class="header">
-        <button class="menu">☰</button>
+        
             <a href="<?php echo $rol ?>" class="link"><p class="logotipo"><span class="logotipo--GG">GG</span>champ</p></a>
             
 

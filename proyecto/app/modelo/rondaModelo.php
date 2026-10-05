@@ -67,6 +67,9 @@ class RondaModelo {
         $stmt->bindValue(':idTorneo', $idTorneo);
         $stmt->execute();
         $dato = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$dato) {
+            return null;
+        }
         return new Ronda(
             $dato['ID'],
             $dato['NUMERO'],

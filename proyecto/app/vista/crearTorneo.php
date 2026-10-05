@@ -47,7 +47,7 @@ session_start();
 
             <label for="nom">Nombre del torneo</label>
 
-            <input type="text" id="nom" name="nom" required placeholder="Ingrese Un Nombre">
+            <input type="text" id="nom" name="nom" maxlength="20" required placeholder="Ingrese Un Nombre">
 
         </div>
 
@@ -146,7 +146,7 @@ session_start();
     <!-- lugar-->
         <div class="form-group">
             <label for="lugar">Lugar</label>
-            <input type="text" id="lugar" name="lugar" required placeholder="Ingrese El Lugar">
+            <input type="text" id="lugar" name="lugar" maxlength="20" required placeholder="Ingrese El Lugar">
         </div>
         
 

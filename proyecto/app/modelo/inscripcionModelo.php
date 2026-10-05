@@ -144,4 +144,27 @@ class inscripcionModelo {
 
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+    
+    function cantidadInscripcionesPerfil($idOr){
+        $sql = "SELECT COUNT(*) AS cantidad FROM inscripcion
+                WHERE IDPARTICIPANTE=:id";
+
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':id', $idOr);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function cantEquiposParticipan($idParticipante){
+        $sql = "SELECT COUNT(*) AS cantidad FROM inscripcion
+                WHERE IDPARTICIPANTE =:id
+                AND IDEQUIPO IS NOT NULL;";
+
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':id', $idParticipante);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

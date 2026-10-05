@@ -5,9 +5,11 @@ session_start();
 
 require_once "../modelo/conexion.php";
 require_once "../modelo/torneoModelo.php";
+require_once "../modelo/inscripcionModelo.php";
 
 $torneoModelo = new torneoModelo($conexion);
 $torneos = $torneoModelo->obtenerTorneos();
+$inscripcionModelo = new inscripcionModelo($conexion);
 
 ?>
 <!DOCTYPE html>
@@ -46,15 +48,6 @@ $torneos = $torneoModelo->obtenerTorneos();
 
         <!-- Lista de torneos -->
         <section class="tournaments-section">
-
-            <!-- Filtros rápidos en móvil -->
-            <div class="filter-chips">
-                <button class="chip chip--active">Todos</button>
-                <button class="chip">eSport</button>
-                <button class="chip">Deporte</button>
-                <button class="chip">Mesa</button>
-            </div>
-
 
             <p class="subtitle">Próximas competencias</p>
 
@@ -100,13 +93,32 @@ $torneos = $torneoModelo->obtenerTorneos();
                                 </div>
 
                             </div>
-
+                            <?php if($torneo->getFormato()=='suizo'){ ?>
+                            <a href="/app/vista/TorneoSistemaSuizo.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
+                                Ver torneo
+                            </a>
+                        <?php }elseif($torneo->getFormato()=='liga'){ ?>
+                            <a href="/app/vista/TorneoModuloLiga.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
+                                Ver torneo
+                            </a>
+                        <?php }else{ ?>
+                            <a href="/app/vista/TorneoEliminacionDirecta.php?id=<?php echo $torneo->getId(); ?>" class="btn btn-ver">
+                                Ver torneo
+                            </a>
+                        <?php } ?>
+                            
+                            <?php $cantidadInscripciones = $inscripcionModelo->cantidadInscripciones($torneo->getId()); ?>
+                            <?php if ($cantidadInscripciones['cantidad'] >=$torneo->getMaxInscripciones()) { ?>
+                            <span class="card__status rojo">
+                                Inscripción cerrada
+                            </span>
+                            <?php }else{ ?>
                             <span class="card__status">
                                 Inscripción abierta
                             </span>
+                            <?php } ?>
 
                         </div>
-
                     </article>
 
             <?php } ?>

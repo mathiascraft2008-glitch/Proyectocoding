@@ -62,4 +62,47 @@ class equipoModelo {
             $dato['IDTORNEO']
         );
     }
+
+    function cantEquipos($idTorneo){
+        $sql = "SELECT COUNT(*) as cantidad FROM equipo WHERE IDTORNEO = :idTorneo";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':idTorneo', $idTorneo);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+
+    function obtenerTodosEquipos(){
+        $sql = "SELECT * FROM equipo";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->execute();
+        $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $equipos = [];
+
+        foreach ($datos as $dato) {
+                $equipos[] = new Equipo(
+                $dato['ID'],
+                $dato['NOMBRE'],
+                $dato['IDTORNEO']
+            );
+        }
+
+        return $equipos;
+
+    }
+
+    function obtenerEquipo($id){
+        $sql = "SELECT * FROM equipo WHERE ID = :id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        $dato = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new Equipo(
+            $dato['ID'],
+            $dato['NOMBRE'],
+            $dato['IDTORNEO']
+        );
+    }
 }

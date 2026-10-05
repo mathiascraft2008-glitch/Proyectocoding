@@ -1,6 +1,4 @@
-
 <?php 
-
 session_start();
 
 
@@ -50,7 +48,7 @@ $inscripcionModelo=new inscripcionModelo($conexion);
                 <div class="group-data">
                     <div class="form__item">
                         <label for="nombre-grupo">Nombre Del Grupo</label>
-                        <input type="text" id="nombre-grupo" name="nombre" required>
+                        <input type="text" id="nombre-grupo" maxlength="20" name="nombre" required>
                     </div>
                 </div>
             </section>

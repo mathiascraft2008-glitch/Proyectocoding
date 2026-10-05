@@ -58,6 +58,17 @@ $torneos = $torneoModelo->obtenerTorneosPublico();
         <!-- Torneos destacados -->
         <!-- Torneos en los que participo -->
         <section class="participate">
+            <h2 class="section-title">Ver Perfiles o Equipos</h2>
+            <a href="/app/vista/verUsuarios.php" class="btn btn-ver">
+                Ver Usuarios
+            </a>
+            <br>
+            <a href="/app/vista/verEquipos.php" class="btn btn-ver">
+                Ver Equipos
+            </a>
+
+            <br>
+
             <h2 class="section-title">Próximos torneos</h2>
 <br>
                 <?php foreach ($torneos as $torneo) { ?>

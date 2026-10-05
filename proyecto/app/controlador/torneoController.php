@@ -380,6 +380,18 @@ function generarLiga($conexion){
         $competidor1 = $partido->getCompetidor1();
         $competidor2 = $partido->getCompetidor2();
 
+        //deshacer el resultado anterior para que no hayan acumulaciones---------------------
+        if ($partido->getEmpate() == true) {
+            //si antes era empate, ambos tenían 1 punto 
+            $competidorModelo->sumarPuntos($competidor1, -1);
+            $competidorModelo->sumarPuntos($competidor2, -1);
+        } elseif ($partido->getIdGanador()!=null) {
+            //si antes habia ganador tienia 3 puntos
+            $competidorModelo->sumarPuntos($partido->getIdGanador(), -3);
+        }
+
+
+        //
         if ($ganador == "empate") {
 
             //si es empete ambos reciben un punto
@@ -555,7 +567,19 @@ function generarSuizo($conexion) {
 
         $competidor1 = $partido->getCompetidor1();
         $competidor2 = $partido->getCompetidor2();
+        
+        //deshacer el resultado anterior para que no hayan acumulaciones---------------------
+        if ($partido->getEmpate() == true) {
+            //si antes era empate, ambos tenían 1 punto 
+            $competidorModelo->sumarPuntos($competidor1, -1);
+            $competidorModelo->sumarPuntos($competidor2, -1);
+        } elseif ($partido->getIdGanador()!=null) {
+            //si antes habia ganador tienia 3 puntos
+            $competidorModelo->sumarPuntos($partido->getIdGanador(), -3);
+        }
 
+
+        //
         if ($ganador == "empate") {
 
             //si es empete ambos reciben un punto

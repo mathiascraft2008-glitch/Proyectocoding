@@ -4,11 +4,13 @@ session_start();
 
 require_once "../modelo/conexion.php";
 require_once "../modelo/torneoModelo.php";
+require_once "../modelo/inscripcionModelo.php";
 
 $idUsuario = $_SESSION['id'];
 
 $torneoModelo = new torneoModelo($conexion);
 $torneos = $torneoModelo->obtenerTorneosDisponibles($idUsuario);
+$inscripcionModelo = new inscripcionModelo($conexion);
 
 ?>
 <!DOCTYPE html>
@@ -105,9 +107,16 @@ $torneos = $torneoModelo->obtenerTorneosDisponibles($idUsuario);
 
                             </div>
 
+                            <?php $cantidadInscripciones = $inscripcionModelo->cantidadInscripciones($torneo->getId()); ?>
+                            <?php if ($cantidadInscripciones['cantidad'] >=$torneo->getMaxInscripciones()) { ?>
+                            <span class="card__status rojo">
+                                Inscripción cerrada
+                            </span>
+                            <?php }else{ ?>
                             <span class="card__status">
                                 Inscripción abierta
                             </span>
+                            <?php } ?>
 
                         </div>
 

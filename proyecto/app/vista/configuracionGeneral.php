@@ -21,8 +21,7 @@ session_start();
 <section class="tournament-header">
         <h2 class="title">Advertencias:</h2>
         <p class="subtitle">Las cantidades de tiempos se definen en base a segundos.</p> 
-        <p class="subtitle">La cantidad de intentos máximos involucra el login y el código de doble autenticación.</p> 
-    </section>
+</section>
     <br>
     <br>
 <!-- Main -->
@@ -30,7 +29,7 @@ session_start();
 
     
     <!-- Formulario eliminar usuario -->
-    <h2 class="section-title">Definir Intentos Máximos</h2>
+    <h2 class="section-title">Definir Intentos Máximos para el Login</h2>
     <form action="../controlador/userController.php" method="post">
 
         <input type="hidden" name="action" value="intentosMaximos">
@@ -48,7 +47,7 @@ session_start();
     <br>
 
 
-    <h2 class="section-title">Definir tiempo de bloqueo de login</h2>
+    <h2 class="section-title">Definir tiempo de bloqueo en el Login</h2>
     <form action="../controlador/userController.php" method="post">
 
         <input type="hidden" name="action" value="tiempoBloqueo">
@@ -65,20 +64,7 @@ session_start();
 
 <br>
     <br>
-    <h2 class="section-title">Definir tiempo de expiración del doble factor</h2>
-    <form action="../controlador/userController.php" method="post">
-
-        <input type="hidden" name="action" value="tiempoExpiracion">
-
-        <label for="" class="text text-label">
-                Ingrese la cantidad en segundos
-        </label>
-        <input type="number" name="valor" min="1" required class="altabaja">
-        
-
-        <input type="submit" class="publish" >        
-
-    </form>
+    
 
     
 

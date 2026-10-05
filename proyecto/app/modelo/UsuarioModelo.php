@@ -192,6 +192,27 @@ class UsuarioModelo {
         );
     }
 
+    function obtenerUsuarios(){
+        $sql = "SELECT * FROM usuario where ACTIVO=1";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->execute();
+        $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $usuarios = [];
+        foreach ($datos as $dato) {
+        $usuarios[]= new Usuario(
+            $dato['ID'],
+            $dato['NOMBRE'],
+            $dato['MAIL'],
+            $dato['CONTRASENA'],
+            $dato['ROL'],
+            $dato['ACTIVO'],
+            $dato['INTENTOSLOGIN'],
+            $dato['BLOQUEOHASTA']
+        );
+        }
+        return $usuarios;
+    }
 
     
     

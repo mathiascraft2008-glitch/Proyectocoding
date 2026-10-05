@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #262A2B;
+    color: #ffffff;
+    font-family: "Roboto";
+    overflow-x: hidden;
+}
+
+
+.main-content {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+
+
+.back-section {
+    margin-bottom: 25px;
+}
+
+.title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-family: "Orbitron";
+    text-align: center;
+}
+
+
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.option {
+    background-color: #444444;
+    border-radius: 8px;
+    border-left: 4px solid #E2E800;
+    padding: 20px;
+    width: 100%;
+    transition:position 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+
+.option:hover {
+    position: relative;
+    top: 1px;
+    background-color: #494949;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+}
+
+
+.option__item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.name {
+    font-size: 16px;
+    font-weight: 400;
+    color: #ffffff;
+}
+.name:nth-child(2) {
+    color: #E2E800;
+    font-weight: 700;
+    padding-bottom: 6px;
+}
+
+.option__item a {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px;
+    background-color: #E2E800;
+    color: #262A2B;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    border: 1px solid #E2E800;
+    transition:background-color 0.2s ease,color 0.2s ease;
+}
+
+
+.option__item a:hover {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #262A2B;
+}
+
+
+@media screen and (min-width: 768px) {
+
+    .main-content {
+        max-width: 700px;
+        padding: 30px 20px;
+    }
+
+    .title {
+        font-size: 30px;
+    }
+
+    .option {
+        padding: 20px;
+    }
+
+    .option__item {
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .name {
+        font-size: 15px;
+    }
+
+
+    .option__item a {
+        width: auto;
+        min-width: 120px;
+
+        margin-top: 0;
+        margin-left: auto;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    .main-content {
+        max-width: 850px;
+        padding: 40px 20px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .option {
+        padding: 22px 25px;
+    }
+
+    .name {
+        font-size: 16px;
+    }
+
+    .option__item {
+        flex-direction: row;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .option__item a {
+        min-width: 130px;
+    }
+}

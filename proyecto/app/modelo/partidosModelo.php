@@ -142,5 +142,18 @@ function yaSeEnfrentaron($idCompetidor1, $idCompetidor2) {
     
 }
 
+function cantidadPartidosTorneo($idTorneo) {
+    $sql = "SELECT COUNT(*) AS cantidad FROM partido
+            join ronda on partido.IDRONDA = ronda.ID
+            where ronda.IDTORNEO = :idTorneo";
+
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bindValue(':idTorneo', $idTorneo);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
+
 }
 ?>

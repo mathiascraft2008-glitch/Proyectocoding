@@ -46,7 +46,7 @@ session_start();
 
         <div class="form-item">
             <label for="nombre">Nuevo Nombre</label>
-            <input type="text" id="nombre" name="nombre">
+            <input type="text" maxlength="20" id="nombre" name="nombre">
         </div>
 
         <div class="form-item">
