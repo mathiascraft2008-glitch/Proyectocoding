@@ -44,13 +44,13 @@ $torneos = $torneoModelo->obtenerTorneosPublico();
                 <p class="hero__subtitle">Regístrate para disfrutar de participar y crear tus propios torneos</p>
 
                 <div class="hero__actions">
-                    <a href="/app/vista/register.html" class="link"><button class="btn btn--primary" type="button">Acceder</button></a>
+                    <a href="/app/vista/register.php" class="link"><button class="btn btn--primary" type="button">Acceder</button></a>
                     <a href="/app/vista/competenciasPublicas.php" class="link"><button class="btn btn--primary" type="button">Explorar Competencias</button></a>
                 </div>
             </div>
 
             <div class="hero__image">
-                <div class="image__placeholder"></div>
+                <img src="images/jef2.jpeg" alt="">
             </div>
 
         </section>

@@ -58,9 +58,6 @@ $inscripcionModelo = new inscripcionModelo($conexion);
                 <?php foreach ($torneos as $torneo) { ?>
                     <article class="card">
 
-                        <div class="card__img-placeholder">
-                            <span class="img-icon">📷</span>
-                        </div>
 
                         <div class="card__content">
 

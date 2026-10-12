@@ -5,22 +5,21 @@
 }
 
 body {
-    background-color: #262A2B;
+    background-color: #262a2b;
     color: #d6d6d6;
-    overflow-x: hidden;
     font-family: "Roboto";
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-
-/* ==========================================
-   MAIN CONTENT (MOBILE BASE)
-========================================== */
+/* MAIN */
 
 main {
     padding: 20px;
     width: 100%;
-    margin: auto;
+    margin: 0 auto;
+    flex: 1;
 }
 
 .title {
@@ -28,242 +27,132 @@ main {
     font-size: 28px;
     font-weight: 400;
     color: #ffffff;
-    margin-bottom: 2px;
+    margin-bottom: 8px;
 }
+
+/* TORNEO */
 
 .tournament {
     margin-bottom: 25px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #444444;
 }
 
 .tournament__name {
-    color: #9d9d9d;
-    font-size: 14px;
-}
-
-
-/* Selector */
-
-.ranking-selector {
-    width: 100%;
-    height: 64px;
-    padding: 7px;
-    display: flex;
-    align-items: center;
-    background-color: #d6d6d6;
-    border-radius: 17px;
-    margin-bottom: 28px;
-}
-
-.ranking-selector__item {
-    width: 50%;
-    height: 48px;
-    border: none;
-    border-radius: 25px;
-    background-color: transparent;
-    color: #222222;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-}
-
-.ranking-selector__item.active {
-    background-color: #444444;
-    color: #d6d6d6;
-    border: 3px solid #e2e800;
-}
-
-/* Rankings Header */
-
-.section-title {
-    color: #9d9d9d;
-    font-size: 13px;
-    font-weight: 400;
-    margin-left: 5px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-
-/* Podio Base */
-
-.podium {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 12px;
-    margin-bottom: 35px;
-}
-
-.podium__item {
-    width: 85px;
-    background-color: #444444;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 0 16px;
-    border-radius: 4px;
-}
-
-.podium__item-second,
-.podium__item-third {
-    height: 100px;
-}
-
-.podium__item-first {
-    height: 125px;
-}
-
-.podium__position {
-    font-size: 26px;
     color: #e2e800;
-    font-weight: 500;
+    font-size: 15px;
 }
 
-.podium__block {
-    width: 32px;
-    height: 32px;
-    background-color: #d6d6d6;
-}
-
-.podium__item-first .podium__block {
-    background-color: #e2e800;
-    width: 38px;
-    height: 38px;
-}
-
-.podium__item-third .podium__block {
-    background-color: #bd742f;
-}
-
-/* Tabla Base */
+/* TABLA */
 
 .table {
     width: 100%;
+    background-color: #303436;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .table__row {
     display: flex;
     align-items: center;
-    min-height: 48px;
+    min-height: 55px;
     border-bottom: 1px solid #444444;
     color: #d6d6d6;
-    padding: 0 8px;
+    padding: 12px 15px;
     font-size: 14px;
+    gap: 10px;
 }
 
-.table__row--header {
-    border-bottom: 1px solid #a9a9a9;
-    color: #a9a9a9;
+.table__row:last-child {
+    border-bottom: none;
 }
+
+/* ENCABEZADO */
+
+.table__row--header {
+    background-color: #3f4448;
+    color: #e2e800;
+    font-size: 12px;
+    font-weight: 700;
+    min-height: 45px;
+}
+
+/* COLUMNAS */
 
 .table__position {
     width: 35px;
-    text-align: left;
+    flex-shrink: 0;
+    text-align: center;
+    color: #e2e800;
+    font-weight: 700;
 }
 
 .table__name {
-    flex-grow: 1;
+    flex: 1;
     text-align: left;
-}
-
-.table__stat {
-    width: 40px;
-    text-align: center;
+    overflow-wrap: anywhere;
 }
 
 .table__points {
-    width: 60px;
+    width: 55px;
+    flex-shrink: 0;
     text-align: right;
+    font-weight: 700;
+    color: #ffffff;
 }
 
-.wins {
-    color: #e2e800;
+.table__row:hover {
+    background-color: #3f4448;
 }
 
-/* ==========================================
-   2. MEDIA QUERY: TABLET (600px a 1023px)
-========================================== */
+/* TABLET */
 
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+@media screen and (min-width: 768px) {
 
     main {
-        max-width: 680px;
-        padding: 30px 20px;
+        padding: 30px;
     }
 
     .title {
         font-size: 32px;
     }
 
-    .ranking-selector {
-        max-width: 380px;
+    .tournament__name {
+        font-size: 16px;
     }
 
-    .podium {
-        gap: 20px;
+    .table__row {
+        padding: 14px 20px;
+        font-size: 15px;
     }
 
-    .podium__item {
-        width: 120px;
-    }
-
-    .podium__item-second,
-    .podium__item-third {
-        height: 120px;
-    }
-
-    .podium__item-first {
-        height: 150px;
-    }
-
-    .podium__position {
-        font-size: 32px;
+    .table__row--header {
+        font-size: 13px;
     }
 }
 
-/* ==========================================
-   3. MEDIA QUERY: PC / DESKTOP (1024px o superior)
-========================================== */   
+/* PC */
 
 @media screen and (min-width: 1024px) {
 
     main {
-        max-width: 760px;
         padding: 40px 0;
     }
 
     .title {
-        font-size: 36px;
-    }
-
-    .ranking-selector {
-        max-width: 400px; /* Tamaño reducido según mockup Desktop */
-    }
-
-    .podium {
-        gap: 24px;
-        margin-bottom: 45px;
-    }
-
-    .podium__item {
-        width: 140px;
-    }
-
-    .podium__item-second,
-    .podium__item-third {
-        height: 135px;
-    }
-
-    .podium__item-first {
-        height: 170px;
-    }
-
-    .podium__position {
-        font-size: 36px;
+        font-size: 34px;
     }
 
     .table__row {
-        min-height: 52px;
-        font-size: 15px;
+        min-height: 58px;
+        padding: 15px 24px;
+    }
+
+    .table__position {
+        width: 45px;
+    }
+
+    .table__points {
+        width: 75px;
     }
 }

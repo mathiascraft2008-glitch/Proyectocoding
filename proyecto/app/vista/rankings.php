@@ -52,37 +52,13 @@ $rankings=$competidorModelo->ranking($idTorneo);
         <div class="tournament">
             <p class="tournament__name"><?php echo $torneo->getNombre(); ?></p>
         </div>
-        <!-- Ranking -->
-        <section class="ranking">
-
-            <h2 class="section-title">TOP PARTICIPANTES</h2>
-
-            <section class="podium">
-                <!-- Segundo -->
-                <div class="podium__item podium__item-second">
-                    <span class="podium__position">2</span>
-                    <div class="podium__block"></div>
-                </div>
-
-                <!-- Primero -->
-                <div class="podium__item podium__item-first">
-                    <span class="podium__position">1</span>
-                    <div class="podium__block"></div>
-                </div>
-
-                <!-- Tercero -->
-                <div class="podium__item podium__item-third">
-                    <span class="podium__position">3</span>
-                    <div class="podium__block"></div>
-                </div>
-            </section>
-
+    
             <!-- Tabla -->
             <div class="table">
 
                 <!-- Encabezado -->
                 <div class="table__row table__row--header">
-                    <span class="table__position">#</span>
+                    <span class="table__position">ID</span>
                     <span class="table__name">Participante</span>
                     
                     <span class="table__points">PTS</span>
@@ -98,7 +74,7 @@ $rankings=$competidorModelo->ranking($idTorneo);
                     <div class="table__row">
                     <span class="table__position"><?php echo $ranking->getId(); ?></span>
 
-                    <span class="table  __name"><?php echo $res['NOMBRE']; ?></span>
+                    <span class="table__name"><?php echo $res['NOMBRE']; ?></span>
                     <span class="table__points"><?php echo $ranking->getPuntos(); ?></span>
                     </div>
 

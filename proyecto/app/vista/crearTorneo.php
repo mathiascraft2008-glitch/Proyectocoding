@@ -164,7 +164,7 @@ session_start();
         </div>
 
         <!-- maximo de equipos a crear, por defecto no aparece, sin antes activar el modo por equipos -->
-        <div class="form-group" id="max-equipos-group" style="display: none;">
+        <div class="form-group oculto" id="max-equipos-group">
             <label for="max-equipos">Máximo de equipos</label>
             <select name="max-equipos" id="max-equipos">
                 <option value="4">4 equipos</option>
@@ -190,14 +190,15 @@ session_start();
 
 </body>
 <script>
-        modoSelect = document.getElementById('modo').addEventListener('change', function() {
-            maxEquiposGroup = document.getElementById('max-equipos-group');
-            if (this.value === 'equipo') {
-                maxEquiposGroup.style.display = 'block';
-            } else {
-                maxEquiposGroup.style.display = 'none';
-            }
-        });
-        
+    modoJuego = document.getElementById('modo');
+    maxEquiposGrupo = document.getElementById('max-equipos-group');
+
+    modoJuego.addEventListener('change', function() {
+        if (modoJuego.value == 'equipo') {
+            maxEquiposGrupo.classList.remove('oculto');
+        } else {
+            maxEquiposGrupo.classList.add('oculto');
+        }
+    });
 </script>
 </html>

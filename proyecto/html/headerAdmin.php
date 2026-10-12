@@ -27,7 +27,7 @@ if ($rolSesion == 'administrador'){
             <?php } ?>
 
             <?php if ($rolSesion==null) { ?>
-                <a href="/app/vista/login.html" class="avatar__link">
+                <a href="/app/vista/login.php" class="avatar__link">
                     <img class="avatar" src="/images/ui_user_profile_avatar_person_icon_208734.webp" >
                 </a>
             <?php } else { ?>

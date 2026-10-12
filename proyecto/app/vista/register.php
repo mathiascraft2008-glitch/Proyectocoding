@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['token'])) {
+    $_SESSION['token'] = bin2hex(random_bytes(16));
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,7 +25,7 @@
             <form action="../controlador/userController.php" method="post" enctype="multipart/form-data" class="login">
                 <!-- indicador para el controlador -->
                 <input type="hidden" name="action" value="register">
-
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['token']; ?>">
 
                 <label for="username" class="text text-label">Nombre de usuario</label>
                 <input type="text" name="username" id="username" class="login__input" required>
@@ -37,7 +44,7 @@
                 <!-- Pie del formulario (Links e información) -->
                 <div class="form-footer">
                     <p class="text text-login">
-                        ¿Ya tenés una cuenta? <a href="login.html" class="link">Iniciá sesión</a>
+                        ¿Ya tenés una cuenta? <a href="login.php" class="link">Iniciá sesión</a>
                     </p>
 
                 </div>
@@ -46,44 +53,5 @@
     </main>
 
 </body>
-<script>
-
-const formulario = document.querySelector(".login");
-
-    formulario.addEventListener("submit", function(event) {
-
-    const password = document.getElementById("password").value;
-
-    if (password.length < 8) {
-        event.preventDefault();
-        alert("La contraseña debe tener al menos 8 caracteres.");
-        return;
-    }
-
-    if (!/[A-Z]/.test(password)) {
-        event.preventDefault();
-        alert("La contraseña debe tener al menos una letra mayúscula.");
-        return;
-    }
-
-    if (!/[a-z]/.test(password)) {
-        event.preventDefault();
-        alert("La contraseña debe tener al menos una letra minúscula.");
-        return;
-    }
-
-    if (!/[0-9]/.test(password)) {
-        event.preventDefault();
-        alert("La contraseña debe tener al menos un número.");
-        return;
-    }
-
-    if (!/[^A-Za-z0-9]/.test(password)) {
-        event.preventDefault();
-        alert("La contraseña debe tener al menos un símbolo.");
-        return;
-    }
-});
-</script>
 
 </html>

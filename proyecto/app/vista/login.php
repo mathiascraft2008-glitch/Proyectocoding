@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['token'])) {
+    $_SESSION['token'] = bin2hex(random_bytes(16));
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,13 +26,15 @@
                 <form action="../controlador/userController.php" method="post" enctype="multipart/form-data" class="login">
                     <!-- indicador para el controlador -->
                     <input type="hidden" name="action" value="login">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['token']; ?>">   
+
                     <label for="" class="text text-label">Email</label>
                     <input type="email" class="login__input" required name="email">
                     <label for="" class="text text-label">Contraseña</label>
                     <input type="password" class="login__input" required name="password">
                     <!-- <a href="EditarPerfil.html" class="link">¿Olvidaste tu contraseña?</a> -->
                     <input type="submit" class="login__submit" value="Iniciar sesión">
-                    <p class="text">¿No tienes una cuenta? <a href="register.html" class="link">Registrate</a></p>
+                    <p class="text">¿No tienes una cuenta? <a href="register.php" class="link">Registrate</a></p>
                     <p class="text text-nomargin">Al continuar aceptas nuestros</p>
                     <p class="text text-nomargin"><a href="Terms.php" class="link">terminos de servcio</a> y <a href="Politica.php" class="link">politicas de privacidad</a></p>
                 </form>

@@ -34,17 +34,14 @@ $torneo = $torneoModelo->obtenerTorneo($idTorneo);
 <!-- MAIN -->
 <main class="main-content">
 
-    <!-- Imagen -->
-    <div class="img"></div>
-
     <h1 class="tournament-title">
-        <?php echo $torneo->getNombre();?>
+        Torneo: <?php echo $torneo->getNombre();?>
     </h1>
 
     <div class="tournament-card">
 
         <h2 class="card-section-title">
-            CONTRASENA
+            CONTRASEÑA
         </h2>
 
         <form action="../controlador/inscripcionController.php" method="post">

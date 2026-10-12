@@ -42,6 +42,7 @@
 
 .header__nav {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 20px;
 }
@@ -51,6 +52,7 @@
     color: #ffffff;
     text-decoration: none;
     font-size: 14px;
+    white-space: nowrap;
 }
 
 .avatar__link {
@@ -130,6 +132,7 @@
 
     .header__link {
         display: block;
+        white-space: nowrap;
     }
 
     .footer {
@@ -160,6 +163,7 @@
     .header__link {
         display: block;
         font-size: 15px;
+        white-space: nowrap;
     }
 
     .avatar {

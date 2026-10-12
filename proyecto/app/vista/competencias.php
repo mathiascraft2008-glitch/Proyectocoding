@@ -50,15 +50,6 @@ $inscripcionModelo = new inscripcionModelo($conexion);
         <!-- Lista de torneos -->
         <section class="tournaments-section">
 
-            <!-- Filtros rápidos en móvil -->
-            <div class="filter-chips">
-                <button class="chip chip--active">Todos</button>
-                <button class="chip">eSport</button>
-                <button class="chip">Deporte</button>
-                <button class="chip">Mesa</button>
-            </div>
-
-
             <p class="subtitle">Próximas competencias</p>
 
 
@@ -70,10 +61,6 @@ $inscripcionModelo = new inscripcionModelo($conexion);
                 <a class="link" href="detallesTorneo.php?id=<?php echo $torneo->getId(); ?>">
 
                     <article class="card">
-
-                        <div class="card__img-placeholder">
-                            <span class="img-icon">📷</span>
-                        </div>
 
                         <div class="card__content">
 

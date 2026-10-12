@@ -1,4 +1,7 @@
 <?php
+    if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once "../modelo/UsuarioModelo.php";
 require_once "../modelo/conexion.php";
 require_once "../modelo/Usuario.php";
@@ -8,6 +11,9 @@ require_once "../modelo/registroModelo.php";
 $action = $_POST['action'];
 
 if ($action == 'register') {
+    if (!isset($_POST['csrf_token']) || !isset($_SESSION['token']) || $_POST['csrf_token'] !== $_SESSION['token']) {
+        exit('Token inválido. Volvé a cargar la página.');
+    }
     registerUser($conexion);
 }
 if ($action == 'registerA') {
@@ -15,6 +21,9 @@ if ($action == 'registerA') {
 }
 
 if ($action == 'login') {
+    if (!isset($_POST['csrf_token']) || !isset($_SESSION['token']) || $_POST['csrf_token'] !== $_SESSION['token']) {
+        exit('Token inválido. Volvé a cargar la página.');
+    }
     loginUser($conexion);
 }
 if ($action == 'editProfile') {
@@ -44,6 +53,15 @@ if ($action == 'tiempoBloqueo') {
     actualizarTiempoBloqueo($conexion);
 }
 
+
+
+
+
+
+
+
+
+
 function registerUser($conexion) {
 
     $name = $_POST['username'];
@@ -70,12 +88,7 @@ function registerUser($conexion) {
             window.history.back(); </script>";
         exit;
     }
-    if (!validatePassword($password)) {
-        echo "<script> alert('La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un símbolo.');
-                    window.history.back(); </script>";
-        exit;
-        return;
-    }
+    validatePassword($password);
 
     if ($password !== $passwordConfirm) {
         echo "<script> alert('Las contraseñas no coinciden');
@@ -92,7 +105,7 @@ function registerUser($conexion) {
     $resultado = $usuarioModelo->registrarUsuario($usuario);
 
     if ($resultado) {
-        header("Location: ../vista/login.html"); exit;
+        header("Location: ../vista/login.php"); exit;
     } else {
         echo "<script> alert('Error al registrar usuario.');
                     window.history.back(); </script>";
@@ -104,33 +117,57 @@ function registerUser($conexion) {
 }
 
 
+
+
+
+
 function validatePassword($password) {
 
     if (strlen($password) < 8) {
-        return false;
+        echo "<script> alert('La contraseña debe tener al menos 8 caracteres.');
+                    window.history.back(); </script>";
+        exit;
     }
 
     if (!preg_match('/[A-Z]/', $password)) {
-        return false;
+        echo "<script> alert('La contraseña debe tener al menos una letra mayúscula.');
+                    window.history.back(); </script>";
+        exit;
     }
 
     if (!preg_match('/[a-z]/', $password)) {
-        return false;
+        echo "<script> alert('La contraseña debe tener al menos una letra minúscula.');
+                    window.history.back(); </script>";
+        exit;
     }
 
     if (!preg_match('/[0-9]/', $password)) {
-        return false;
+        echo "<script> alert('La contraseña debe tener al menos un número.');
+                    window.history.back(); </script>";
+        exit;
     }
 
     if (!preg_match('/[^A-Za-z0-9]/', $password)) {
-        return false;
+        echo "<script> alert('La contraseña debe tener al menos un símbolo.');
+                    window.history.back(); </script>";
+        exit;
     }
 
     return true;
 }
 
+
+
+
+
+
+
+
+
 function registerUserAdmin($conexion) {
+    if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
     if ($_SESSION['rol'] !== 'administrador') {
         echo "No cuenta con privilegios de administrador.";
         return;
@@ -251,9 +288,10 @@ function loginUser($conexion) {
     //CONTRASENA CORRECTA---------------------------------------------------------------------------
     $usuarioModelo->reiniciarIntentosLogin($usuario->getId());
 
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+        if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+    
     $_SESSION['id'] = $usuario->getId();
     $_SESSION['nombre'] = $usuario->getNombre();
     $_SESSION['email'] = $usuario->getMail();
@@ -287,7 +325,9 @@ function loginUser($conexion) {
 
 
 function editUser($conexion) {
+    if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
     if ($_SESSION['rol'] !== 'administrador') {
         echo "No tenés permisos de administrador.";
         return;
@@ -336,7 +376,9 @@ function editUser($conexion) {
 
 function deleteUser($conexion) {
     
+    if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
     if ($_SESSION['rol'] !== 'administrador') {
         echo "No tenés permisos de administrador.";
         return;
@@ -360,7 +402,9 @@ function deleteUser($conexion) {
 
 function altaUser($conexion) {
     
+    if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
     if ($_SESSION['rol'] !== 'administrador') {
         echo "<script> alert('No tenés permisos de administrador.');
                     window.history.back(); </script>";
@@ -389,7 +433,9 @@ function altaUser($conexion) {
 
 function logoutUser($conexion) {
     // eliminar la sesion y redirigirlo a la página de inicio de sesión
+    if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
     $id = $_SESSION['id'];
     $usuarioModelo = new UsuarioModelo($conexion);
     $registroModelo = new RegistroModelo($conexion);
@@ -398,13 +444,15 @@ function logoutUser($conexion) {
     $registroModelo->registroAuditoria($registro);
     session_destroy();
 
-    header("Location: ../vista/login.html");
+    header("Location: ../vista/login.php");
     exit;
 }
 
 function editProfile($conexion) {
     //iniciar la sesion para saber que usaurio esta logueado y obtener su id, luego usar el modelo de usuario para editar los datos del usuario en la base de datos
+    if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
     $id = $_SESSION['id'];
     //obtener fatos del formulario y verificar caules estan vacios,
     //si estan vacios no se modifican, si no estan vacios se modifican
@@ -456,7 +504,9 @@ function editProfile($conexion) {
 
 
 function editPassword($conexion) {
+    if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
     $id = $_SESSION['id'];
     //obtener fatos del formulario y verificar caules estan vacios,
     //si estan vacios no se modifican, si no estan vacios se modifican

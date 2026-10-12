@@ -141,6 +141,42 @@ background-color: #3f4448;
 border: none;
 width: 100%;
 }
+.settings2 {
+    background-color: #3f4448;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    
+}
+
+.settings__item2 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 16px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px solid #4a4f54;
+    transition: background-color 0.2s;
+}
+.verp{
+    display: block;
+    width: 40%;
+    margin-top: 12px;
+    padding: 10px;
+    background-color: #E2E800;
+    color: #262A2B;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    border: 1px solid #E2E800;
+    transition:background-color 0.2s ease,color 0.2s ease;
+    top:30px;
+}
 /* ==========================================
    MEDIA QUERY: TABLET (768px - 1023px)
 ========================================== */

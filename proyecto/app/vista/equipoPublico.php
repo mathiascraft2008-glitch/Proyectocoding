@@ -94,11 +94,11 @@ $participantes = $inscripcionModelo->obtenerParticipantesDeUnEquipo( $torneo->ge
 
 
             <h2 class="section-title"> Participantes </h2> 
-            <section class="settings"> 
+            <section class="settings2"> 
                 <?php foreach ($participantes as $participante) { ?> 
-                <div class="settings__item"> 
+                <div class="settings__item2"> 
                     <p class="settings__label"> <?php echo $participante->getNombre(); ?> </p> 
-                    <a href="perfilPublico.php?id=<?php echo $participante->getId(); ?>" > Ver perfil </a> 
+                    <a href="perfilPublico.php?id=<?php echo $participante->getId(); ?>" class="verp"> Ver perfil </a> 
                 </div> <?php } ?> 
             </section>
 
