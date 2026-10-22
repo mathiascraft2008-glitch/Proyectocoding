@@ -36,7 +36,7 @@ $participantesDentro=$inscripcionModelo->obtenerParticipantesDeUnEquipo($idTorne
 
     <!-- Main -->
     <main>
-        
+        <section class="users-section">
         <h2>Participantes para inscribir</h2>
         <?php foreach ($participantes as $participante) { ?>
                 <?php echo $participante->getNombre(); ?>
@@ -46,12 +46,16 @@ $participantesDentro=$inscripcionModelo->obtenerParticipantesDeUnEquipo($idTorne
                 <input type="hidden" name="idP" value="<?php echo $participante->getId(); ?>">
                 <input type="hidden" name="idE" value="<?php echo $idEquipo ?>">
                 <input type="hidden" name="idT" value="<?php echo $idTorneo ?>">
-                <button type="submit">Agregar</button>
+                <button type="submit" class="add-user">Agregar</button>
                 </form>
         <?php } ?>
-
+        
+        </div>
+</section>
+<section class="users-section">
         <h2>Participantes inscriptos</h2>
-        <?php foreach ($participantesDentro as $participante) { ?>
+        <div class="user-list">
+            <?php foreach ($participantesDentro as $participante) { ?>
                 <?php echo $participante->getNombre(); ?>
                 <?php echo $participante->getId(); ?>
                 <form action="../controlador/equipoController.php" method="post">
@@ -59,9 +63,12 @@ $participantesDentro=$inscripcionModelo->obtenerParticipantesDeUnEquipo($idTorne
                 <input type="hidden" name="idP" value="<?php echo $participante->getId(); ?>">
                 <input type="hidden" name="idE" value="<?php echo $idEquipo ?>">
                 <input type="hidden" name="idT" value="<?php echo $idTorneo ?>">
-                <button type="submit">Quitar</button>
+                <button type="submit" class="remove-user">Quitar</button>
                 </form>
-        <?php } ?>
+            <?php } ?>
+        </div>
+        </section>
+        
     </main>
 
 </body>

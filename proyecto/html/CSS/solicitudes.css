@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,246 +7,173 @@
 
 body {
     background-color: #262A2B;
-    color: #ffffff;
+    color: #FEFCE8;
     font-family: "Roboto";
+    min-height: 100vh;
     overflow-x: hidden;
 }
 
-/* ==========================================
-   MAIN CONTENT (MÓVIL BASE)
-========================================== */
+/* MAIN */
 
 .main-content {
-    padding: 20px;
     width: 100%;
-    max-width: 450px;
+    max-width: 900px;
     margin: 0 auto;
+    padding: 30px 20px 50px;
 }
 
-/* Botón Volver y Título */
+/* TITULO */
+
 .back-section {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid #e2e800;
 }
-
 
 .title {
     font-family: "Orbitron";
     font-size: 28px;
-    font-weight: 500;
-    color: #ffffff;
+    font-weight: 600;
+    color: #FEFCE8;
 }
-.link{
+
+.link {
     text-decoration: none;
 }
-/* Buscador (Estilo Móvil) */
-.search-box {
-    display: flex;
-    align-items: center;
-    background-color: #3f4448;
-    border-radius: 10px;
-    padding: 10px 15px;
-    margin-bottom: 20px;
-}
 
-.search-icon {
-    width: 16px;
-    height: 16px;
-    background-color: #d6d6d6;
-    margin-right: 12px;
-    flex-shrink: 0;
-}
+/* LISTA DE INSCRIPCIONES */
 
-.search-input {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #ffffff;
-    width: 100%;
-    font-size: 14px;
-}
-
-.search-input::placeholder {
-    color: #a0a0a0;
-}
-
-/* Contenedor principal de la lista */
-.box {
-    background-color: #3f4448;
-    border-radius: 12px;
-    padding: 15px 15px 5px;
-}
-
-
-
-/* Opciones / Lista de Participantes */
 .options-list {
     display: flex;
     flex-direction: column;
+    gap: 12px;
 }
+
+/* TARJETA */
 
 .option {
     display: flex;
     align-items: center;
-    padding: 12px 5px;
-    border-bottom: 1px solid #555555;
-    background-color: transparent;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 18px;
+    background-color: #353A3B;
+    border: 1px solid #4B5152;
+    border-left: 4px solid #e2e800;
+    border-radius: 10px;
+    transition: background-color 0.2s ease,border-color 0.2s ease;
 }
 
-.option:last-child {
-    border-bottom: none;
+.option:hover {
+    background-color: #3D4344;
+    border-color: #e2e800;
 }
 
-.img {
-    width: 44px;
-    height: 44px;
-    background-color: #d6d6d6;
-    border-radius: 50%;
-    margin-right: 15px;
-    flex-shrink: 0;
-}
+
+
+
 
 .option__item {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    justify-content: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
 }
 
 .name {
-    color: #ffffff;
-    font-size: 14px;
+    color: #FEFCE8;
+    font-size: 15px;
     font-weight: 600;
 }
 
-.status {
-    color: #4cd964;
-    font-size: 12px;
+/* BOTON ELIMINAR */
+
+.option__item form {
+    width: 100%;
 }
 
-/* ==========================================
-   MEDIA QUERIES: TABLET (768px - 1023px)
-========================================== */
+.eliminar{
+    width: 100%;
+    min-height: 40px;
+    padding: 10px 16px;
+    background-color: #4B5152;
+    color: #FEFCE8;
+    border: 1px solid #737B7C;
+    border-radius: 7px;
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease,color 0.2s ease,border-color 0.2s ease;
+}
 
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+.eliminar:hover {
+    background-color: #e2e800;
+    color: #1F2937;
+    border-color: #e2e800;
+}
+
+/* TABLET */
+
+@media screen and (min-width: 600px) {
 
     .main-content {
-        max-width: 700px;
-        padding: 30px 20px;
+        padding: 35px 24px 50px;
     }
 
-    /* Buscador adaptado a tamaño mediano */
-    .search-box {
-        max-width: 100%;
-        padding: 12px 18px;
-        border-radius: 8px;
-    }
-
-    .search-input {
-        font-size: 15px;
-    }
-
-    /* Caja contenedora táctil amplia */
-    .box {
-        padding: 20px;
-    }
-
-    .filter__item {
-        padding: 11px 24px;
-        font-size: 14px;
+    .title {
+        font-size: 30px;
     }
 
     .option {
-        padding: 14px 10px;
+        padding: 18px 20px;
     }
 
-    .img {
-        width: 46px;
-        height: 46px;
+    .option__item {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .option__item form {
+        width: auto;
+    }
+
+    .option__item button {
+        width: 125px;
     }
 
     .name {
-        font-size: 15px;
-    }
-
-    .status {
-        font-size: 13px;
+        font-size: 16px;
     }
 }
 
-/* ==========================================
-   MEDIA QUERIES: DESKTOP (min-width: 1024px)
-========================================== */
+/* PC */
 
 @media screen and (min-width: 1024px) {
 
     .main-content {
-        max-width: 900px;
-        padding: 40px 20px;
+        padding-top: 45px;
     }
 
-    /* Buscador blanco estilo PC */
-    .search-box {
-        background-color: #ffffff;
-        border-radius: 6px;
-        padding: 8px 15px;
-        max-width: 450px;
-        margin-bottom: 30px;
-        flex-direction: row-reverse; /* Pone la lupa al lado derecho */
+    .title {
+        font-size: 32px;
     }
 
-    .search-input {
-        color: #121212;
-        font-size: 13px;
-    }
-
-    .search-input::placeholder {
-        color: #666666;
-    }
-
-    .search-icon {
-        background-color: #121212;
-        margin-right: 0;
-        margin-left: 10px;
-        width: 12px;
-        height: 12px;
-    }
-
-    /* Ajuste del Box en PC */
-    .box {
-        background-color: transparent;
-        padding: 0;
-        border-radius: 0;
-    }
-
-    .filter {
-        border-bottom: 1px solid #555555;
-        padding-bottom: 20px;
-        margin-bottom: 0;
-    }
-
-    .filter__item {
-        padding: 12px 30px;
-        border-radius: 10px;
-        font-size: 14px;
+    .options-list {
+        gap: 14px;
     }
 
     .option {
-        padding: 16px 10px;
-        border-bottom: 1px solid #444444;
-    }
-
-    .img {
-        width: 48px;
-        height: 48px;
+        padding: 20px 24px;
     }
 
     .name {
-        font-size: 15px;
-    }
-
-    .status {
-        font-size: 13px;
+        font-size: 16px;
     }
 }

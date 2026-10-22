@@ -199,7 +199,7 @@ function registerUserAdmin($conexion) {
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
     $usuarioModelo = new UsuarioModelo($conexion);
-    $usuario=new Usuario(null,$name,$email,$passwordHash,'administrador',true);
+    $usuario=new Usuario(null,$name,$email,$passwordHash,'administrador',true,null,null);
 
     $resultado = $usuarioModelo->registrarUsuarioAdmin($usuario);
 
@@ -255,7 +255,7 @@ function loginUser($conexion) {
 
     $ahora = date('Y-m-d H:i:s');
 
-    if ($ahora<$usuario->getBloqueoHasta()) {
+    if (!$usuario->getActivo()) {
         echo "<script>
                 alert('La cuenta está bloqueada temporalmente.');
                 window.history.back();

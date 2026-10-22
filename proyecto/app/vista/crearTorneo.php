@@ -175,7 +175,7 @@ session_start();
         </div>
 
         <button type="submit" class="btn-next" >
-            <span>Siguiente</span>
+            <span>CREAR</span>
             </button>
         
         

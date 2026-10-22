@@ -46,7 +46,6 @@ $listar = $inscripciones->obtenerInscripciones($idTorneo);
                 <?php foreach ($listar as $lista) { ?>
                     <div class="option">
 
-                        <div class="img"></div>
                         <div class="option__item">
 
                             <h3 class="name">
@@ -57,7 +56,7 @@ $listar = $inscripciones->obtenerInscripciones($idTorneo);
                                 <input type="hidden" name="action" value="eliminarInscripcion">
                                 <input type="hidden" name="idInscripcion" value="<?php echo $lista->getId(); ?>">
                                 <input type="hidden" name="idTorneo" value="<?php echo $idTorneo; ?>">
-                                <button type="submit">
+                                <button type="submit" class="eliminar">
                                     Eliminar
                                 </button>
                             </form>

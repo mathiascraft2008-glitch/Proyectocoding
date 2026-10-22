@@ -32,7 +32,7 @@ class UsuarioModelo {
     }
 
     function BuscarUsuarioPorEmail($email) {
-        $sql = "SELECT * FROM usuario WHERE MAIL = :mail AND ACTIVO = TRUE";
+        $sql = "SELECT * FROM usuario WHERE MAIL = :mail";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':mail', $email);
         $stmt->execute();

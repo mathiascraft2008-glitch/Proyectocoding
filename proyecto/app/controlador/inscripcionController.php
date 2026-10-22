@@ -8,6 +8,10 @@ require_once "../modelo/inscripcionModelo.php";
 require_once "../modelo/Inscripcion.php";
 require_once "../modelo/Competidor.php";
 require_once "../modelo/competidorModelo.php";
+$action = $_POST['action'];
+if ($action == 'eliminarInscripcion') {
+    eliminarInscripcion($conexion);
+}
 
 $idUsuario = $_SESSION['id'];
 $idTorneo = $_POST['idTorneo'];
@@ -18,10 +22,7 @@ $inscripcionModelo = new inscripcionModelo($conexion);
 $torneo = $torneoModelo->obtenerTorneo($idTorneo);
 $competidorModelo = new competidorModelo($conexion);
 
-$action = $_POST['action'];
-if ($action == 'eliminarInscripcion') {
-    eliminarInscripcion($conexion);
-}
+
 
 //inscribir normal-----------------------------------------------------:
 if (!$torneo) {

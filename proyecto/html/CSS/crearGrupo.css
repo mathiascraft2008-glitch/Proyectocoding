@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -12,258 +13,151 @@ body {
     overflow-x: hidden;
 }
 
-
-
-/*main */
+/* MAIN */
 
 main {
     width: 100%;
+    max-width: 760px;
     margin: 0 auto;
-    padding-bottom: 40px;
-    font-family: "Roboto";
+    padding: 24px 16px 50px;
 }
 
-
+/* TITULO */
 
 .page-title {
-    font-family: "Orbitron";
     display: flex;
     align-items: center;
-    padding: 16px;
-    gap: 16px;
+    padding: 16px 0 24px;
+    border-bottom: 2px solid #e2e800;
+    margin-bottom: 10px;
 }
 
 .page-title h1 {
     color: #ffffff;
-    font-size: 24px;
-    font-weight: 400;
+    font-family: "Orbitron", sans-serif;
+    font-size: 25px;
+    font-weight: 600;
 }
 
-.back {
-    width: 36px;
-    height: 36px;
-    border: none;
-    background-color: #d6d6d6;
-    color: #262A2B;
-    font-size: 32px;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-/*info de grupo*/
-.group-info {
-    display: flex;
-    align-items: flex-start;
-    background-color: #666666;
-    padding: 20px 16px;
-    gap: 16px;
-}
-
-.group-image {
-    width: 90px;
-    height: 90px;
-    flex-shrink: 0;
-    background-color: #e2e800;
-    border-radius: 50%;
-}
-
-.group-data {
-    flex: 1;
-}
-
-.form__item {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
-
-.form__item label {
-    color: #ffffff;
-    font-size: 13px;
-    margin-bottom: 6px;
-}
-
-.form__item input,
-.form__item textarea {
-    width: 100%;
-    border: none;
-    border-radius: 7px;
-    background-color: #2d2d2d;
-    color: #ffffff;
-    padding: 10px;
-    outline: none;
-    font-family: inherit;
-}
-
-.form__item input {
-    height: 38px;
-}
-
-.form__item textarea {
-    height: 72px;
-    resize: none;
-}
-
-
+/* SECCIONES */
 
 .users-section {
-    padding: 16px 16px 0;
+    padding: 22px 0 0;
 }
 
 .section-title {
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 8px;
+    color: #e2e800;
+    font-family: "Orbitron", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 14px;
 }
 
-
-
-.search-user input {
-    width: 100%;
-    height: 38px;
-    border: none;
-    border-radius: 7px;
-    background-color: #d6d6d6;
-    color: #262A2B;
-    padding: 0 12px;
-    font-family: inherit;
-    outline: none;
-}
-
-/* lista usaurio*/
+/* LISTA DE PARTICIPANTES */
 
 .user-list {
-    list-style: none;
     padding: 0;
     margin-top: 8px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 10px;
 }
 
 .user-item {
-    height: 40px;
-    background-color: #444444;
-    border-radius: 7px;
+    min-height: 62px;
+    background-color: #353A3B;
+    border: 1px solid #4B5152;
+    border-radius: 9px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 12px;
+    gap: 12px;
+    padding: 12px 14px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.user-item p {
-    color: #ffffff;
-    font-size: 14px;
+.user-item:hover {
+    background-color: #414748;
+    border-color: #e2e800;
 }
-
-
 
 .add-user,
 .remove-user {
-    width: 24px;
-    height: 24px;
+    width: 34px;
+    height: 34px;
     border: none;
-    background-color: #e2e800;
-    color: #000000;
-    font-size: 18px;
+    font-size: 23px;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-
-
-.create-group {
-    display: block;
-    width: 80%;
-    max-width: 300px;
-    height: 48px;
-    margin: 30px auto 0;
-    border: none;
-    border-radius: 6px;
-    background-color: #e2e800;
-    font-family: "Roboto";
-    color: #121212;
-    font-size: 18px;
-    font-weight: 700;
+    border-radius: 7px;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
-.create-group:hover {
-    background-color: #f6f6f3;
+.add-user {
+    width: 80px;
+    background-color: #e2e800;
+    color: #1F2937;
 }
-/*tablet*/
 
-@media screen and (min-width: 600px) and (max-width: 1023px) {
+.add-user:hover {
+    background-color: #e2e800;
+}
+
+.remove-user {
+    width: 80px;
+    background-color: #4B5152;
+    color: #FEFCE8;
+    border: 1px solid #737B7C;
+}
+
+.remove-user:hover {
+    background-color: #e2e800;
+    color: #1F2937;
+    border-color: #e2e800;
+}
+
+/* TABLET */
+
+@media screen and (min-width: 600px) {
 
     main {
-        max-width: 680px;
-        padding-top: 20px;
+        padding: 30px 24px 50px;
     }
 
     .page-title h1 {
-        font-size: 28px;
+        font-size: 29px;
     }
 
-    .group-info {
-        border-radius: 12px;
-        padding: 24px;
+    .users-section {
+        padding-top: 26px;
     }
 
-    .group-image {
-        width: 110px;
-        height: 110px;
+    .user-item {
+        min-height: 66px;
+        padding: 14px 18px;
     }
 
-    .create-group {
-        width: 60%;
-        height: 50px;
+    .user-item p {
+        font-size: 15px;
     }
 }
 
-/*pc*/
+/* PC */
 
 @media screen and (min-width: 1024px) {
 
     main {
-        max-width: 760px;
-        padding-top: 30px;
-    }
-
-    .page-title {
-        padding: 20px 0;
+        padding-top: 35px;
     }
 
     .page-title h1 {
         font-size: 32px;
     }
 
-    .group-info {
-        border-radius: 12px;
-        padding: 28px;
-        gap: 24px;
-    }
-
-    .group-image {
-        width: 120px;
-        height: 120px;
-    }
-
-    .users-section {
-        padding: 20px 0 0;
-    }
-
-    .create-group {
-        width: 50%;
-        height: 52px;
-        font-size: 19px;
+    .section-title {
+        font-size: 16px;
     }
 }

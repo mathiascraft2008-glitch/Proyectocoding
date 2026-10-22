@@ -35,6 +35,11 @@ function crear($conexion){
     $competidorModelo = new CompetidorModelo($conexion);
     $torneo = $torneoModelo->obtenerTorneo($idTorneo);
     $cant=$competidorModelo->CantidadCompetidores($idTorneo);
+    if ($torneo->getParticipacion() !== 'equipo') {
+        echo "<script> alert('El torneo es modo individual, no se peude crear equipos.');
+                    window.history.back(); </script>";
+        exit;
+        }
     if($torneo->getMaxEquipos()==$cant['cantidad']){
         echo "<script> alert('Se alcanzó la cantidad máxima de equipos en el torneo.');
                     window.history.back(); </script>";
@@ -90,7 +95,7 @@ function quitar($conexion){
     if ($resultado) {
         header("Location: ../vista/PanelOrganizador.php?id=$idTorneo"); exit;
     } else {
-        echo "<script> alert('Error al crear el Equipo.');
+        echo "<script> alert('Error al quitar el participante del equipo.');
                     window.history.back(); </script>";
         exit;
     }
@@ -102,7 +107,7 @@ function eliminarEquipo($conexion){
     $equipoModelo=new equipoModelo($conexion);
     $rondaModelo=new rondaModelo($conexion);
     $cantidadRondas = $rondaModelo->cantidadRondas($idTorneo);
-    if ($cantidadRondas > 0) {
+    if ($cantidadRondas['cantidad'] > 0) {
         echo "<script>
                 alert('No se puede eliminar el equipo porque el torneo ya comenzó.');
                 window.history.back();

@@ -50,7 +50,7 @@ $torneos = $torneoModelo->obtenerTorneosPublico();
             </div>
 
             <div class="hero__image">
-                <img src="images/jef2.jpeg" alt="">
+                <img src="images/index.jpeg" alt="">
             </div>
 
         </section>
